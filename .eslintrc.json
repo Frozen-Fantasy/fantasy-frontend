@@ -1,0 +1,56 @@
+{
+  "root": true,
+  "ignorePatterns": ["!**/*"],
+  "plugins": ["@nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "@tinkoff/eslint-config/app", "@tinkoff/eslint-config-angular",
+        "@tinkoff/eslint-config-angular/rxjs",
+        "@tinkoff/eslint-config-angular/promise",
+        "@tinkoff/eslint-config-angular/imports",
+        "@tinkoff/eslint-config-angular/unicorn",
+        "@tinkoff/eslint-config-angular/html-eslint",
+        "@tinkoff/eslint-config-angular/file-progress",
+        "@tinkoff/eslint-config-angular/line-statements",
+        "@tinkoff/eslint-config-angular/member-ordering",
+        "@tinkoff/eslint-config-angular/decorator-position",
+        "@tinkoff/eslint-config-angular/function-return-type",
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "frozenFantasy",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "frozen-fantasy",
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@nx/angular-template"],
+      "rules": {}
+    }
+  ]
+}
