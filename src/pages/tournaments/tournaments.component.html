@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="filters">
+
+    </div>
+    <div class="card-list">
+        <div class="card" *ngFor="let tournament of mockTournaments">
+            <frozen-fantasy-tournament-card
+                [tournament]="tournament"></frozen-fantasy-tournament-card>
+        </div>
+    </div>
+</div>
