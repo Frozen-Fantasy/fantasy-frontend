@@ -14,19 +14,19 @@ import { TournamentsFilterComponent } from 'src/ui/tournaments-filter/tournament
 	styleUrl: './tournaments.component.less',
 })
 export class TournamentsComponent {
-	tournaments:ITournament[]=this.tournamentsService.mockTournaments;
+	tournaments: ITournament[] = this.tournamentsService.mockTournaments;
 
-	constructor(private readonly router:Router, private readonly tournamentsService:TournamentsService){
+	constructor(private readonly router: Router, private readonly tournamentsService: TournamentsService) {
 
 	}
 
-	onFilterChange(value:Partial<{khlLeague:boolean,nhlLeague:boolean}>){
-		this.tournaments = this.tournamentsService.mockTournaments.filter(tournament=>{
+	onFilterChange(value: Partial<{ khlLeague: boolean, nhlLeague: boolean }>) {
+		this.tournaments = this.tournamentsService.mockTournaments.filter(tournament => {
 			const tournamentLeague = tournament.league;
-			if(tournamentLeague==='KHL'){
+			if (tournamentLeague === 'KHL') {
 				return value.khlLeague;
 			}
-			if(tournamentLeague==='NHL'){
+			if (tournamentLeague === 'NHL') {
 				return value.nhlLeague;
 			}
 			return false;

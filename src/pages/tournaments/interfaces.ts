@@ -2,25 +2,25 @@ export type HockeyLeague = 'KHL' | 'NHL';
 
 export type MatchStatus = 'scheduled' | 'started' | 'finished';
 
-export const StatusMap:{[key in MatchStatus]:string}={
-    scheduled:'',
-    started:'Идет',
+export const StatusMap: { [key in MatchStatus]: string } = {
+    scheduled: '',
+    started: 'Идет',
     finished: 'Завершен'
 };
 export interface ITeam {
-    name:string;
+    name: string;
 }
 
-export interface IMatch{
+export interface IMatch {
     homeTeam: ITeam;
     guestTeam: ITeam;
-    status:MatchStatus; 
+    status: MatchStatus;
     homeTeamScore?: number;
     guestTeamScore?: number;
     winner?: ITeam;
 }
 
-export interface ITournamentParticipant{
+export interface ITournamentParticipant {
     userName: string;
 }
 
