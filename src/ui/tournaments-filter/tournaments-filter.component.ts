@@ -11,17 +11,4 @@ import { CheckboxComponent } from '../kit/checkbox/checkbox.component';
 	styleUrl: './tournaments-filter.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentsFilterComponent implements OnInit {
-	form = new FormGroup(
-		{
-			khlLeague: new FormControl<boolean>(true, { nonNullable: true }),
-			nhlLeague: new FormControl<boolean>(true, { nonNullable: true })
-		}
-	);
-	@Output() filterChange = new EventEmitter<Partial<{ khlLeague: boolean, nhlLeague: boolean }>>
-	ngOnInit() {
-		this.form.valueChanges.subscribe((value) => {
-			this.filterChange.emit(value);
-		});
-	}
-}
+export class TournamentsFilterComponent { }
