@@ -1,20 +1,38 @@
 <div class="card">
-    <div class="logo">
-        <img src="/assets/icons/KHL-logo.svg" alt="" class="logo-img">
-    </div>
-    <div class="name">
-        {{tournament?.name}}
-    </div>
-    <div class="start-date">
-        {{tournament?.startDate | date}}
-    </div>
-    <div class="participants">
-        {{tournament?.participants}}
-    </div>
-    <div class="contribution">
-        {{tournament?.contribution}}
-    </div>
-    <div class="reward">
-        {{tournament?.reward}}
-    </div>
+	<div class="logo">
+		@if(tournament?.league==='KHL'){
+		<img
+			width="48"
+			src="/assets/icons/KHL-logo.svg"
+			alt=""
+			class="logo-img"
+		/>
+		} @if(tournament?.league==='NHL'){
+		<img
+			width="48"
+			src="/assets/icons/NHL-logo.svg"
+			alt=""
+			class="logo-img"
+		/>
+		}
+	</div>
+	<div class="name">
+		{{ tournament?.name }}
+	</div>
+	<div class="start-date">
+		{{ tournament?.startDate | date }}
+	</div>
+	<div class="participants">
+		{{ tournament?.participants }}
+	</div>
+	<div class="contribution">
+		<frozen-fantasy-coins
+			[price]="tournament?.contribution"
+		></frozen-fantasy-coins>
+	</div>
+	<div class="reward">
+		<frozen-fantasy-coins
+			[price]="tournament?.reward"
+		></frozen-fantasy-coins>
+	</div>
 </div>
