@@ -5,6 +5,7 @@ import { ITournament } from './interfaces';
 import { Router } from '@angular/router';
 import { TournamentsService } from 'src/services/tournaments.service';
 import { TournamentsFilterComponent } from 'src/ui/tournaments-filter/tournaments-filter.component';
+import { ITournament } from './interfaces';
 
 @Component({
 	selector: 'frozen-fantasy-tournamnets',

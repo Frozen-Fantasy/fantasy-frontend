@@ -1,16 +1,27 @@
 .container {
-    display: flex;
-    margin-top: 2rem;
-    gap: 2rem;
+	display: flex;
+	margin-top: 2rem;
+	gap: 2rem;
 
-    .filters {
-        flex-basis: 20%;
-    }
+	.filters {
+		flex-basis: 20%;
+	}
 
-    .card-list {
-        display: flex;
-        flex-basis: 80%;
-        flex-direction: column;
-        gap: 2rem;
-    }
+	.card-list {
+		display: flex;
+		flex-basis: 80%;
+		flex-direction: column;
+		gap: 2rem;
+
+		.header {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			gap: 2rem;
+
+			div {
+				text-align: center;
+			}
+		}
+	}
 }
