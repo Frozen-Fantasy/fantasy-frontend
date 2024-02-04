@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TournamentCardComponent } from 'src/ui/toutnament-card/tournament-card.component';
+import { TournamentCardComponent } from 'src/ui/tournament-card/tournament-card.component';
+import { TournamentsFilterComponent } from 'src/ui/tournaments-filter/tournaments-filter.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournamnets',
 	standalone: true,
-	imports: [CommonModule, TournamentCardComponent],
+	imports: [CommonModule, TournamentCardComponent, TournamentsFilterComponent],
 	templateUrl: './tournaments.component.html',
 	styleUrl: './tournaments.component.less',
 })
