@@ -1,6 +1,8 @@
 <div class="container">
 	<div class="filters">
-		<frozen-fantasy-tournaments-filter></frozen-fantasy-tournaments-filter>
+		<frozen-fantasy-tournaments-filter
+			(filterChange)="onFilterChange($event)"
+		></frozen-fantasy-tournaments-filter>
 	</div>
 	<div class="card-list">
 		<div class="header">
@@ -11,7 +13,7 @@
 			<div class="contribution">Взнос за участие</div>
 			<div class="reward">Вознаграждение</div>
 		</div>
-		<div class="card" *ngFor="let tournament of mockTournaments">
+		<div class="card" *ngFor="let tournament of tournaments">
 			<frozen-fantasy-tournament-card
 				[tournament]="tournament"
 			></frozen-fantasy-tournament-card>
