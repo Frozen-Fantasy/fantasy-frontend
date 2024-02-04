@@ -9,14 +9,14 @@ import { LeagueIconComponent } from '../kit/league-icon/league-icon.component';
 @Component({
 	selector: 'frozen-fantasy-tournament-card',
 	standalone: true,
-	imports: [CommonModule,CoinsComponent, ButtonComponent, RouterLink, LeagueIconComponent],
+	imports: [CommonModule, CoinsComponent, ButtonComponent, RouterLink, LeagueIconComponent],
 	templateUrl: './tournament-card.component.html',
 	styleUrl: './tournament-card.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentCardComponent {
 	@Input() tournament: ITournament | undefined;
-	onClick(event:MouseEvent){
+	onClick(event: MouseEvent) {
 		event.stopPropagation();
 		event.preventDefault();
 	}
