@@ -16,14 +16,44 @@ import { AuthService } from 'src/services/auth/auth.service';
 })
 export class CoreComponent implements OnDestroy {
 	destroy$ = new Subject();
+	tabs = [
+		{
+			title: 'Все турниры',
+			routerLink: '/tournaments'
+		},
+		{
+			title: 'Мои турниры',
+			routerLink: '/my-tournaments'
+		},
+		{
+			title: 'Рейтинг',
+			routerLink: '/rating'
+		},
+		{
+			title: 'Галерея',
+			routerLink: '/gallery'
+		},
+		{
+			title: 'Правила',
+			routerLink: '/rules'
+		}
+	];
+	activeTab: number = 0;
+
 	constructor(private usersService: UserService, private authService: AuthService, private router: Router) {
 		this.usersService.getUserInfo().pipe(takeUntil(this.destroy$)).subscribe((val) => {
 			console.log(val);
 		});
 	}
+
 	ngOnDestroy(): void {
 		this.destroy$.next(true);
 	}
+
+	onClick(id: number) {
+		this.activeTab = id;
+	}
+
 	onLogout(): void {
 		this.authService.logout().pipe(take(1), catchError((e) => {
 			this.router.navigate(['/login']);
