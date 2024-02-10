@@ -17,15 +17,15 @@ import { ScheduleTableComponent } from 'src/ui/schedule-table/schedule-table.com
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentInformationComponent implements OnInit {
-	tournament:ITournament|undefined;
-	@Input('id') id:number = 0;
+	tournament: ITournament | undefined;
+	@Input('id') id: number = 0;
 
-	constructor(private readonly tournamentsService:TournamentsService){
+	constructor(private readonly tournamentsService: TournamentsService) {
 
 	}
 	ngOnInit(): void {
-		this.tournament = this.tournamentsService.mockTournaments.find(tournament=>{
-			return tournament.id==this.id;
+		this.tournament = this.tournamentsService.mockTournaments.find(tournament => {
+			return tournament.id == this.id;
 		});
 	}
 }

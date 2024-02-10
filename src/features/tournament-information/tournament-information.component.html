@@ -1,15 +1,12 @@
 <header>
-	<frozen-fantasy-league-icon
-		[league]="tournament?.league"
-		[size]="'l'"
-	></frozen-fantasy-league-icon>
+	<frozen-fantasy-league-icon [league]="tournament?.league"
+		[size]="'l'"></frozen-fantasy-league-icon>
 	<h1>{{ tournament?.name }}</h1>
 </header>
 
 <div class="details">
 	<frozen-fantasy-schedule-table
-		[matches]="tournament?.matches ?? []"
-	></frozen-fantasy-schedule-table>
+		[matches]="tournament?.matches ?? []"></frozen-fantasy-schedule-table>
 </div>
 
 <div class="participants">

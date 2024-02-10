@@ -1,4 +1,4 @@
-@import 'src/styles.less';
+@import '../styles.less';
 
 header {
 	background-color: #2c2727;
@@ -14,55 +14,51 @@ header {
 	p {
 		margin: 0.5rem;
 	}
+}
 
-	#logo {
-		width: 50px;
-		height: auto;
-		margin-right: 10px;
+#logo {
+	width: 50px;
+	height: auto;
+	margin-right: 10px;
+}
+
+nav {
+	display: flex;
+	gap: 3rem;
+}
+
+nav a {
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px;
+	border-bottom: 2px solid transparent;
+	transition: border-bottom 0.3s ease;
+}
+
+nav a:hover {
+	border-bottom: 2px solid #fff;
+}
+
+.login-logout {
+	padding: 10px;
+	background-color: #2C2727;
+	color: #fff;
+	text-decoration: none;
+	border: 1px solid #186FB6;
+	width: 10rem;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+
+	&:hover {
+		background-color: #555;
 	}
+}
 
-	nav {
-		display: flex;
-		gap: 3rem;
-
-		a {
-			color: #fff;
-			text-transform: uppercase;
-			text-decoration: none;
-			padding: 10px;
-			border-bottom: 2px solid transparent;
-			transition: border-bottom 0.3s ease;
-
-			&:hover {
-				border-bottom: 2px solid #fff;
-			}
-		}
-
-		.active {
-			border-bottom: 2px solid #fff;
-		}
-	}
-
-	.login-logout {
-		padding: 10px;
-		background-color: #2c2727;
-		color: #fff;
-		text-decoration: none;
-		border: 1px solid @base-blue;
-		width: 10rem;
-		border-radius: 10px;
-		cursor: pointer;
-		transition: all 0.3s ease;
-
-		&:hover {
-			background-color: #555;
-		}
-	}
-
-	.bell-icon {
-		position: relative;
-		top: 4px;
-	}
+.bell-icon {
+	position: relative;
+	top: 4px;
 }
 
 .container {
