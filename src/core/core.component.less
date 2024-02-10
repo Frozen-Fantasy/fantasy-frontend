@@ -25,27 +25,31 @@ header {
 nav {
 	display: flex;
 	gap: 3rem;
-}
 
-nav a {
-	color: #fff;
-	text-transform: uppercase;
-	text-decoration: none;
-	padding: 10px;
-	border-bottom: 2px solid transparent;
-	transition: border-bottom 0.3s ease;
-}
+	a {
+		color: #fff;
+		text-transform: uppercase;
+		text-decoration: none;
+		padding: 10px;
+		border-bottom: 2px solid transparent;
+		transition: border-bottom 0.3s ease;
 
-nav a:hover {
-	border-bottom: 2px solid #fff;
+		&:hover {
+			border-bottom: 2px solid #fff;
+		}
+	}
+
+	.active {
+		border-bottom: 2px solid #fff;
+	}
 }
 
 .login-logout {
 	padding: 10px;
-	background-color: #2C2727;
+	background-color: #2c2727;
 	color: #fff;
 	text-decoration: none;
-	border: 1px solid #186FB6;
+	border: 1px solid @base-blue;
 	width: 10rem;
 	border-radius: 10px;
 	cursor: pointer;
@@ -59,6 +63,7 @@ nav a:hover {
 .bell-icon {
 	position: relative;
 	top: 4px;
+}
 }
 
 .container {
