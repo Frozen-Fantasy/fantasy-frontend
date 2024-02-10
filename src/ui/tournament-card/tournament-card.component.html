@@ -1,38 +1,43 @@
-<div class="card">
-	<div class="logo">
-		@if(tournament?.league==='KHL'){
-		<img
-			width="48"
-			src="/assets/icons/KHL-logo.svg"
-			alt=""
-			class="logo-img"
-		/>
-		} @if(tournament?.league==='NHL'){
-		<img
-			width="48"
-			src="/assets/icons/NHL-logo.svg"
-			alt=""
-			class="logo-img"
-		/>
-		}
+<a href="" [routerLink]="[tournament?.id]" class="link">
+	<div class="card">
+		<div class="logo">
+			@if(tournament?.league==='KHL'){
+			<img
+				width="48"
+				src="/assets/icons/KHL-logo.svg"
+				alt=""
+				class="logo-img"
+			/>
+			} @if(tournament?.league==='NHL'){
+			<img
+				width="48"
+				src="/assets/icons/NHL-logo.svg"
+				alt=""
+				class="logo-img"
+			/>
+			}
+		</div>
+		<div class="name">
+			{{ tournament?.name }}
+		</div>
+		<div class="start-date">
+			{{ tournament?.startDate | date }}
+		</div>
+		<div class="participants">
+			{{ tournament?.participants }}
+		</div>
+		<div class="contribution">
+			<frozen-fantasy-coins
+				[price]="tournament?.contribution"
+			></frozen-fantasy-coins>
+		</div>
+		<div class="reward">
+			<frozen-fantasy-coins
+				[price]="tournament?.reward"
+			></frozen-fantasy-coins>
+		</div>
+		<div class="play">
+			<frozen-fantasy-button>Участвовать</frozen-fantasy-button>
+		</div>
 	</div>
-	<div class="name">
-		{{ tournament?.name }}
-	</div>
-	<div class="start-date">
-		{{ tournament?.startDate | date }}
-	</div>
-	<div class="participants">
-		{{ tournament?.participants }}
-	</div>
-	<div class="contribution">
-		<frozen-fantasy-coins
-			[price]="tournament?.contribution"
-		></frozen-fantasy-coins>
-	</div>
-	<div class="reward">
-		<frozen-fantasy-coins
-			[price]="tournament?.reward"
-		></frozen-fantasy-coins>
-	</div>
-</div>
+</a>

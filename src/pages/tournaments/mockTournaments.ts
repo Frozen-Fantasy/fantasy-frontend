@@ -2,6 +2,7 @@ import { ITournament } from "./interfaces";
 
 export const mockTournaments:ITournament[] = [
     {
+        id:1,
         name: 'Турнир 1',
         startDate: new Date('2022-01-01'),
         participants: 25,
@@ -10,6 +11,7 @@ export const mockTournaments:ITournament[] = [
         league: 'KHL'
     },
     {
+        id:2,
         name: 'Турнир 2',
         startDate: new Date('2022-02-15'),
         participants: 12,
@@ -18,6 +20,7 @@ export const mockTournaments:ITournament[] = [
         league: 'NHL'
     },
     {
+        id:3,
         name: 'Турнир 3',
         startDate: new Date('2022-03-10'),
         participants: 18,
@@ -26,6 +29,7 @@ export const mockTournaments:ITournament[] = [
         league: 'NHL'
     },
     {
+        id:4,
         name: 'Турнир 4',
         startDate: new Date('2022-04-22'),
         participants: 20,
@@ -34,6 +38,7 @@ export const mockTournaments:ITournament[] = [
         league: 'KHL'
     },
     {
+        id:5,
         name: 'Турнир 5',
         startDate: new Date('2022-05-05'),
         participants: 15,
@@ -42,6 +47,7 @@ export const mockTournaments:ITournament[] = [
         league: 'NHL'
     },
     {
+        id:6,
         name: 'Турнир 6',
         startDate: new Date('2022-06-18'),
         participants: 30,
@@ -50,6 +56,7 @@ export const mockTournaments:ITournament[] = [
         league: 'KHL'
     },
     {
+        id:7,
         name: 'Турнир 7',
         startDate: new Date('2022-07-01'),
         participants: 12,
@@ -58,6 +65,7 @@ export const mockTournaments:ITournament[] = [
         league: 'KHL'
     },
     {
+        id:8,
         name: 'Турнир 8',
         startDate: new Date('2022-08-13'),
         participants: 24,
@@ -66,6 +74,7 @@ export const mockTournaments:ITournament[] = [
         league: 'NHL'
     },
     {
+        id:9,
         name: 'Турнир 9',
         startDate: new Date('2022-09-28'),
         participants: 16,
@@ -74,6 +83,7 @@ export const mockTournaments:ITournament[] = [
         league: 'NHL'
     },
     {
+        id:10,
         name: 'Турнир 10',
         startDate: new Date('2022-10-15'),
         participants: 22,

@@ -4,6 +4,7 @@ import { TournamentCardComponent } from 'src/ui/tournament-card/tournament-card.
 import { TournamentsFilterComponent } from 'src/ui/tournaments-filter/tournaments-filter.component';
 import { ITournament } from './interfaces';
 import { mockTournaments } from './mockTournaments';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'frozen-fantasy-tournamnets',
@@ -14,6 +15,11 @@ import { mockTournaments } from './mockTournaments';
 })
 export class TournamentsComponent {
 	tournaments:ITournament[]=mockTournaments;
+
+	constructor(private readonly router:Router){
+
+	}
+
 	onFilterChange(value:Partial<{khlLeague:boolean,nhlLeague:boolean}>){
 		this.tournaments = mockTournaments.filter(tournament=>{
 			const tournamentLeague = tournament.league;
