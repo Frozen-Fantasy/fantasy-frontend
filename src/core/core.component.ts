@@ -11,4 +11,32 @@ import { coreRoutes } from './core.routes';
 	templateUrl: './core.component.html',
 	styleUrl: './core.component.less',
 })
-export class CoreComponent { }
+export class CoreComponent { 
+	tabs = [
+		{
+			title:'Все турниры',
+			routerLink: '/tournaments'
+		},
+		{
+			title:'Мои турниры',
+			routerLink: '/my-tournaments'
+		},
+		{
+			title:'Рейтинг',
+			routerLink: '/rating'
+		},
+		{
+			title:'Галерея',
+			routerLink: '/gallery'
+		},
+		{
+			title:'Правила',
+			routerLink: '/rules'
+		}
+	];
+	activeTab:number = 0;
+
+	onClick(id:number){
+		this.activeTab = id;
+	}
+}
