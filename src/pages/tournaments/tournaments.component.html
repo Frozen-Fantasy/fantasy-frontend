@@ -5,14 +5,6 @@
 		></frozen-fantasy-tournaments-filter>
 	</div>
 	<div class="card-list">
-		<div class="header">
-			<div class="logo">Лига</div>
-			<div class="name">Турнир</div>
-			<div class="start-date">Дата старта</div>
-			<div class="participants">Количество участников</div>
-			<div class="contribution">Взнос за участие</div>
-			<div class="reward">Вознаграждение</div>
-		</div>
 		<div class="card" *ngFor="let tournament of tournaments">
 			<frozen-fantasy-tournament-card
 				[tournament]="tournament"
