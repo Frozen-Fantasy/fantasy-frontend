@@ -8,6 +8,7 @@ import { TournamentsFilterComponent } from 'src/ui/tournaments-filter/tournament
 import { ITournament } from './interfaces';
 import { mockTournaments } from './mockTournaments';
 import { Router } from '@angular/router';
+import { TournamentsService } from 'src/services/tournaments.service';
 
 @Component({
 	selector: 'frozen-fantasy-tournamnets',
@@ -17,14 +18,14 @@ import { Router } from '@angular/router';
 	styleUrl: './tournaments.component.less',
 })
 export class TournamentsComponent {
-	tournaments: ITournament[] = mockTournaments;
+	tournaments: ITournament[] = this.tournamentsService.mockTournaments;
 
-	constructor(private readonly router: Router) {
+	constructor(private readonly router: Router, private readonly tournamentsService: TournamentsService) {
 
 	}
 
 	onFilterChange(value: Partial<{ khlLeague: boolean, nhlLeague: boolean }>) {
-		this.tournaments = mockTournaments.filter(tournament => {
+		this.tournaments = this.tournamentsService.mockTournaments.filter(tournament => {
 			const tournamentLeague = tournament.league;
 			if (tournamentLeague === 'KHL') {
 				return value.khlLeague;
