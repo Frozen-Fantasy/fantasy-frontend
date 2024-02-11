@@ -24,7 +24,13 @@
 			{{ tournament?.startDate | date }}
 		</div>
 		<div class="participants">
-			{{ tournament?.participants }}
+			{{ tournament?.participants
+			}}<img
+				width="24"
+				src="/assets/icons/participants.svg"
+				alt=""
+				class="logo-img"
+			/>
 		</div>
 		<div class="contribution">
 			<frozen-fantasy-coins
@@ -36,7 +42,7 @@
 				[price]="tournament?.reward"
 			></frozen-fantasy-coins>
 		</div>
-		<div class="play">
+		<div class="play" (click)="onClick($event)">
 			<frozen-fantasy-button>Участвовать</frozen-fantasy-button>
 		</div>
 	</div>

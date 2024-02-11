@@ -15,4 +15,8 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class TournamentCardComponent {
 	@Input() tournament: ITournament | undefined;
+	onClick(event:MouseEvent){
+		event.stopPropagation();
+		event.preventDefault();
+	}
 }
