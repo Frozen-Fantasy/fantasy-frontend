@@ -1,16 +1,14 @@
+@import '../../styles.less';
 header {
-	background-color: #333;
+	background-color: @base-blue;
 	color: #fff;
 	padding: 10px;
 	text-align: center;
-}
-
-section {
-	margin: 20px;
-}
-
-h2 {
-	color: #333;
+	border-radius: 30px;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 ul {
@@ -22,19 +20,70 @@ li {
 	margin-bottom: 10px;
 }
 
-table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 10px;
-}
+.details {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	.schedule {
+		display: flex;
+		flex-direction: column;
+		font-size: 20px;
 
-th,
-td {
-	border: 1px solid #ddd;
-	padding: 8px;
-	text-align: left;
-}
+		.match {
+			display: flex;
+			font-size: 20px;
+			align-items: center;
+			gap: 1rem;
+		}
+	}
+	.results {
+		width: 40%;
+		display: flex;
+		flex-direction: column;
+		font-size: 20px;
 
-th {
-	background-color: #f2f2f2;
+		h2 {
+			text-align: center;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 10px;
+
+			th,
+			td {
+				border: none;
+				padding: 8px;
+				text-align: left;
+			}
+
+			th {
+				background-color: #f2f2f2;
+			}
+		}
+
+		.team {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 2px;
+		}
+		.result {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			.score {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 5px;
+			}
+			.status {
+				font-size: 14px;
+				color: @base-500;
+			}
+		}
+	}
 }

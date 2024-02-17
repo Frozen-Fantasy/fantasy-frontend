@@ -1,21 +1,10 @@
 <a href="" [routerLink]="[tournament?.id]" class="link">
 	<div class="card">
 		<div class="logo">
-			@if(tournament?.league==='KHL'){
-			<img
-				width="48"
-				src="/assets/icons/KHL-logo.svg"
-				alt=""
-				class="logo-img"
-			/>
-			} @if(tournament?.league==='NHL'){
-			<img
-				width="48"
-				src="/assets/icons/NHL-logo.svg"
-				alt=""
-				class="logo-img"
-			/>
-			}
+			<frozen-fantasy-league-icon
+				[league]="tournament?.league"
+				[size]="'m'"
+			></frozen-fantasy-league-icon>
 		</div>
 		<div class="name">
 			{{ tournament?.name }}
