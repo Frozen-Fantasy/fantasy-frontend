@@ -1,4 +1,4 @@
-@import 'src/styles.less';
+@import '../../styles.less';
 
 header {
 	background: rgb(24, 111, 182);
@@ -26,20 +26,17 @@ header {
 
 	table {
 		width: 100%;
-		font-size: 20px;
-
-		width: 100%;
 		border-collapse: collapse;
 		margin-top: 10px;
-
-		th,
-		td {
-			border-top: 1px solid @base-500;
-			padding: 8px;
-		}
-
-		th {
-			background-color: #f2f2f2;
-		}
 	}
-}
+
+	th,
+	td {
+		border: 1px solid #ddd;
+		padding: 8px;
+		text-align: left;
+	}
+
+	th {
+		background-color: #f2f2f2;
+	}
