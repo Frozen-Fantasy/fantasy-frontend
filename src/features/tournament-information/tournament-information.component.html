@@ -1,46 +1,80 @@
 <header>
+	<frozen-fantasy-league-icon
+		[league]="tournament?.league"
+		[size]="'l'"
+	></frozen-fantasy-league-icon>
 	<h1>{{ tournament?.name }}</h1>
 </header>
 
-<section class="tournament-info">
-	<h2>{{ tournament?.league }}</h2>
-	<p>{{ tournament?.startDate | date }} - {{ tournament?.endDate | date }}</p>
-</section>
-
-<section class="schedule">
-	<h2>Расписание матчей</h2>
-	<ul>
-		@for (match of tournament?.schedule; track $index){
-		<li>{{ match.homeTeam.name }} vs {{ match.guestTeam.name }}</li>
-		}
-	</ul>
-</section>
-
-<section class="results">
-	<h2>Результаты</h2>
-	<table>
-		<thead>
-			<tr>
-				<th>Матч</th>
-				<th>Команды</th>
-				<th>Победитель</th>
-				<th>Итоговый счет</th>
-			</tr>
-		</thead>
-		<tbody>
-			@for(match of tournament?.results; track $index){
-			<tr>
-				<td>Матч {{ $index }}</td>
-				<td>{{ match.homeTeam.name }} vs {{ match.guestTeam.name }}</td>
-				<td>{{ match.winner.name }}</td>
-				<td>{{ match.homeTeamScore }} : {{ match.guestTeamScore }}</td>
-			</tr>
+<div class="details">
+	<div class="schedule">
+		<h2>Расписание матчей</h2>
+		<ul>
+			@for (match of tournament?.schedule; track $index){
+			<li>
+				<div class="match">
+					<img width="48" src="../../assets/icons/calgary-logo.png" />
+					<p>
+						{{ match.homeTeam.name }} vs {{ match.guestTeam.name }}
+					</p>
+					<img
+						width="48"
+						src="../../assets/icons/penguins-logo.png"
+					/>
+				</div>
+			</li>
 			}
-		</tbody>
-	</table>
-</section>
+		</ul>
+	</div>
 
-<section class="teams">
+	<div class="results">
+		<h2>Результаты</h2>
+		<table>
+			<thead></thead>
+			<tbody>
+				@for(match of tournament?.results; track $index){
+				<tr>
+					<td>
+						<div class="team">
+							<span>{{ match.homeTeam.name }}</span>
+							<img
+								width="32"
+								src="../../assets/icons/calgary-logo.png"
+								alt=""
+							/>
+						</div>
+					</td>
+					<td>
+						<div class="result">
+							<div class="score">
+								<span>{{ match.homeTeamScore }}</span
+								><span>:</span>
+								<span>{{ match.guestTeamScore }}</span>
+							</div>
+							<div class="status">
+								<!-- {{match.status}} -->
+								Завершен
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="team">
+							<span>{{ match.guestTeam.name }}</span>
+							<img
+								width="32"
+								src="../../assets/icons/penguins-logo.png"
+								alt=""
+							/>
+						</div>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="teams">
 	<h2>Участники</h2>
 	<ul>
 		@for(participant of tournament?.participants;track $index){
@@ -48,4 +82,4 @@
 
 		}
 	</ul>
-</section>
+</div>

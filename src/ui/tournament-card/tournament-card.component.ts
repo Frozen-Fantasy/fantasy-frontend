@@ -4,11 +4,12 @@ import { ITournament } from 'src/pages/tournaments/interfaces';
 import { CoinsComponent } from '../coins/coins.component';
 import { ButtonComponent } from '../button/button.component';
 import { Router, RouterLink } from '@angular/router';
+import { LeagueIconComponent } from '../league-icon/league-icon.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-card',
 	standalone: true,
-	imports: [CommonModule,CoinsComponent, ButtonComponent, RouterLink],
+	imports: [CommonModule,CoinsComponent, ButtonComponent, RouterLink, LeagueIconComponent],
 	templateUrl: './tournament-card.component.html',
 	styleUrl: './tournament-card.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
