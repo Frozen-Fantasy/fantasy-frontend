@@ -16,21 +16,21 @@ export const mockTournaments:ITournament[] = [
         {name: "Pittsburgh Penguins"},
         {name: "Ottawa Senators"}
       ],
-      schedule: [
+      matches: [
         {
           homeTeam: {name: "Boston Bruins"},
           guestTeam: {name: "Detroit Red Wings"},
+          status: 'scheduled'
         },
         {
           homeTeam: {name: "Pittsburgh Penguins"},
           guestTeam: {name: "Ottawa Senators"},
-        }
-      ],
-      results: [
+          status: 'scheduled'
+        },
         {homeTeam: {name: "Boston Bruins"},
-        guestTeam: {name: "Detroit Red Wings"},homeTeamScore: 3, guestTeamScore: 2, winner: {name: "Boston Bruins"}},
+        guestTeam: {name: "Detroit Red Wings"},homeTeamScore: 3, guestTeamScore: 2, winner: {name: "Boston Bruins"},status:'finished'},
         {homeTeam: {name: "Pittsburgh Penguins"},
-        guestTeam: {name: "Ottawa Senators"},homeTeamScore: 1, guestTeamScore: 4, winner: {name: "Ottawa Senators"}}
+        guestTeam: {name: "Ottawa Senators"},homeTeamScore: 1, guestTeamScore: 4, winner: {name: "Ottawa Senators"}, status:"finished"}
       ],
       participants:[
         {
@@ -59,23 +59,28 @@ export const mockTournaments:ITournament[] = [
         {name: "Локомотив"},
         {name: "Северсталь"}
       ],
-      schedule: [
+      matches: [
         {
           homeTeam: {name: "СКА"},
           guestTeam: {name: "Торпедо"},
+          status: 'scheduled'
+
         },
         {
           homeTeam: {name: "Локомотив"},
           guestTeam: {name: "Северсталь"},
-        }
-      ],
-      results: [
+          status: 'scheduled'
+
+        },
         {
+          status:"finished",
             homeTeam: {name: "СКА"},
             guestTeam: {name: "Торпедо"}
           ,homeTeamScore: 4, guestTeamScore: 1, winner: {name: "СКА"}},
-        {homeTeam: {name: "Локомотив"},
-        guestTeam: {name: "Северсталь"},homeTeamScore: 2, guestTeamScore: 3, winner: {name: "Северсталь"}}
+        {status:'finished',homeTeam: {name: "Локомотив"},
+        guestTeam: {name: "Северсталь"},homeTeamScore: 2, guestTeamScore: 3, winner: {name: "Северсталь"},
+
+      }
       ],
       participants:[
         {
@@ -104,20 +109,22 @@ export const mockTournaments:ITournament[] = [
           {name: "Pittsburgh Penguins"},
           {name: "Ottawa Senators"}
         ],
-        schedule: [
+        matches: [
           {
             homeTeam: {name: "Boston Bruins"},
             guestTeam: {name: "Detroit Red Wings"},
+            status: 'scheduled'
+
           },
           {
             homeTeam: {name: "Pittsburgh Penguins"},
             guestTeam: {name: "Ottawa Senators"},
-          }
-        ],
-        results: [
-          { homeTeam: {name: "Boston Bruins"},
+            status: 'scheduled'
+
+          },
+          {status:'finished', homeTeam: {name: "Boston Bruins"},
           guestTeam: {name: "Detroit Red Wings"},homeTeamScore: 3, guestTeamScore: 2, winner: {name: "Boston Bruins"}},
-          {homeTeam: {name: "Pittsburgh Penguins"},
+          {status:'finished',homeTeam: {name: "Pittsburgh Penguins"},
           guestTeam: {name: "Ottawa Senators"},homeTeamScore: 1, guestTeamScore: 4, winner: {name: "Ottawa Senators"}}
         ],
         participants:[
@@ -147,20 +154,22 @@ export const mockTournaments:ITournament[] = [
           {name: "Локомотив"},
           {name: "Северсталь"}
         ],
-        schedule: [
+        matches: [
           {
             homeTeam: {name: "СКА"},
             guestTeam: {name: "Торпедо"},
+            status: 'scheduled'
+
           },
           {
             homeTeam: {name: "Локомотив"},
             guestTeam: {name: "Северсталь"},
-          }
-        ],
-        results: [
-          { homeTeam: {name: "СКА"},
+            status: 'scheduled'
+
+          },
+          {status:'finished', homeTeam: {name: "СКА"},
           guestTeam: {name: "Торпедо"},homeTeamScore: 4, guestTeamScore: 1, winner: {name: "СКА"}},
-          {homeTeam: {name: "Локомотив"},
+          {status:'finished',homeTeam: {name: "Локомотив"},
           guestTeam: {name: "Северсталь"},homeTeamScore: 2, guestTeamScore: 3, winner: {name: "Северсталь"}}
         ],
         participants:[
@@ -190,20 +199,22 @@ export const mockTournaments:ITournament[] = [
           {name: "Pittsburgh Penguins"},
           {name: "Ottawa Senators"}
         ],
-        schedule: [
+        matches: [
           {
             homeTeam: {name: "Boston Bruins"},
             guestTeam: {name: "Detroit Red Wings"},
+            status: 'scheduled'
+
           },
           {
             homeTeam: {name: "Pittsburgh Penguins"},
             guestTeam: {name: "Ottawa Senators"},
-          }
-        ],
-        results: [
-          {homeTeam: {name: "Boston Bruins"},
+            status: 'scheduled'
+
+          },
+          {status:'finished',homeTeam: {name: "Boston Bruins"},
           guestTeam: {name: "Detroit Red Wings"},homeTeamScore: 3, guestTeamScore: 2, winner: {name: "Boston Bruins"}},
-          {homeTeam: {name: "Pittsburgh Penguins"},
+          {status:'finished',homeTeam: {name: "Pittsburgh Penguins"},
           guestTeam: {name: "Ottawa Senators"},homeTeamScore: 1, guestTeamScore: 4, winner: {name: "Ottawa Senators"}}
         ],
         participants:[
@@ -233,20 +244,22 @@ export const mockTournaments:ITournament[] = [
           {name: "Локомотив"},
           {name: "Северсталь"}
         ],
-        schedule: [
+        matches: [
           {
             homeTeam: {name: "СКА"},
             guestTeam: {name: "Торпедо"},
+            status: 'scheduled'
+
           },
           {
             homeTeam: {name: "Локомотив"},
             guestTeam: {name: "Северсталь"},
-          }
-        ],
-        results: [
-          {homeTeam: {name: "СКА"},
+            status: 'scheduled'
+
+          },
+          {status:'finished',homeTeam: {name: "СКА"},
           guestTeam: {name: "Торпедо"},homeTeamScore: 4, guestTeamScore: 1, winner: {name: "СКА"}},
-          {homeTeam: {name: "Локомотив"},
+          {status:'finished',homeTeam: {name: "Локомотив"},
           guestTeam: {name: "Северсталь"},homeTeamScore: 2, guestTeamScore: 3, winner: {name: "Северсталь"}}
         ],
         participants:[
@@ -276,20 +289,22 @@ export const mockTournaments:ITournament[] = [
           {name: "Pittsburgh Penguins"},
           {name: "Ottawa Senators"}
         ],
-        schedule: [
+        matches: [
           {
             homeTeam: {name: "Boston Bruins"},
             guestTeam: {name: "Detroit Red Wings"},
+            status: 'scheduled'
+
           },
           {
             homeTeam: {name: "Pittsburgh Penguins"},
             guestTeam: {name: "Ottawa Senators"},
-          }
-        ],
-        results: [
-          {homeTeam: {name: "Boston Bruins"},
+            status: 'scheduled'
+
+          },
+          {status:'finished',homeTeam: {name: "Boston Bruins"},
           guestTeam: {name: "Detroit Red Wings"},homeTeamScore: 3, guestTeamScore: 2, winner: {name: "Boston Bruins"}},
-          {homeTeam: {name: "Pittsburgh Penguins"},
+          {status:'finished',homeTeam: {name: "Pittsburgh Penguins"},
           guestTeam: {name: "Ottawa Senators"},homeTeamScore: 1, guestTeamScore: 4, winner: {name: "Ottawa Senators"}}
         ],
         participants:[
@@ -319,20 +334,22 @@ export const mockTournaments:ITournament[] = [
           {name: "Локомотив"},
           {name: "Северсталь"}
         ],
-        schedule: [
+        matches: [
           {
             homeTeam: {name: "СКА"},
             guestTeam: {name: "Торпедо"},
+            status: 'scheduled'
+
           },
           {
             homeTeam: {name: "Локомотив"},
             guestTeam: {name: "Северсталь"},
-          }
-        ],
-        results: [
-          {homeTeam: {name: "СКА"},
+            status: 'scheduled'
+
+          },
+          {status:'finished',homeTeam: {name: "СКА"},
           guestTeam: {name: "Торпедо"},homeTeamScore: 4, guestTeamScore: 1, winner: {name: "СКА"}},
-          {homeTeam: {name: "Локомотив"},
+          {status:'finished',homeTeam: {name: "Локомотив"},
           guestTeam: {name: "Северсталь"},homeTeamScore: 2, guestTeamScore: 3, winner: {name: "Северсталь"}}
         ],
         participants:[
@@ -362,20 +379,22 @@ export const mockTournaments:ITournament[] = [
           {name: "Pittsburgh Penguins"},
           {name: "Ottawa Senators"}
         ],
-        schedule: [
+        matches: [
           {
             homeTeam: {name: "Boston Bruins"},
             guestTeam: {name: "Detroit Red Wings"},
+            status: 'scheduled'
+
           },
           {
             homeTeam: {name: "Pittsburgh Penguins"},
             guestTeam: {name: "Ottawa Senators"},
-          }
-        ],
-        results: [
-          {homeTeam: {name: "Boston Bruins"},
+            status: 'scheduled'
+
+          },
+          {status:'finished',homeTeam: {name: "Boston Bruins"},
           guestTeam: {name: "Detroit Red Wings"},homeTeamScore: 3, guestTeamScore: 2, winner: {name: "Boston Bruins"}},
-          {homeTeam: {name: "Pittsburgh Penguins"},
+          {status:'finished',homeTeam: {name: "Pittsburgh Penguins"},
           guestTeam: {name: "Ottawa Senators"},homeTeamScore: 1, guestTeamScore: 4, winner: {name: "Ottawa Senators"}}
         ],
         participants:[
@@ -405,20 +424,20 @@ export const mockTournaments:ITournament[] = [
           {name: "Локомотив"},
           {name: "Северсталь"}
         ],
-        schedule: [
+        matches: [
           {
             homeTeam: {name: "СКА"},
             guestTeam: {name: "Торпедо"},
+            status: 'scheduled'
           },
           {
             homeTeam: {name: "Локомотив"},
             guestTeam: {name: "Северсталь"},
-          }
-        ],
-        results: [
-          {homeTeam: {name: "СКА"},
+            status: 'scheduled'
+          },
+          {status:'finished',homeTeam: {name: "СКА"},
           guestTeam: {name: "Торпедо"},homeTeamScore: 4, guestTeamScore: 1, winner: {name: "СКА"}},
-          {homeTeam: {name: "Локомотив"},
+          {status:'finished',homeTeam: {name: "Локомотив"},
           guestTeam: {name: "Северсталь"},homeTeamScore: 2, guestTeamScore: 3, winner: {name: "Северсталь"}}
         ],
         participants:[

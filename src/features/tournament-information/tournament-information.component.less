@@ -1,6 +1,7 @@
-@import '../../styles.less';
+@import 'src/styles.less';
 header {
-	background-color: @base-blue;
+	background: rgb(24, 111, 182);
+	background: linear-gradient(120deg, @base-blue 0%, @blue-200 98%);
 	color: #fff;
 	padding: 10px;
 	text-align: center;
@@ -11,79 +12,32 @@ header {
 	align-items: center;
 }
 
-ul {
-	list-style: none;
-	padding: 0;
-}
-
-li {
-	margin-bottom: 10px;
-}
-
 .details {
+	margin-top: 1rem;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	.schedule {
-		display: flex;
-		flex-direction: column;
+	justify-content: center;
+}
+
+.participants {
+	width: 150px;
+	margin: 0 auto;
+	table {
+		width: 100%;
 		font-size: 20px;
 
-		.match {
-			display: flex;
-			font-size: 20px;
-			align-items: center;
-			gap: 1rem;
-		}
-	}
-	.results {
-		width: 40%;
-		display: flex;
-		flex-direction: column;
-		font-size: 20px;
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 10px;
 
-		h2 {
-			text-align: center;
+		th,
+		td {
+			border-top: 1px solid @base-500;
+			padding: 8px;
 		}
 
-		table {
-			width: 100%;
-			border-collapse: collapse;
-			margin-top: 10px;
-
-			th,
-			td {
-				border: none;
-				padding: 8px;
-				text-align: left;
-			}
-
-			th {
-				background-color: #f2f2f2;
-			}
-		}
-
-		.team {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 2px;
-		}
-		.result {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			.score {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 5px;
-			}
-			.status {
-				font-size: 14px;
-				color: @base-500;
-			}
+		th {
+			background-color: #f2f2f2;
 		}
 	}
 }

@@ -4,12 +4,13 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { ITournament } from 'src/pages/tournaments/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
 import { TournamentCardComponent } from 'src/ui/tournament-card/tournament-card.component';
-import { LeagueIconComponent } from 'src/ui/league-icon/league-icon.component';
+import { LeagueIconComponent } from 'src/ui/kit/league-icon/league-icon.component';
+import { ScheduleTableComponent } from 'src/ui/schedule-table/schedule-table.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-information',
 	standalone: true,
-	imports: [CommonModule, TournamentCardComponent, LeagueIconComponent],
+	imports: [CommonModule, TournamentCardComponent, LeagueIconComponent, ScheduleTableComponent],
 	providers: [],
 	templateUrl: './tournament-information.component.html',
 	styleUrl: './tournament-information.component.less',

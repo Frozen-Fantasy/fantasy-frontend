@@ -7,79 +7,21 @@
 </header>
 
 <div class="details">
-	<div class="schedule">
-		<h2>Расписание матчей</h2>
-		<ul>
-			@for (match of tournament?.schedule; track $index){
-			<li>
-				<div class="match">
-					<img width="48" src="../../assets/icons/calgary-logo.png" />
-					<p>
-						{{ match.homeTeam.name }} vs {{ match.guestTeam.name }}
-					</p>
-					<img
-						width="48"
-						src="../../assets/icons/penguins-logo.png"
-					/>
-				</div>
-			</li>
-			}
-		</ul>
-	</div>
-
-	<div class="results">
-		<h2>Результаты</h2>
-		<table>
-			<thead></thead>
-			<tbody>
-				@for(match of tournament?.results; track $index){
-				<tr>
-					<td>
-						<div class="team">
-							<span>{{ match.homeTeam.name }}</span>
-							<img
-								width="32"
-								src="../../assets/icons/calgary-logo.png"
-								alt=""
-							/>
-						</div>
-					</td>
-					<td>
-						<div class="result">
-							<div class="score">
-								<span>{{ match.homeTeamScore }}</span
-								><span>:</span>
-								<span>{{ match.guestTeamScore }}</span>
-							</div>
-							<div class="status">
-								<!-- {{match.status}} -->
-								Завершен
-							</div>
-						</div>
-					</td>
-					<td>
-						<div class="team">
-							<span>{{ match.guestTeam.name }}</span>
-							<img
-								width="32"
-								src="../../assets/icons/penguins-logo.png"
-								alt=""
-							/>
-						</div>
-					</td>
-				</tr>
-				}
-			</tbody>
-		</table>
-	</div>
+	<frozen-fantasy-schedule-table
+		[matches]="tournament?.matches ?? []"
+	></frozen-fantasy-schedule-table>
 </div>
 
-<div class="teams">
+<div class="participants">
 	<h2>Участники</h2>
-	<ul>
-		@for(participant of tournament?.participants;track $index){
-		<li>{{ participant.userName }}</li>
+	<table>
+		<tbody>
+			@for(participant of tournament?.participants;track $index){
+			<tr>
+				<td>{{ participant.userName }}</td>
+			</tr>
 
-		}
-	</ul>
+			}
+		</tbody>
+	</table>
 </div>

@@ -1,0 +1,21 @@
+<div class="result">
+	@if(match?.status==='finished' || match?.status==='started'){
+	<div class="score">
+		<span>{{ match?.homeTeamScore }}</span
+		><span>:</span>
+		<span>{{ match?.guestTeamScore }}</span>
+	</div>
+	<div class="status">
+		{{ statusMap[match!.status] }}
+	</div>
+	} @else if(match?.status==='scheduled'){
+	<div class="score">
+		<span></span>
+		<span>-</span><span>:</span>
+		<span>-</span>
+	</div>
+	<div class="status">
+		{{ statusMap[match!.status] }}
+	</div>
+	}
+</div>

@@ -1,0 +1,11 @@
+@if(home){
+<div class="team home">
+	<span>{{ team?.name }}</span>
+	<img width="32" src="../../assets/icons/calgary-logo.png" alt="" />
+</div>
+} @else{
+<div class="team guest">
+	<img width="32" src="../../assets/icons/penguins-logo.png" alt="" />
+	<span>{{ team?.name }}</span>
+</div>
+}
