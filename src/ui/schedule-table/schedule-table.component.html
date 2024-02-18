@@ -1,0 +1,26 @@
+<table class="results">
+	<thead></thead>
+	<tbody>
+		@for(match of matches; track $index){
+		<tr>
+			<td class="home">
+				<frozen-fantasy-team
+					[team]="match.homeTeam"
+					[home]="true"
+				></frozen-fantasy-team>
+			</td>
+			<td>
+				<frozen-fantasy-match-result
+					[match]="match"
+				></frozen-fantasy-match-result>
+			</td>
+			<td class="guest">
+				<frozen-fantasy-team
+					[team]="match.guestTeam"
+					[home]="false"
+				></frozen-fantasy-team>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
