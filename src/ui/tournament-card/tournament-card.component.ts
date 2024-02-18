@@ -4,7 +4,7 @@ import { ITournament } from 'src/pages/tournaments/interfaces';
 import { CoinsComponent } from '../kit/coins/coins.component';
 import { ButtonComponent } from '../kit/button/button.component';
 import { Router, RouterLink } from '@angular/router';
-import { LeagueIconComponent } from '../league-icon/league-icon.component';
+import { LeagueIconComponent } from '../kit/league-icon/league-icon.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-card',

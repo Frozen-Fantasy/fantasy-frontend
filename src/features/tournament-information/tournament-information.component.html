@@ -9,16 +9,50 @@
 		[matches]="tournament?.matches ?? []"></frozen-fantasy-schedule-table>
 </div>
 
-<div class="participants">
-	<h2>Участники</h2>
+<div class="results">
+	<h2>Результаты</h2>
 	<table>
+		<thead></thead>
 		<tbody>
-			@for(participant of tournament?.participants;track $index){
+			@for(match of tournament?.results; track $index){
 			<tr>
-				<td>{{ participant.userName }}</td>
+				<td>
+					<div class="team">
+						<span>{{ match.homeTeam.name }}</span>
+						<img width="32" src="../../assets/icons/calgary-logo.png" alt="" />
+					</div>
+				</td>
+				<td>
+					<div class="result">
+						<div class="score">
+							<span>{{ match.homeTeamScore }}</span><span>:</span>
+							<span>{{ match.guestTeamScore }}</span>
+						</div>
+						<div class="status">
+							<!-- {{match.status}} -->
+							Завершен
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="team">
+						<span>{{ match.guestTeam.name }}</span>
+						<img width="32" src="../../assets/icons/penguins-logo.png" alt="" />
+					</div>
+				</td>
 			</tr>
-
 			}
 		</tbody>
 	</table>
+</div>
+</div>
+
+<div class="teams">
+	<h2>Участники</h2>
+	<ul>
+		@for(participant of tournament?.participants;track $index){
+		<li>{{ participant.userName }}</li>
+
+		}
+	</ul>
 </div>
