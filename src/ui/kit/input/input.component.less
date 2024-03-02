@@ -1,0 +1,42 @@
+@import '../../../styles.less';
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+
+	input {
+		border: none;
+		border-bottom: 2px solid #d1d1d4;
+		background: none;
+		padding: 10px;
+		width: 75%;
+		transition: 0.2s;
+		font-size: 18px;
+		font-weight: 500;
+
+		&:active,
+		&:focus,
+		&:hover {
+			outline: none;
+			border-bottom-color: @base-blue;
+		}
+	}
+
+	.label {
+		padding-left: 10px;
+	}
+
+	.toggle-button {
+		cursor: pointer;
+		position: absolute;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		right: 0;
+		background-color: transparent;
+		border: none;
+		color: #777;
+	}
+}

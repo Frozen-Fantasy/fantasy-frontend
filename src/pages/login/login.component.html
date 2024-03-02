@@ -3,31 +3,15 @@
 		<div class="screen__content">
 			<form class="login">
 				<div class="login__field">
-					<input
-						type="text"
-						class="login__input"
-						placeholder="User name / Email"
-					/>
+					<frozen-fantasy-input>Логин</frozen-fantasy-input>
 				</div>
 				<div class="login__field">
-					<input
-						type="password"
-						class="login__input"
-						placeholder="Password"
-					/>
+					<frozen-fantasy-input [isPassword]="true"
+						>Пароль</frozen-fantasy-input
+					>
 				</div>
-				<button class="button login__submit">
-					<span class="button__text">Log In Now</span>
-				</button>
+				<!-- //TODO: login button -->
 			</form>
-			<div class="social-login">
-				<h3>log in via</h3>
-				<div class="social-icons">
-					<a href="#" class="social-login__icon fab fa-instagram"></a>
-					<a href="#" class="social-login__icon fab fa-facebook"></a>
-					<a href="#" class="social-login__icon fab fa-twitter"></a>
-				</div>
-			</div>
 		</div>
 		<div class="screen__background">
 			<span
