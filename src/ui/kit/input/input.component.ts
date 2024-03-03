@@ -12,6 +12,7 @@ import { ControlValueAccessor } from '@angular/forms';
 })
 export class InputComponent implements ControlValueAccessor {
 	value:string = '';
+	visibility:boolean = false;
 	@Input() isPassword:boolean=false;
 	onChange = (_:any) => {};
 	onBlur = (_:any) => {};
@@ -26,5 +27,9 @@ export class InputComponent implements ControlValueAccessor {
 
 	registerOnTouched(fn: any): void {
 		this.onBlur = fn;
+	}
+
+	toggleVisibility(){
+		this.visibility = !this.visibility;
 	}
 }
