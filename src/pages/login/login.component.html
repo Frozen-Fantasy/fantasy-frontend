@@ -1,22 +1,91 @@
 <div class="container">
 	<div class="screen">
+		@if(!signUp){
 		<div class="screen__content">
 			<form class="login">
-				<div class="login__field">
-					<frozen-fantasy-input>Логин</frozen-fantasy-input>
+				<div class="control">
+					<frozen-fantasy-input class="control"
+						>Логин</frozen-fantasy-input
+					>
 				</div>
-				<div class="login__field">
+				<div class="control">
 					<frozen-fantasy-input [isPassword]="true"
 						>Пароль</frozen-fantasy-input
 					>
 				</div>
-				<!-- //TODO: login button -->
 			</form>
 			<button class="login-button">Войти</button>
 			<div class="footer">
-				<span>Регистрация</span> <span>Забыли пароль?</span>
+				<a (click)="enableSignUp()">Регистрация</a>
+				<a>Забыли пароль?</a>
 			</div>
 		</div>
+		} @else{
+		<div class="screen__content">
+			<form class="login" [formGroup]="signUpForm">
+				<div class="control">
+					<div class="control">
+						<frozen-fantasy-input
+							[formControlName]="'email'"
+							class="control"
+							>Эл. почта</frozen-fantasy-input
+						>
+					</div>
+				</div>
+				@if(emailSent){
+				<frozen-fantasy-input
+					[formControlName]="'login'"
+					class="control"
+					>Логин</frozen-fantasy-input
+				>
+				<div class="control">
+					<frozen-fantasy-input
+						[formControlName]="'password'"
+						[isPassword]="true"
+						>Пароль</frozen-fantasy-input
+					>
+				</div>
+				<div class="control">
+					<frozen-fantasy-input
+						formControlName="'password'"
+						[isPassword]="true"
+						>Подтвердите пароль</frozen-fantasy-input
+					>
+				</div>
+
+				<div class="control">
+					<frozen-fantasy-input
+						class="control"
+						formControlName="'code'"
+						>Код из письма</frozen-fantasy-input
+					>
+				</div>
+				}
+			</form>
+
+			<button
+				*ngIf="emailSent"
+				class="login-button"
+				(click)="onSignUpSubmit()"
+			>
+				Зарегистрироваться
+			</button>
+
+			<button
+				*ngIf="!emailSent"
+				class="login-button"
+				(click)="onEmailSend()"
+			>
+				Отправить код
+			</button>
+
+			<div class="footer">
+				<a [routerLink]="'/sign-up'">Регистрация</a>
+				<a>Забыли пароль?</a>
+			</div>
+		</div>
+		}
+
 		<div class="screen__background">
 			<span
 				class="screen__background__shape screen__background__shape4"
