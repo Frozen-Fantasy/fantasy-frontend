@@ -1,14 +1,19 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
 	selector: 'frozen-fantasy-input',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule,FormsModule],
 	templateUrl: './input.component.html',
 	styleUrl: './input.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers:[{
+		provide: NG_VALUE_ACCESSOR,
+		useExisting: forwardRef(() => InputComponent),
+		multi: true,
+	  }]
 })
 export class InputComponent implements ControlValueAccessor {
 	value:string = '';
@@ -18,6 +23,7 @@ export class InputComponent implements ControlValueAccessor {
 	onBlur = (_:any) => {};
 
 	writeValue(value: string): void {
+		console.log(value);
 		this.value = value;
 	}
 

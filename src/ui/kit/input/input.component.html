@@ -1,6 +1,9 @@
 <div class="container">
 	<span class="label"><ng-content></ng-content></span>
-	<input [type]="visibility ? 'text' : 'password'" />
+	<input
+		[type]="visibility ? 'password' : 'text'"
+		(change)="onChange($event)"
+	/>
 	@if(isPassword){
 	<div class="toggle-button" (click)="toggleVisibility()">
 		@if(visibility){
