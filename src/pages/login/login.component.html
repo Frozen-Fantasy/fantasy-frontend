@@ -3,102 +3,77 @@
 		@if(!signUp){
 		<div class="screen__content">
 			<form class="login">
-				<div class="control">
-					<frozen-fantasy-input class="control"
-						>Логин</frozen-fantasy-input
-					>
-				</div>
-				<div class="control">
-					<frozen-fantasy-input [isPassword]="true"
-						>Пароль</frozen-fantasy-input
-					>
-				</div>
+				<frozen-fantasy-input class="control"
+					>Логин</frozen-fantasy-input
+				>
+
+				<frozen-fantasy-input class="control" [isPassword]="true"
+					>Пароль</frozen-fantasy-input
+				>
+
+				<button class="login-button">Войти</button>
 			</form>
-			<button class="login-button">Войти</button>
-			<div class="footer">
-				<a (click)="enableSignUp()">Регистрация</a>
-				<a>Забыли пароль?</a>
-			</div>
 		</div>
 		} @else{
 		<div class="screen__content">
 			<form class="login" [formGroup]="signUpForm">
-				<div class="control">
-					<div class="control">
-						<frozen-fantasy-input
-							[formControlName]="'email'"
-							class="control"
-							>Эл. почта</frozen-fantasy-input
-						>
-					</div>
-				</div>
+				<frozen-fantasy-input
+					[formControlName]="'email'"
+					class="control"
+					>Эл. почта</frozen-fantasy-input
+				>
 				@if(emailSent){
 				<frozen-fantasy-input
 					[formControlName]="'login'"
 					class="control"
 					>Логин</frozen-fantasy-input
 				>
-				<div class="control">
-					<frozen-fantasy-input
-						[formControlName]="'password'"
-						[isPassword]="true"
-						>Пароль</frozen-fantasy-input
-					>
-				</div>
-				<div class="control">
-					<frozen-fantasy-input
-						formControlName="'password'"
-						[isPassword]="true"
-						>Подтвердите пароль</frozen-fantasy-input
-					>
-				</div>
 
-				<div class="control">
-					<frozen-fantasy-input
-						class="control"
-						formControlName="'code'"
-						>Код из письма</frozen-fantasy-input
-					>
-				</div>
-				}
+				<frozen-fantasy-input
+					[formControlName]="'password'"
+					[isPassword]="true"
+					class="control"
+					>Пароль</frozen-fantasy-input
+				>
+				<frozen-fantasy-input
+					[formControlName]="'confirmPassword'"
+					[isPassword]="true"
+					class="control"
+					>Подтвердите пароль</frozen-fantasy-input
+				>
+
+				<frozen-fantasy-input class="control" [formControlName]="'code'"
+					>Код из письма</frozen-fantasy-input
+				>
+				} @if(emailSent){
+				<button class="login-button" (click)="onSignUpSubmit()">
+					Зарегистрироваться
+				</button>
+				} @else{
+				<button
+					*ngIf="!emailSent"
+					class="login-button"
+					(click)="onEmailSend()"
+				>
+					Отправить код
+				</button>
+				} //todo:errors field
 			</form>
-
-			<button
-				*ngIf="emailSent"
-				class="login-button"
-				(click)="onSignUpSubmit()"
-			>
-				Зарегистрироваться
-			</button>
-
-			<button
-				*ngIf="!emailSent"
-				class="login-button"
-				(click)="onEmailSend()"
-			>
-				Отправить код
-			</button>
-
-			<div class="footer">
-				<a [routerLink]="'/sign-up'">Регистрация</a>
-				<a>Забыли пароль?</a>
-			</div>
 		</div>
 		}
 
 		<div class="screen__background">
 			<span
-				class="screen__background__shape screen__background__shape4"
-			></span>
-			<span
-				class="screen__background__shape screen__background__shape3"
-			></span>
-			<span
-				class="screen__background__shape screen__background__shape2"
-			></span>
-			<span
 				class="screen__background__shape screen__background__shape1"
 			></span>
+		</div>
+		<div class="footer">
+			@if(signUp){
+			<a (click)="toggleSignUp()">Вход</a>
+			} @else{
+			<a (click)="toggleSignUp()">Регистрация</a>
+			}
+			<a>Забыли пароль?</a>
 		</div>
 	</div>
 </div>
