@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
 	selector: 'frozen-fantasy-input',
@@ -16,26 +16,49 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 	  }]
 })
 export class InputComponent implements ControlValueAccessor {
-	value:string = '';
-	visibility:boolean = false;
-	@Input() isPassword:boolean=false;
-	onChange = (_:any) => {};
-	onBlur = (_:any) => {};
+	@Input() visibility:boolean = false;
+	@Input() isPassword:boolean = false;
 
-	writeValue(value: string): void {
-		console.log(value);
+	@Input()
+	public label!: string;
+
+	public value: string = '';
+
+	public changed: ( value: string ) => void = ()=>{};
+
+	public touched!: () => void;
+
+	public isDisabled!: boolean;
+
+
+	constructor () { }
+
+
+	public writeValue ( value: string ): void {
 		this.value = value;
 	}
 
-	registerOnChange(fn: any): void {
-		this.onChange = fn;
+	public onChange ( event: Event ): void {
+		const value: string =
+			( <HTMLInputElement>event.target ).value;
+
+		this.changed( value );
 	}
 
-	registerOnTouched(fn: any): void {
-		this.onBlur = fn;
+	public registerOnChange ( fn: any ): void {
+		this.changed = fn;
+	}
+
+	public registerOnTouched ( fn: any ): void {
+		this.touched = fn;
+	}
+
+	public setDisabledState ( isDisabled: boolean ): void {
+		this.isDisabled = isDisabled;
 	}
 
 	toggleVisibility(){
 		this.visibility = !this.visibility;
 	}
+
 }
