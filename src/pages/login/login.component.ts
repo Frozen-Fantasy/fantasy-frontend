@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from 'src/ui/kit/input/input.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
 import { FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { Subject, takeUntil } from 'rxjs';
-import { ISignUpRequestBody } from 'src/utils/dto';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { EMPTY, Subject, catchError, takeUntil, throwError } from 'rxjs';
+import { ILoginRequestBody, ISignUpRequestBody } from 'src/utils/dto';
 
 @Component({
 	selector: 'frozen-fantasy-login',
@@ -27,9 +27,13 @@ export class LoginComponent  implements OnDestroy{
   		password: new FormControl('',{validators:Validators.required}),
 		confirmPassword: new FormControl('',{validators:Validators.required})
 	});
+	loginForm = new FormGroup({
+		email: new FormControl('',{validators:Validators.required}),
+  		password: new FormControl('',{validators:Validators.required}),
+	});
 	destroy$ = new Subject();
 
-	constructor(private authService:AuthService,private cdr:ChangeDetectorRef){
+	constructor(private authService:AuthService,private cdr:ChangeDetectorRef, private router:Router){
 
 	}
 
@@ -68,6 +72,22 @@ export class LoginComponent  implements OnDestroy{
 		});
 		}
 		
+	}
+
+	onLogin(){
+		if(this.loginForm.valid){
+			const params :ILoginRequestBody = {
+				email:this.loginForm.get('email')?.value??'',
+				password: this.loginForm.get('password')?.value??''
+			}
+			this.authService.login(params).pipe(takeUntil(this.destroy$),catchError((e:HttpErrorResponse)=>{
+				console.log(e.message);
+				return EMPTY;
+			})).subscribe((value)=>{
+				this.authService.saveTokens(value);
+				this.router.navigate(['']);
+			});
+		}
 	}
 
 	confirmPassword():boolean{

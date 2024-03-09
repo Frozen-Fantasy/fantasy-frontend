@@ -2,16 +2,21 @@
 	<div class="screen">
 		@if(!signUp){
 		<div class="screen__content">
-			<form class="login">
-				<frozen-fantasy-input class="control"
+			<form class="login" [formGroup]="loginForm">
+				<frozen-fantasy-input
+					class="control"
+					[formControlName]="'email'"
 					>Логин</frozen-fantasy-input
 				>
 
-				<frozen-fantasy-input class="control" [isPassword]="true"
+				<frozen-fantasy-input
+					class="control"
+					[isPassword]="true"
+					[formControlName]="'password'"
 					>Пароль</frozen-fantasy-input
 				>
 
-				<button class="login-button">Войти</button>
+				<button class="login-button" (click)="onLogin()">Войти</button>
 			</form>
 		</div>
 		} @else{
