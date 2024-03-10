@@ -6,13 +6,15 @@
 				<frozen-fantasy-input
 					class="control"
 					[formControlName]="'email'"
-					>Логин</frozen-fantasy-input
+					autocomplete="email"
+					>Эл. почта</frozen-fantasy-input
 				>
 
 				<frozen-fantasy-input
 					class="control"
 					[isPassword]="true"
 					[formControlName]="'password'"
+					autocomplete="current-password"
 					>Пароль</frozen-fantasy-input
 				>
 
