@@ -1,4 +1,4 @@
-import { Timestamp } from "rxjs";
+export const BASE_API_URL = 'http://185.119.57.120:8000/api/v1';
 
 export interface ISignUpRequestBody{
     code:number;
@@ -14,6 +14,6 @@ export interface ILoginRequestBody{
 
 export interface IAuthResponse{
     accessToken:string;
-expiresIn: Date
-refreshToken: string
+    expiresIn: Date
+    refreshToken: string
 }
