@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  app:
+    image: khazanovbe/fantasy-frontend:v1
+    container_name: fantasy_frontend
+    restart: always
+    ports:
+      - "8000:8000"
