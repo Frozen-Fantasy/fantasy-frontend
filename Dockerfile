@@ -1,4 +1,5 @@
-FROM node:18-alpine as build
+#!/usr/bin/env bash
+FROM --platform=linux/amd64 node:18-alpine as build
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install

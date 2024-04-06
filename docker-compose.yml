@@ -6,4 +6,4 @@ services:
     container_name: fantasy_frontend
     restart: always
     ports:
-      - "4200:8000"
+      - "4200:80"
