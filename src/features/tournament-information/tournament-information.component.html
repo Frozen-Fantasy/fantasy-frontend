@@ -1,24 +1,20 @@
 <header>
-	<frozen-fantasy-league-icon
-		[league]="tournament?.league"
-		[size]="'l'"
-	></frozen-fantasy-league-icon>
-	<h1>{{ tournament?.name }}</h1>
+	<frozen-fantasy-league-icon [league]="tournament?.league"
+		[size]="'l'"></frozen-fantasy-league-icon>
+	<h1>{{ tournament?.title }}</h1>
 </header>
 
 <div class="details">
-	<frozen-fantasy-schedule-table
-		[matches]="tournament?.matches ?? []"
-	></frozen-fantasy-schedule-table>
+	<frozen-fantasy-schedule-table [matches]=" []"></frozen-fantasy-schedule-table>
 </div>
 
 <div class="participants">
 	<h2>Участники</h2>
 	<table>
 		<tbody>
-			@for(participant of tournament?.participants;track $index){
+			@for(participant of [];track $index){
 			<tr>
-				<td>{{ participant.userName }}</td>
+				<td>{{ participant }}</td>
 			</tr>
 
 			}

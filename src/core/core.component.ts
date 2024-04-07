@@ -42,7 +42,6 @@ export class CoreComponent implements OnDestroy {
 
 	constructor(private usersService: UserService, private authService: AuthService, private router: Router) {
 		this.usersService.getUserInfo().pipe(takeUntil(this.destroy$)).subscribe((val) => {
-			console.log(val);
 		});
 	}
 

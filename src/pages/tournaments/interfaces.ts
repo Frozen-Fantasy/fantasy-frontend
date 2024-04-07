@@ -1,39 +1,38 @@
-export type HockeyLeague = 'KHL' | 'NHL';
+export enum HockeyLeague { '', 'NHL', 'KHL' };
 
 export type MatchStatus = 'scheduled' | 'started' | 'finished';
 
-export const StatusMap:{[key in MatchStatus]:string}={
-    scheduled:'',
-    started:'Идет',
+export const StatusMap: { [key in MatchStatus]: string } = {
+    scheduled: '',
+    started: 'Идет',
     finished: 'Завершен'
 };
 export interface ITeam {
-    name:string;
+    name: string;
 }
 
-export interface IMatch{
+export interface IMatch {
     homeTeam: ITeam;
     guestTeam: ITeam;
-    status:MatchStatus; 
+    status: MatchStatus;
     homeTeamScore?: number;
     guestTeamScore?: number;
     winner?: ITeam;
 }
 
-export interface ITournamentParticipant{
+export interface ITournamentParticipant {
     userName: string;
 }
 
 export interface ITournament {
-    id: number,
-    name: string;
-    startDate: Date;
-    endDate: Date;
-    participantsCount: number;
-    contribution: number;
-    reward: number;
+    TimeStart: number;
+    deposit: number;
     league: HockeyLeague;
-    teams: ITeam[];
-    matches: IMatch[];
-    participants: ITournamentParticipant[]
+    matchesIds: number[];
+    playersAmount: number;
+    prizeFond: number;
+    statusTournament: string;
+    timeEnd: number;
+    title: string;
+    tournamentId: number;
 }
