@@ -30,5 +30,5 @@ export const coreRoutes: Routes = [
                 redirectTo: 'tournaments'
             }
         ]
-    }
+    },
 ];

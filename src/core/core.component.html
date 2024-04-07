@@ -5,18 +5,13 @@
 	</div>
 	<nav>
 		@for (tab of tabs; track $index) {
-		<a
-			class="tab"
-			[ngClass]="activeTab === $index ? 'active' : ''"
-			(click)="onClick($index)"
-			[routerLink]="tab.routerLink"
-			>{{ tab.title }}</a
-		>
+		<a class="tab" [ngClass]="activeTab === $index ? 'active' : ''" (click)="onClick($index)"
+			[routerLink]="tab.routerLink">{{ tab.title }}</a>
 
 		}
 	</nav>
 	<img class="bell-icon" src="../assets/icons/alert.svg" />
-	<button class="login-logout">Login</button>
+	<button class="login-logout" (click)="onLogout()">Logout</button>
 </header>
 <main>
 	<div class="container">

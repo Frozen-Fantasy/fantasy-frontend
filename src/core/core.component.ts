@@ -60,6 +60,6 @@ export class CoreComponent implements OnDestroy {
 			return throwError(e);
 		})).subscribe(() => {
 			this.router.navigate(['/login']);
-		});
+		}, () => this.router.navigate(['/login']));
 	}
 }
