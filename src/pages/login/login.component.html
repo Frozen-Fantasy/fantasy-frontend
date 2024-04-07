@@ -1,0 +1,86 @@
+<div class="container">
+	<div class="screen">
+		@if(!signUp){
+		<div class="screen__content">
+			<form class="login" [formGroup]="loginForm">
+				<frozen-fantasy-input
+					class="control"
+					[formControlName]="'email'"
+					autocomplete="email"
+					>Эл. почта</frozen-fantasy-input
+				>
+
+				<frozen-fantasy-input
+					class="control"
+					[isPassword]="true"
+					[formControlName]="'password'"
+					autocomplete="current-password"
+					>Пароль</frozen-fantasy-input
+				>
+
+				<button class="login-button" (click)="onLogin()">Войти</button>
+			</form>
+		</div>
+		} @else{
+		<div class="screen__content">
+			<form class="login" [formGroup]="signUpForm">
+				<frozen-fantasy-input
+					[formControlName]="'email'"
+					class="control"
+					>Эл. почта</frozen-fantasy-input
+				>
+				@if(emailSent){
+				<frozen-fantasy-input
+					[formControlName]="'login'"
+					class="control"
+					>Логин</frozen-fantasy-input
+				>
+
+				<frozen-fantasy-input
+					[formControlName]="'password'"
+					[isPassword]="true"
+					class="control"
+					>Пароль</frozen-fantasy-input
+				>
+				<frozen-fantasy-input
+					[formControlName]="'confirmPassword'"
+					[isPassword]="true"
+					class="control"
+					>Подтвердите пароль</frozen-fantasy-input
+				>
+
+				<frozen-fantasy-input class="control" [formControlName]="'code'"
+					>Код из письма</frozen-fantasy-input
+				>
+				} @if(emailSent){
+				<button class="login-button" (click)="onSignUpSubmit()">
+					Зарегистрироваться
+				</button>
+				} @else{
+				<button
+					*ngIf="!emailSent"
+					class="login-button"
+					(click)="onEmailSend()"
+				>
+					Отправить код
+				</button>
+				} //todo:errors field
+			</form>
+		</div>
+		}
+
+		<div class="screen__background">
+			<span
+				class="screen__background__shape screen__background__shape1"
+			></span>
+		</div>
+		<div class="footer">
+			@if(signUp){
+			<a (click)="toggleSignUp()">Вход</a>
+			} @else{
+			<a (click)="toggleSignUp()">Регистрация</a>
+			}
+			<a>Забыли пароль?</a>
+		</div>
+	</div>
+</div>

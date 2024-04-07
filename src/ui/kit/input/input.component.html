@@ -1,0 +1,29 @@
+<div class="input">
+	<div class="container">
+		<span class="label"><ng-content></ng-content></span>
+		@if(isPassword){
+		<input
+			[type]="visibility ? 'text' : 'password'"
+			[value]="value"
+			(input)="onChange($event)"
+		/>
+		} @else{
+		<input [type]="'text'" [value]="value" (input)="onChange($event)" />
+		}
+	</div>
+	@if(isPassword){ @if(visibility){
+	<img
+		class="toggle-button"
+		(click)="toggleVisibility()"
+		width="48"
+		src="../../../assets/icons/eye-open.svg"
+	/>
+	} @else{
+	<img
+		class="toggle-button"
+		(click)="toggleVisibility()"
+		width="48"
+		src="../../../assets/icons/eye-slashed.svg"
+	/>
+	} }
+</div>
