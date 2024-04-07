@@ -3,7 +3,7 @@
 		<frozen-fantasy-tournaments-filter
 			(filterChange)="onFilterChange($event)"></frozen-fantasy-tournaments-filter>
 	</div>
-	<div class="card-list">
+	<div class="card-list" *ngLet="tournaments$|async as tournaments">
 		<div class="card" *ngFor="let tournament of tournaments">
 			<frozen-fantasy-tournament-card
 				[tournament]="tournament"></frozen-fantasy-tournament-card>

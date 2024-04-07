@@ -11,6 +11,7 @@ export type iconSize = 's' | 'm' | 'l';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LeagueIconComponent {
-	@Input() league:HockeyLeague | undefined;
-	@Input() size:iconSize = 'm';
+	leagues = HockeyLeague;
+	@Input() league: HockeyLeague | undefined;
+	@Input() size: iconSize = 'm';
 }

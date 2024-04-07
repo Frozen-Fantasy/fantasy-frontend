@@ -1,6 +1,6 @@
 import { ITournament } from "./interfaces";
 
-export const mockTournaments: ITournament[] = [
+export const mockTournaments: object[] = [
   {
     id: 1,
     name: "Ледовое Побоище",

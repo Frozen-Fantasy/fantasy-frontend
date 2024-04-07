@@ -1,4 +1,4 @@
-export type HockeyLeague = 'KHL' | 'NHL';
+export enum HockeyLeague { '', 'NHL', 'KHL' };
 
 export type MatchStatus = 'scheduled' | 'started' | 'finished';
 
@@ -25,15 +25,14 @@ export interface ITournamentParticipant {
 }
 
 export interface ITournament {
-    id: number,
-    name: string;
-    startDate: Date;
-    endDate: Date;
-    participantsCount: number;
-    contribution: number;
-    reward: number;
+    TimeStart: number;
+    deposit: number;
     league: HockeyLeague;
-    teams: ITeam[];
-    matches: IMatch[];
-    participants: ITournamentParticipant[]
+    matchesIds: number[];
+    playersAmount: number;
+    prizeFond: number;
+    statusTournament: string;
+    timeEnd: number;
+    title: string;
+    tournamentId: number;
 }
