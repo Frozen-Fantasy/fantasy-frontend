@@ -57,6 +57,6 @@ export class CoreComponent implements OnDestroy {
 	onLogout(): void {
 		this.authService.logout().pipe(take(1)).subscribe(() => {
 			this.router.navigate(['/login']);
-		});
+		}, () => this.router.navigate(['/login']));
 	}
 }

@@ -26,9 +26,9 @@ export const coreRoutes: Routes = [
                 loadChildren: () => import('../pages/rules/rules.routes').then(mod => mod.rulesRoutes)
             },
             {
-                path:"**",
+                path: "**",
                 redirectTo: 'tournaments'
             }
         ]
-    }
+    },
 ];
