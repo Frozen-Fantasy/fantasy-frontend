@@ -9,7 +9,7 @@ import { LeagueIconComponent } from '../kit/league-icon/league-icon.component';
 @Component({
 	selector: 'frozen-fantasy-tournament-card',
 	standalone: true,
-	imports: [CommonModule, CoinsComponent, ButtonComponent, RouterLink],
+	imports: [CommonModule, CoinsComponent, ButtonComponent, RouterLink, LeagueIconComponent],
 	templateUrl: './tournament-card.component.html',
 	styleUrl: './tournament-card.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,

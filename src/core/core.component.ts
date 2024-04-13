@@ -40,30 +40,6 @@ export class CoreComponent implements OnDestroy {
 	];
 	activeTab: number = 0;
 
-	tabs = [
-		{
-			title: 'Все турниры',
-			routerLink: '/tournaments'
-		},
-		{
-			title: 'Мои турниры',
-			routerLink: '/my-tournaments'
-		},
-		{
-			title: 'Рейтинг',
-			routerLink: '/rating'
-		},
-		{
-			title: 'Галерея',
-			routerLink: '/gallery'
-		},
-		{
-			title: 'Правила',
-			routerLink: '/rules'
-		}
-	];
-	activeTab: number = 0;
-
 	constructor(private usersService: UserService, private authService: AuthService, private router: Router) {
 		this.usersService.getUserInfo().pipe(takeUntil(this.destroy$)).subscribe((val) => {
 		});
