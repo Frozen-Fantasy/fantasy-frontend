@@ -8,15 +8,15 @@
 	<frozen-fantasy-schedule-table [matches]=" []"></frozen-fantasy-schedule-table>
 </div>
 
-<div class="results">
-	<h2>Результаты</h2>
+<div class="participants">
+	<h2>Участники</h2>
 	<table>
-		<thead></thead>
 		<tbody>
 			@for(participant of [];track $index){
 			<tr>
 				<td>{{ participant }}</td>
 			</tr>
+
 			}
 		</tbody>
 	</table>

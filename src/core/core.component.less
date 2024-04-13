@@ -1,19 +1,13 @@
 @import '../styles.less';
 
 header {
-	background-color: #2c2727;
+	background-color: #2C2727;
 	color: #fff;
 	padding: 10px;
 	text-align: center;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	font-size: 20px;
-	font-weight: bold;
-
-	p {
-		margin: 0.5rem;
-	}
 }
 
 #logo {
@@ -25,31 +19,27 @@ header {
 nav {
 	display: flex;
 	gap: 3rem;
+}
 
-	a {
-		color: #fff;
-		text-transform: uppercase;
-		text-decoration: none;
-		padding: 10px;
-		border-bottom: 2px solid transparent;
-		transition: border-bottom 0.3s ease;
+nav a {
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px;
+	border-bottom: 2px solid transparent;
+	transition: border-bottom 0.3s ease;
+}
 
-		&:hover {
-			border-bottom: 2px solid #fff;
-		}
-	}
-
-	.active {
-		border-bottom: 2px solid #fff;
-	}
+nav a:hover {
+	border-bottom: 2px solid #fff;
 }
 
 .login-logout {
 	padding: 10px;
-	background-color: #2c2727;
+	background-color: #2C2727;
 	color: #fff;
 	text-decoration: none;
-	border: 1px solid @base-blue;
+	border: 1px solid #57C2DD;
 	width: 10rem;
 	border-radius: 10px;
 	cursor: pointer;
