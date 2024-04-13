@@ -34,8 +34,8 @@ export class CoreComponent implements OnDestroy {
 			routerLink: '/gallery'
 		},
 		{
-			title: 'Правила',
-			routerLink: '/rules'
+			title: 'Магазин',
+			routerLink: '/shop'
 		}
 	];
 	activeTab: number = 0;

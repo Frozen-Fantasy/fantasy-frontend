@@ -22,8 +22,8 @@ export const coreRoutes: Routes = [
                 loadChildren: () => import('../pages/gallery/gallery.routes').then(mod => mod.galleryRoutes)
             },
             {
-                path: 'rules',
-                loadChildren: () => import('../pages/rules/rules.routes').then(mod => mod.rulesRoutes)
+                path: 'shop',
+                loadChildren: () => import('../pages/shop/shop.routes').then(mod => mod.shopRoutes)
             },
             {
                 path: "**",
