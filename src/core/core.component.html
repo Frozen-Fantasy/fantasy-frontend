@@ -11,6 +11,9 @@
 		}
 	</nav>
 	<img class="bell-icon" src="../assets/icons/alert.svg" />
+	<div class="balance">
+		<frozen-fantasy-coins [price]="balance" [mode]="'onDark'"></frozen-fantasy-coins>
+	</div>
 	<button class="login-logout" (click)="onLogout()">Logout</button>
 </header>
 <main>
