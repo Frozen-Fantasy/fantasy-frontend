@@ -19,4 +19,8 @@ export class ShopComponent {
 		this.shopService.getProducts();
 		this.products$ = this.shopService.products$;
 	}
+
+	onBuy(id: number) {
+		this.shopService.buyProduct(id);
+	}
 }

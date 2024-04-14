@@ -14,4 +14,8 @@ export class ShopService {
   getProducts() {
     this.http.get<IProduct[]>(`${BASE_API_URL}/store/products`).subscribe(products => this.products$.next(products));
   }
+
+  buyProduct(id: number) {
+    this.http.post(`${BASE_API_URL}/store/products/buy?id=${id}`, {}).subscribe();
+  }
 }

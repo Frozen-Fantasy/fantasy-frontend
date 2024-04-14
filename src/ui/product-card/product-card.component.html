@@ -9,7 +9,8 @@
         <span class="title">{{product.productName}}</span>
         <frozen-fantasy-coins class="price" [price]="product.price" [mode]="'onDark'"
             [size]="'l'"></frozen-fantasy-coins>
-        <a href="#" class="buy">Купить</a>
+        <frozen-fantasy-button class="buy"
+            (click)="onBuy(product.id)">Купить</frozen-fantasy-button>
     </div>
 
 </div>
