@@ -1,5 +1,6 @@
 <div class="products-gallery" *ngLet="products$ | async as products">
     @for ( product of products; track $index) {
-    <frozen-fantasy-product-card [product]="product"></frozen-fantasy-product-card>
+    <frozen-fantasy-product-card [product]="product"
+        (buy)="onBuy($event)"></frozen-fantasy-product-card>
     }
 </div>
