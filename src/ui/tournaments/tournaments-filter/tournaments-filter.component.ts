@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CheckboxComponent } from '../kit/checkbox/checkbox.component';
+import { CheckboxComponent } from '../../kit/checkbox/checkbox.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournaments-filter',

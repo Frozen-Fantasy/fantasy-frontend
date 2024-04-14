@@ -4,11 +4,12 @@ import { LetDirective } from 'src/utils/directives/ngLet.directive';
 import { ShopService } from 'src/services/shop.service';
 import { IProduct } from './interfaces';
 import { Observable } from 'rxjs';
+import { ProductCardComponent } from 'src/ui/product-card/product-card.component';
 
 @Component({
 	selector: 'frozen-fantasy-shop',
 	standalone: true,
-	imports: [CommonModule, LetDirective],
+	imports: [CommonModule, LetDirective, ProductCardComponent],
 	templateUrl: './shop.component.html',
 	styleUrl: './shop.component.less',
 })
