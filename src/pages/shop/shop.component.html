@@ -1,1 +1,5 @@
-<p>shop works!</p>
+<ng-container *ngLet="products$ | async as products">
+    @for ( product of products; track $index) {
+    <p>{{product|json}}</p>
+    }
+</ng-container>
