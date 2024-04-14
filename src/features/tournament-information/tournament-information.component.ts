@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { ITournament } from 'src/pages/tournaments/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
-import { TournamentCardComponent } from 'src/ui/tournament-card/tournament-card.component';
+import { TournamentCardComponent } from 'src/ui/tournaments/tournament-card/tournament-card.component';
 import { LeagueIconComponent } from 'src/ui/kit/league-icon/league-icon.component';
-import { ScheduleTableComponent } from 'src/ui/schedule-table/schedule-table.component';
+import { ScheduleTableComponent } from 'src/ui/tournaments/schedule-table/schedule-table.component';
 import { Observable, Subject, map, takeUntil, tap } from 'rxjs';
 import { LetDirective } from 'src/utils/directives/ngLet.directive';
 

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TournamentCardComponent } from 'src/ui/tournament-card/tournament-card.component';
+import { TournamentCardComponent } from 'src/ui/tournaments/tournament-card/tournament-card.component';
 import { HockeyLeague, ITournament } from './interfaces';
 import { Router } from '@angular/router';
 import { TournamentsService } from 'src/services/tournaments.service';
-import { TournamentsFilterComponent } from 'src/ui/tournaments-filter/tournaments-filter.component';
+import { TournamentsFilterComponent } from 'src/ui/tournaments/tournaments-filter/tournaments-filter.component';
 import { BehaviorSubject, Observable, Subject, combineLatest, map } from 'rxjs';
 import { LetDirective } from 'src/utils/directives/ngLet.directive';
 import { LeagueIconComponent } from 'src/ui/kit/league-icon/league-icon.component';

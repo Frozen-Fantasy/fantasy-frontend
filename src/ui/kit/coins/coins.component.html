@@ -1,4 +1,8 @@
-<div class="coins-wrapper">
-	<span>{{ price }}</span>
+<div class="coins-wrapper" [ngClass]="{
+	small: size.includes('s'),
+	medium: size.includes('m'),
+	large: size.includes('l')
+}">
+	<span [ngClass]="mode==='onLight'?'onLight':'onDark'">{{ price }}</span>
 	<img src="../../assets/icons/coins.svg" alt="" />
 </div>
