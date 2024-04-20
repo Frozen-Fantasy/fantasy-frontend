@@ -14,33 +14,42 @@
 		table-layout: fixed;
 		border-collapse: collapse;
 
+		th {
+			display: inline-block;
+			padding: 0 1rem;
+			text-align: center;
+		}
 
 		th:nth-child(1) {
-			width: 13%;
+			width: 7%;
 		}
 
 		th:nth-child(2) {
-			width: 15%;
+			width: 20%;
+			word-wrap: break-word;
+			display: inline-block;
 		}
 
 		th:nth-child(3) {
-			width: 15%;
-		}
-
-		th:nth-child(4) {
-			width: 8%;
-		}
-
-		th:nth-child(5) {
-			width: 10%;
-		}
-
-		th:nth-child(6) {
 			width: 12%;
 		}
 
+		th:nth-child(4) {
+			width: 5%;
+			text-align: left;
+		}
+
+		th:nth-child(5) {
+			width: 9%;
+			text-align: right;
+		}
+
+		th:nth-child(6) {
+			width: 7%;
+		}
+
 		th:nth-child(7) {
-			width: 20%;
+			width: 16%;
 		}
 
 		tr {
@@ -50,7 +59,7 @@
 		}
 
 		.card {
-			height: 6rem;
+			// height: 6rem;
 			align-items: center;
 			border: 2px solid @base-blue;
 			border-radius: 25px;
@@ -60,34 +69,37 @@
 			td {
 				padding: 1rem;
 				text-align: start;
+				display: inline-block;
 			}
 
 			td:nth-child(1) {
-				width: 13%;
+				width: 7%;
 			}
 
 			td:nth-child(2) {
-				width: 15%;
+				width: 20%;
+				word-wrap: break-word;
+				display: inline-block;
 			}
 
 			td:nth-child(3) {
-				width: 15%;
-			}
-
-			td:nth-child(4) {
-				width: 8%;
-			}
-
-			td:nth-child(5) {
-				width: 10%;
-			}
-
-			td:nth-child(6) {
 				width: 12%;
 			}
 
+			td:nth-child(4) {
+				width: 5%;
+			}
+
+			td:nth-child(5) {
+				width: 9%;
+			}
+
+			td:nth-child(6) {
+				width: 7%;
+			}
+
 			td:nth-child(7) {
-				width: 20%;
+				width: 16%;
 			}
 
 			.participants {
