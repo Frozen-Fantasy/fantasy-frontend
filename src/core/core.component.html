@@ -1,21 +1,20 @@
 <header>
-    <div>
-        <img src="your-logo.png" alt="Logo" id="logo">
-        Frozen Fantasy
-    </div>
-    <nav>
-        <a class="tab" routerLink="/tournaments">Все турниры</a>
-        <a class="tab" routerLink="/my-tournaments">Мои турниры</a>
-        <a class="tab" routerLink="/rating">Рейтинг</a>
-        <a class="tab" routerLink="/gallery">Галерея</a>
-        <a class="tab" routerLink="/rules">Правила</a>
-    </nav>
-    <img class="bell-icon" src="../assets/alert.svg">
-    <button class="login-logout">Login</button>
-    <button class="login-logout" (click)="onLogout()">Logout</button>
+	<div class="logo">
+		<img src="../assets/icons/icon-512.png" alt="Logo" id="logo" />
+		<p>Frozen Fantasy</p>
+	</div>
+	<nav>
+		@for (tab of tabs; track $index) {
+		<a class="tab" [ngClass]="activeTab === $index ? 'active' : ''" (click)="onClick($index)"
+			[routerLink]="tab.routerLink">{{ tab.title }}</a>
+
+		}
+	</nav>
+	<img class="bell-icon" src="../assets/icons/alert.svg" />
+	<button class="login-logout" (click)="onLogout()">Logout</button>
 </header>
 <main>
-    <div class="container">
-        <router-outlet></router-outlet>
-    </div>
+	<div class="container">
+		<router-outlet></router-outlet>
+	</div>
 </main>

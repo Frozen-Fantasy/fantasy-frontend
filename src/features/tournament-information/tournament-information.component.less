@@ -1,0 +1,87 @@
+@import '../../styles.less';
+
+header {
+	background: rgb(24, 111, 182);
+	background: linear-gradient(120deg, @base-blue 0%, @blue-200 98%);
+	color: #fff;
+	padding: 10px;
+	text-align: center;
+	border-radius: 30px;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.details {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	.schedule {
+		display: flex;
+		flex-direction: column;
+		font-size: 20px;
+
+		.match {
+			display: flex;
+			font-size: 20px;
+			align-items: center;
+			gap: 1rem;
+		}
+	}
+
+	.results {
+		width: 40%;
+		display: flex;
+		flex-direction: column;
+		font-size: 20px;
+
+		h2 {
+			text-align: center;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 10px;
+
+			th,
+			td {
+				border-top: 1px solid @base-500;
+				padding: 8px;
+			}
+
+			th {
+				background-color: #f2f2f2;
+			}
+		}
+
+		.team {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 2px;
+		}
+
+		.result {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			.score {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 5px;
+			}
+
+			.status {
+				font-size: 14px;
+				color: @base-500;
+			}
+		}
+	}
+}

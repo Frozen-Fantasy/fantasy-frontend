@@ -1,0 +1,116 @@
+@import "src/styles.less";
+
+.container {
+	display: flex;
+	margin-top: 2rem;
+	gap: 2rem;
+
+	.filters {
+		flex-basis: 20%;
+	}
+
+	.tournaments-table {
+		width: 100%;
+		table-layout: fixed;
+		border-collapse: collapse;
+
+		th {
+			display: inline-block;
+			padding: 0 1rem;
+			text-align: center;
+		}
+
+		th:nth-child(1) {
+			width: 7%;
+		}
+
+		th:nth-child(2) {
+			width: 20%;
+			word-wrap: break-word;
+			display: inline-block;
+		}
+
+		th:nth-child(3) {
+			width: 12%;
+		}
+
+		th:nth-child(4) {
+			width: 5%;
+			text-align: left;
+		}
+
+		th:nth-child(5) {
+			width: 9%;
+			text-align: right;
+		}
+
+		th:nth-child(6) {
+			width: 7%;
+		}
+
+		th:nth-child(7) {
+			width: 16%;
+		}
+
+		tr {
+			border: 0;
+			display: block;
+			margin: 1rem;
+		}
+
+		.card {
+			// height: 6rem;
+			align-items: center;
+			border: 2px solid @base-blue;
+			border-radius: 25px;
+			transition: all 0.5s;
+			font-size: 18px;
+
+			td {
+				padding: 1rem;
+				text-align: start;
+				display: inline-block;
+			}
+
+			td:nth-child(1) {
+				width: 7%;
+			}
+
+			td:nth-child(2) {
+				width: 20%;
+				word-wrap: break-word;
+				display: inline-block;
+			}
+
+			td:nth-child(3) {
+				width: 12%;
+			}
+
+			td:nth-child(4) {
+				width: 5%;
+			}
+
+			td:nth-child(5) {
+				width: 9%;
+			}
+
+			td:nth-child(6) {
+				width: 7%;
+			}
+
+			td:nth-child(7) {
+				width: 16%;
+			}
+
+			.participants {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			&:hover {
+				background-color: #e7e7e7;
+			}
+		}
+	}
+}

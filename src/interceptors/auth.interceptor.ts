@@ -28,6 +28,10 @@ export const AuthInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next) 
                 router.navigate(['/login']);
                 return throwError('Failed to refresh token');
               }
+            }),
+            catchError((error) => {
+              router.navigate(['/login']);
+              return throwError('Failed to refresh token');
             })
           );
         } else {
