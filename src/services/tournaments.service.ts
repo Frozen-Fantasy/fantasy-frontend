@@ -17,6 +17,6 @@ export class TournamentsService {
   }
 
   getAllTournaments() {
-    this.getTournaments("Both").pipe(take(1)).subscribe((tournaments) => this.tournaments$.next([...this.tournaments$.value, ...tournaments]));
+    this.getTournaments("Both").pipe(take(1)).subscribe((tournaments) => this.tournaments$.next(tournaments));
   }
 }

@@ -1,3 +1,5 @@
+@import "src/styles.less";
+
 .container {
 	display: flex;
 	margin-top: 2rem;
@@ -7,20 +9,66 @@
 		flex-basis: 20%;
 	}
 
-	.card-list {
-		display: flex;
-		flex-basis: 80%;
-		flex-direction: column;
-		gap: 2rem;
+	.tournaments-table {
+		width: 100%;
+		table-layout: fixed;
+		border-collapse: collapse;
 
-		.header {
-			display: flex;
-			justify-content: space-around;
+		tr {
+			border: 0;
+			display: block;
+			margin: 1rem;
+		}
+
+		.card {
+			height: 6rem;
 			align-items: center;
-			gap: 2rem;
+			border: 2px solid @base-blue;
+			border-radius: 25px;
+			transition: all 0.5s;
+			font-size: 18px;
 
-			div {
-				text-align: center;
+			td {
+				padding: 1rem;
+				text-align: start;
+			}
+
+			td:nth-child(1) {
+				width: 13%;
+			}
+
+			td:nth-child(2) {
+				width: 15%;
+			}
+
+			td:nth-child(3) {
+				width: 15%;
+			}
+
+			td:nth-child(4) {
+				width: 8%;
+			}
+
+			td:nth-child(5) {
+				width: 10%;
+			}
+
+			td:nth-child(6) {
+				width: 12%;
+			}
+
+			td:nth-child(7) {
+				width: 20%;
+			}
+
+			.participants {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			&:hover {
+				background-color: #e7e7e7;
 			}
 		}
 	}

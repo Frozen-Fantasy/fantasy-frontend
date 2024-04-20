@@ -3,10 +3,39 @@
 		<frozen-fantasy-tournaments-filter
 			(filterChange)="onFilterChange($event)"></frozen-fantasy-tournaments-filter>
 	</div>
-	<div class="card-list" *ngLet="tournaments$|async as tournaments">
-		<div class="card" *ngFor="let tournament of tournaments">
-			<frozen-fantasy-tournament-card
-				[tournament]="tournament"></frozen-fantasy-tournament-card>
-		</div>
-	</div>
+	<table class="tournaments-table" *ngLet="tournaments$|async as tournaments">
+		<tbody>
+			<ng-container *ngFor="let tournament of tournaments">
+				<tr class="card" (click)="onTournamentClick(tournament.tournamentId)">
+					<td class="logo">
+						<frozen-fantasy-league-icon [league]="tournament?.league"
+							[size]="'m'"></frozen-fantasy-league-icon>
+					</td>
+					<td>
+						{{ tournament?.title }}
+					</td>
+					<td class="timestart">
+						{{ tournament?.TimeStart| date }}
+					</td>
+					<td>
+						<div class="participants">
+							{{ tournament?.playersAmount
+							}}<img width="24" src="/assets/icons/participants.svg" alt=""
+								class="logo-img" />
+						</div>
+					</td>
+					<td>
+						<frozen-fantasy-coins [price]="tournament?.deposit"></frozen-fantasy-coins>
+					</td>
+					<td>
+						<frozen-fantasy-coins
+							[price]="tournament?.prizeFond"></frozen-fantasy-coins>
+					</td>
+					<td (click)="onPlay($event)">
+						<frozen-fantasy-button>Участвовать</frozen-fantasy-button>
+					</td>
+				</tr>
+			</ng-container>
+		</tbody>
+	</table>
 </div>
