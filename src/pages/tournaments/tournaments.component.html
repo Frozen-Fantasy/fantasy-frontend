@@ -4,6 +4,17 @@
 			(filterChange)="onFilterChange($event)"></frozen-fantasy-tournaments-filter>
 	</div>
 	<table class="tournaments-table" *ngLet="tournaments$|async as tournaments">
+		<thead>
+			<tr>
+				<th>Лига</th>
+				<th>Название</th>
+				<th>Дата начала</th>
+				<th>Участники</th>
+				<th>Взнос</th>
+				<th>Призовой фонд</th>
+				<th></th>
+			</tr>
+		</thead>
 		<tbody>
 			<ng-container *ngFor="let tournament of tournaments">
 				<tr class="card" (click)="onTournamentClick(tournament.tournamentId)">
