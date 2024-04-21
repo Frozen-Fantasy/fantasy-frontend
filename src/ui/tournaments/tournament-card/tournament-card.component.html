@@ -1,0 +1,27 @@
+<a href="" [routerLink]="[tournament?.tournamentId]" class="link">
+	<div class="card">
+		<div class="logo">
+			<frozen-fantasy-league-icon [league]="tournament?.league"
+				[size]="'m'"></frozen-fantasy-league-icon>
+		</div>
+		<div class="name">
+			{{ tournament?.title }}
+		</div>
+		<div class="start-date">
+			{{ tournament?.TimeStart| date }}
+		</div>
+		<div class="participants">
+			{{ tournament?.playersAmount
+			}}<img width="24" src="/assets/icons/participants.svg" alt="" class="logo-img" />
+		</div>
+		<div class="contribution">
+			<frozen-fantasy-coins [price]="tournament?.deposit"></frozen-fantasy-coins>
+		</div>
+		<div class="reward">
+			<frozen-fantasy-coins [price]="tournament?.prizeFond"></frozen-fantasy-coins>
+		</div>
+		<div class="play" (click)="onClick($event)">
+			<frozen-fantasy-button>Участвовать</frozen-fantasy-button>
+		</div>
+	</div>
+</a>

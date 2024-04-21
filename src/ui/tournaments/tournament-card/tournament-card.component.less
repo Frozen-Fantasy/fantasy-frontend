@@ -1,0 +1,29 @@
+@import 'src/styles.less';
+
+.link {
+	text-decoration: none;
+	color: #000;
+}
+
+.card {
+	height: 5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	gap: 2rem;
+	align-items: center;
+	border: 2px solid @base-blue;
+	border-radius: 25px;
+	transition: all 0.5s;
+	font-size: 18px;
+
+	&:hover {
+		background-color: #e7e7e7;
+	}
+
+	.participants {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+}

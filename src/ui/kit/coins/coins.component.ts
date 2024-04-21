@@ -10,5 +10,7 @@ import { CommonModule } from '@angular/common';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoinsComponent {
-	@Input() price:number|undefined;
+	@Input() price: number | undefined;
+	@Input() mode: 'onLight' | 'onDark' = 'onLight';
+	@Input() size: 's' | 'm' | 'l' = 'm';
 }

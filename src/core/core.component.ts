@@ -5,11 +5,12 @@ import { coreRoutes } from './core.routes';
 import { UserService } from 'src/services/auth/user.service';
 import { Subject, catchError, take, takeUntil, throwError } from 'rxjs';
 import { AuthService } from 'src/services/auth/auth.service';
+import { CoinsComponent } from 'src/ui/kit/coins/coins.component';
 
 @Component({
 	selector: 'frozen-fantasy-core',
 	standalone: true,
-	imports: [CommonModule, RouterModule],
+	imports: [CommonModule, RouterModule, CoinsComponent],
 	providers: [],
 	templateUrl: './core.component.html',
 	styleUrl: './core.component.less',
@@ -39,9 +40,11 @@ export class CoreComponent implements OnDestroy {
 		}
 	];
 	activeTab: number = 0;
+	balance = 0;
 
 	constructor(private usersService: UserService, private authService: AuthService, private router: Router) {
 		this.usersService.getUserInfo().pipe(takeUntil(this.destroy$)).subscribe((val) => {
+			this.balance = val.coins
 		});
 	}
 

@@ -1,1 +1,6 @@
-<p>shop works!</p>
+<div class="products-gallery" *ngLet="products$ | async as products">
+    @for ( product of products; track $index) {
+    <frozen-fantasy-product-card [product]="product"
+        (buy)="onBuy($event)"></frozen-fantasy-product-card>
+    }
+</div>
