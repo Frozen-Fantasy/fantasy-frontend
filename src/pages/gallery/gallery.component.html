@@ -1,1 +1,30 @@
-<p>gallery works!</p>
+<div class="tabs">
+    <frozen-fantasy-tabs>
+        <frozen-fantasy-tab [tabTitle]="'Распакованные'" [active]="true">
+            <div class="products-gallery" *ngLet="unpackedPlayers$ | async as players">
+                @for ( player of players; track $index) {
+                <frozen-fantasy-player-card [player]="player"></frozen-fantasy-player-card>
+                }
+            </div>
+        </frozen-fantasy-tab>
+        <frozen-fantasy-tab [tabTitle]="'Нераспакованные'" [active]="false"
+            *ngLet="packedPlayers$ | async as players">
+            @if(players.length){
+            <div class="unpack-all">
+                <frozen-fantasy-button (click)="unpackAll()">Открыть все</frozen-fantasy-button>
+
+            </div>
+            <div class="products-gallery">
+                @for ( player of players; track $index) {
+                <frozen-fantasy-player-card [player]="player"
+                    (unpackPlayer)="unpackPlayer($event)"></frozen-fantasy-player-card>
+                }
+            </div>
+            }
+            @else{
+            Все карточки распакованы
+            }
+
+        </frozen-fantasy-tab>
+    </frozen-fantasy-tabs>
+</div>

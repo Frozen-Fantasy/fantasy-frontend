@@ -40,12 +40,9 @@ export class CoreComponent implements OnDestroy {
 		}
 	];
 	activeTab: number = 0;
-	balance = 0;
+	balance = this.usersService.userInfo?.coins;
 
 	constructor(private usersService: UserService, private authService: AuthService, private router: Router) {
-		this.usersService.getUserInfo().pipe(takeUntil(this.destroy$)).subscribe((val) => {
-			this.balance = val.coins
-		});
 	}
 
 	ngOnDestroy(): void {
