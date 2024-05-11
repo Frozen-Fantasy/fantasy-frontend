@@ -1,5 +1,15 @@
 <div class="tabs">
     <frozen-fantasy-tabs>
+        <div class="filters" [formGroup]="form">
+            <div class="league-filters">
+                <p>Лига</p>
+                <frozen-fantasy-checkbox formControlName="khlLeague">КХЛ</frozen-fantasy-checkbox>
+                <frozen-fantasy-checkbox formControlName="nhlLeague">НХЛ</frozen-fantasy-checkbox>
+            </div>
+
+            <frozen-fantasy-input class='name-filter'
+                formControlName="name">Имя</frozen-fantasy-input>
+        </div>
         <frozen-fantasy-tab [tabTitle]="'Распакованные'" [active]="true">
             <div class="products-gallery" *ngLet="unpackedPlayers$ | async as players">
                 @for ( player of players; track $index) {
