@@ -1,0 +1,31 @@
+<div class="card" [ngClass]="{'silver':player.rarity===1,'gold':player.rarity===2}">
+
+    <div class="imgBox">
+        <img [src]="player.photo" class="product-img"
+            [@unpackCard]="player.unpacked? 'unpacked' : 'packed'">
+        @if(!player.unpacked){
+        <frozen-fantasy-button class="unpack-btn"
+            (click)="onUnpack()">Открыть</frozen-fantasy-button>
+        }
+    </div>
+
+    <div class="contentBox">
+        @if(player.unpacked){
+        <span class="sweater-number">{{player.sweaterNumber}}</span>
+        <span class="title">{{player.name}}</span>
+        <span class="position">{{positionsMap[player.position]}}</span>
+        }
+        @else(){
+        <span class="sweater-number">?</span>
+        @if(player.rarity===1){
+        <span class="title">Cеребряный игрок</span>
+        }
+        @if(player.rarity===2){
+        <span class="title">Золотой игрок</span>
+        }
+        <span class="position">?</span>
+        }
+
+    </div>
+
+</div>

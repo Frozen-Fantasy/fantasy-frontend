@@ -5,7 +5,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputComponent } from 'src/ui/kit/input/input.component';
 import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
-
+import { provideAnimations } from '@angular/platform-browser/animations';
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(appRoutes, withComponentInputBinding()), provideHttpClient(withInterceptors([AuthInterceptor]))],
+  providers: [provideRouter(appRoutes, withComponentInputBinding()), provideHttpClient(withInterceptors([AuthInterceptor])), provideAnimations()],
 };
