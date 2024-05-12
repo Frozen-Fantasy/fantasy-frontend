@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IMatch } from 'src/pages/tournaments/interfaces';
 import { TeamComponent } from '../../kit/team/team.component';
@@ -13,5 +13,6 @@ import { MatchResultComponent } from '../match-result/match-result.component';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScheduleTableComponent {
-	@Input() matches: IMatch[] = [];
+	@Input() matches: IMatch[] | null = [];
+
 }

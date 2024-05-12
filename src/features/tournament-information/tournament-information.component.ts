@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { ITournament } from 'src/pages/tournaments/interfaces';
+import { IMatch, ITournament } from 'src/pages/tournaments/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
 import { TournamentCardComponent } from 'src/ui/tournaments/tournament-card/tournament-card.component';
 import { LeagueIconComponent } from 'src/ui/kit/league-icon/league-icon.component';
 import { ScheduleTableComponent } from 'src/ui/tournaments/schedule-table/schedule-table.component';
-import { Observable, Subject, map, takeUntil, tap } from 'rxjs';
+import { Observable, Subject, map, of, takeUntil, tap } from 'rxjs';
 import { LetDirective } from 'src/utils/directives/ngLet.directive';
 
 @Component({
@@ -21,9 +21,10 @@ import { LetDirective } from 'src/utils/directives/ngLet.directive';
 export class TournamentInformationComponent implements OnInit, OnDestroy {
 	tournament: ITournament | undefined;
 	destroy$ = new Subject();
+	matches: IMatch[] = [];
 	@Input('id') id: number = 0;
 
-	constructor(private readonly tournamentsService: TournamentsService) {
+	constructor(private readonly tournamentsService: TournamentsService, private cdr: ChangeDetectorRef) {
 	}
 
 	ngOnInit(): void {
@@ -33,6 +34,10 @@ export class TournamentInformationComponent implements OnInit, OnDestroy {
 				return tournament.tournamentId == this.id;
 			})),
 		).subscribe((tournament) => this.tournament = tournament);
+		this.tournamentsService.getMatches(this.id).subscribe(matches => {
+			this.matches = [...matches];
+			this.cdr.detectChanges();
+		});
 	}
 
 	ngOnDestroy(): void {

@@ -1,9 +1,9 @@
 export enum HockeyLeague { '', 'NHL', 'KHL' };
 
-export type MatchStatus = 'scheduled' | 'started' | 'finished';
+export type MatchStatus = 'not_yet_started' | 'started' | 'finished';
 
 export const StatusMap: { [key in MatchStatus]: string } = {
-    scheduled: '',
+    not_yet_started: 'Запланирован',
     started: 'Идет',
     finished: 'Завершен'
 };
@@ -12,12 +12,18 @@ export interface ITeam {
 }
 
 export interface IMatch {
-    homeTeam: ITeam;
-    guestTeam: ITeam;
-    status: MatchStatus;
-    homeTeamScore?: number;
-    guestTeamScore?: number;
-    winner?: ITeam;
+    awayScore: number,
+    awayTeamAbbrev: string,
+    awayTeamId: number,
+    endAt: Date,
+    eventId: number,
+    homeScore: number,
+    homeTeamId: number,
+    homeTemeAbrev: string,
+    league: HockeyLeague,
+    matchId: number,
+    startAt: Date,
+    statusEvent: MatchStatus
 }
 
 export interface ITournamentParticipant {
