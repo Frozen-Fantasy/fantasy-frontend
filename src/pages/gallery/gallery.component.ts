@@ -10,18 +10,21 @@ import { TabComponent } from 'src/ui/kit/tab/tab.component';
 import { CheckboxComponent } from 'src/ui/kit/checkbox/checkbox.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from 'src/ui/kit/input/input.component';
-import { IPlayer } from './interfaces';
+import { IPlayer, PlayerPositionName } from './interfaces';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
 	selector: 'frozen-fantasy-gallery',
 	standalone: true,
-	imports: [CommonModule, PlayerCardComponent, LetDirective, TabsComponent, TabComponent, ButtonComponent, CheckboxComponent, ReactiveFormsModule, InputComponent],
+	imports: [CommonModule, PlayerCardComponent, LetDirective, TabsComponent, TabComponent, ButtonComponent, CheckboxComponent, ReactiveFormsModule, InputComponent, MatSelectModule, MatFormFieldModule],
 	templateUrl: './gallery.component.html',
 	styleUrl: './gallery.component.less',
 })
 export class GalleryComponent {
 	unpackedPlayers$ = this.galleryService.unpackedPlayers$;
 	packedPlayers$ = this.galleryService.packedPlayers$;
+	positions: PlayerPositionName[] = ['Вратарь', 'Защитник', 'Нападающий'];
 	initialUnpackedPlayers: IPlayer[] = [];
 	form = new FormGroup({
 		position: new FormControl(''),
@@ -33,7 +36,6 @@ export class GalleryComponent {
 		this.galleryService.getUnpackedPlayers();
 		this.galleryService.getPackedPlayers();
 		this.galleryService.unpackedPlayers$.pipe(filter(players => !!players.length), take(1)).subscribe((players) => {
-			console.log(players);
 			this.initialUnpackedPlayers = players
 		});
 		this.form.valueChanges.subscribe(formValue => {
@@ -72,6 +74,10 @@ export class GalleryComponent {
 		const filteredByName = filteredByLeague.filter(player => {
 			return player.name.toLowerCase().trim().includes(this.form.get('name')?.value?.trim() ?? '');
 		});
-		this.galleryService.unpackedPlayers$.next(filteredByName);
+
+		const filteredByPosition = filteredByName.filter(player => {
+			return this.form.get('position')?.value ? player.positionName === this.form.get('position')?.value : true;
+		})
+		this.galleryService.unpackedPlayers$.next(filteredByPosition);
 	}
 }
