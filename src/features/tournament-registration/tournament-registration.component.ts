@@ -19,7 +19,7 @@ import { CoinsComponent } from 'src/ui/kit/coins/coins.component';
 })
 export class TournamentRegistrationComponent implements OnInit {
 	@Input('id') id: number = 0;
-	@Input('edit') edit: boolean = false;
+	@Input('edit') edit: string | boolean | undefined;
 	budget: number = 100;
 	selectedPosition = new FormControl<PlayerPositionName | null>(null);
 	maxIndex: { [key in PlayerPositionName]: number } = {
@@ -41,6 +41,7 @@ export class TournamentRegistrationComponent implements OnInit {
 	constructor(private tournamentService: TournamentsService) {
 	}
 	ngOnInit() {
+		this.edit = this.edit === 'true';
 		this.players$ = combineLatest([
 			this.tournamentService.getTournamentRoster(this.id),
 			this.selectedPosition.valueChanges.pipe(startWith(null))
