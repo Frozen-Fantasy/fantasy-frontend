@@ -41,7 +41,8 @@ export interface ITournamentParticipant {
 }
 
 export interface ITournament {
-    TimeStart: number;
+    timeStart: number;
+    timeStartTS: number;
     deposit: number;
     league: HockeyLeague;
     matchesIds: number[];
@@ -49,6 +50,7 @@ export interface ITournament {
     prizeFond: number;
     statusTournament: string;
     timeEnd: number;
+    timeEndTS: number;
     title: string;
     tournamentId: number;
 }
