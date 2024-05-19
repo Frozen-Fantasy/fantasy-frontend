@@ -26,7 +26,7 @@
                         {{ tournament?.title }}
                     </td>
                     <td class="timestart">
-                        {{ tournament?.TimeStart| date }}
+                        {{ tournament?.timeStart| date }}
                     </td>
                     <td>
                         <div class="participants">
@@ -42,8 +42,8 @@
                         <frozen-fantasy-coins
                             [price]="tournament?.prizeFond"></frozen-fantasy-coins>
                     </td>
-                    <td (click)="onPlay($event,tournament.tournamentId)">
-                        <frozen-fantasy-button>Участвовать</frozen-fantasy-button>
+                    <td (click)="onEditTeam($event,tournament.tournamentId)">
+                        <frozen-fantasy-button>Редактировать команду</frozen-fantasy-button>
                     </td>
                 </tr>
             </ng-container>

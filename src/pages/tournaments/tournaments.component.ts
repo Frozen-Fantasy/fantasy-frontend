@@ -42,7 +42,7 @@ export class TournamentsComponent {
 	onPlay(event: MouseEvent, tournamentId: number) {
 		event.stopPropagation();
 		event.preventDefault();
-		this.router.navigate([`tournaments/attend/${tournamentId}`]);
+		this.router.navigate([`tournaments/attend/${tournamentId}/false`]);
 	}
 
 	onTournamentClick(tournamentId: number) {

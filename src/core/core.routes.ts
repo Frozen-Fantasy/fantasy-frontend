@@ -26,6 +26,10 @@ export const coreRoutes: Routes = [
                 loadChildren: () => import('../pages/shop/shop.routes').then(mod => mod.shopRoutes)
             },
             {
+                path: 'profile',
+                loadChildren: () => import('../pages/profile/profile.routes').then(mod => mod.profileRoutes)
+            },
+            {
                 path: "**",
                 redirectTo: 'tournaments'
             }

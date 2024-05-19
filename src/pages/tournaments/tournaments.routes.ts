@@ -4,7 +4,7 @@ import { TournamentInformationComponent } from "src/features/tournament-informat
 import { TournamentRegistrationComponent } from "src/features/tournament-registration/tournament-registration.component";
 
 export const tournamentsRoutes: Routes = [{
-    path: 'attend/:id',
+    path: 'attend/:id/:edit',
     component: TournamentRegistrationComponent
 },
 {

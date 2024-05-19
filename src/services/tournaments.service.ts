@@ -7,6 +7,10 @@ import { mockTournaments } from 'src/pages/tournaments/mockTournaments';
 import { BASE_API_URL } from 'src/utils/dto';
 import { UserService } from './auth/user.service';
 
+export interface ITournamentTeam {
+  balance: number;
+  players: IPlayer[]
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +40,14 @@ export class TournamentsService {
   }
 
   registerTeamForTournament(tournamentId: number, playersIds: number[]): void {
-    this.http.post<any>(`${BASE_API_URL}/tournament/team/create?tournamentID=${tournamentId}`, { userTeam: playersIds }).subscribe();
+    this.http.post<any>(`${BASE_API_URL}/tournament/team/create?tournamentID=${tournamentId}`, { team: playersIds }).subscribe();
+  }
+
+  updateTeamForTournament(tournamentId: number, playersIds: number[]): void {
+    this.http.put<any>(`${BASE_API_URL}/tournament/team/edit?tournamentID=${tournamentId}`, { team: playersIds }).subscribe();
+  }
+
+  getMyTeam(tournamentId: number): Observable<ITournamentTeam> {
+    return this.http.get<ITournamentTeam>(`${BASE_API_URL}/tournament/team?tournamentID=${tournamentId}`);
   }
 }
