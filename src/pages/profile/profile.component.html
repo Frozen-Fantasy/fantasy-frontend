@@ -19,7 +19,8 @@
                 <tbody>
                     @for(transaction of transactions;track $index){
                     <tr>
-                        <td>{{transaction.amount}}</td>
+                        <td><frozen-fantasy-coins
+                                [price]="transaction.amount"></frozen-fantasy-coins></td>
                         <td>{{transaction.status}}</td>
                         <td>{{transaction.transactionDate | date}}</td>
                         <td>{{transaction.transactionDetails}}</td>
