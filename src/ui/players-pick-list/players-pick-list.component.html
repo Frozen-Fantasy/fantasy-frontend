@@ -9,7 +9,7 @@
         </thead>
         <tbody>
             @for (player of players; track $index) {
-            <tr>
+            <tr [ngClass]="{'picked-player-row':this.isPlayerPicked(player)}">
                 <td class="player-name-cell">
                     <div class="player-name-photo">
                         <p>{{player.name}}</p><img [width]="64" [src]="player.photo">

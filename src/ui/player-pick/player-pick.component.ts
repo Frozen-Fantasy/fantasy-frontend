@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from "../kit/button/button.component";
 import { IPlayer, PlayerPosition, PlayerPositionName } from 'src/pages/gallery/interfaces';
@@ -19,8 +19,9 @@ export class PlayerPickComponent {
 		3: 'Н'
 	};
 	@Input() pickedPlayer: IPlayer | null = null;
-	onFilterPosition(arg0: any) {
-		throw new Error('Method not implemented.');
-	}
 	@Input() position!: PlayerPositionName;
+	@Output() filterByPosition = new EventEmitter<void>();
+	onFilterPosition() {
+		this.filterByPosition.emit();
+	}
 }

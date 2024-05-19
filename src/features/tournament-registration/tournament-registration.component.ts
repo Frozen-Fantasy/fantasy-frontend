@@ -4,7 +4,8 @@ import { PlayerPickComponent } from 'src/ui/player-pick/player-pick.component';
 import { IPlayer, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
 import { PlayersPickListComponent } from 'src/ui/players-pick-list/players-pick-list.component';
-import { Observable, map } from 'rxjs';
+import { Observable, combineLatest, map, startWith } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-registration',
@@ -16,6 +17,7 @@ import { Observable, map } from 'rxjs';
 })
 export class TournamentRegistrationComponent implements OnInit {
 	@Input('id') id: number = 0;
+	selectedPosition = new FormControl<PlayerPositionName | null>(null);
 	maxIndex: { [key in PlayerPositionName]: number } = {
 		'Вратарь': 0,
 		'Защитник': 1,
@@ -35,8 +37,18 @@ export class TournamentRegistrationComponent implements OnInit {
 	constructor(private tournamentService: TournamentsService) {
 	}
 	ngOnInit() {
-		this.players$ = this.tournamentService.getTournamentRoster(this.id).pipe(map(roster => roster.players));
+		this.players$ = combineLatest([
+			this.tournamentService.getTournamentRoster(this.id),
+			this.selectedPosition.valueChanges.pipe(startWith(null))
+		]).pipe(
+			map(([players,]) => {
+				return this.filterByPosition(players);
+			}));
 	};
+
+	selectPosition(position: PlayerPositionName) {
+		this.selectedPosition.setValue(position);
+	}
 
 	onPlayerPick(player: IPlayer): void {
 		const playerIndex = this.nextIndex[player.positionName];
@@ -45,6 +57,14 @@ export class TournamentRegistrationComponent implements OnInit {
 		if (this.nextIndex[player.positionName] > this.maxIndex[player.positionName]) {
 			this.nextIndex[player.positionName] = 0;
 		}
+
+	}
+
+	filterByPosition(players: IPlayer[]): IPlayer[] {
+		if (this.selectedPosition.value) {
+			return players.filter(player => player.positionName === this.selectedPosition.value);
+		}
+		return players;
 	}
 
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IPlayer } from 'src/pages/gallery/interfaces';
+import { IPlayer, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { CoinsComponent } from '../kit/coins/coins.component';
 import { ButtonComponent } from '../kit/button/button.component';
 
@@ -14,8 +14,12 @@ import { ButtonComponent } from '../kit/button/button.component';
 })
 export class PlayersPickListComponent {
 	@Input() players: IPlayer[] | null = [];
+	@Input() pickedPlayers!: { [key in PlayerPositionName]: IPlayer[] | null[] };
 	@Output() playerPick = new EventEmitter<IPlayer>();
 	onPlayerPick(player: IPlayer): void {
 		this.playerPick.emit(player);
+	}
+	isPlayerPicked(player: IPlayer): boolean {
+		return !!this.pickedPlayers[player.positionName].find(pickedPlayer => pickedPlayer?.id === player.id);
 	}
 }
