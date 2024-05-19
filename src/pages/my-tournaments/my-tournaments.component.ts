@@ -8,11 +8,12 @@ import { ITournament, HockeyLeague } from '../tournaments/interfaces';
 import { LeagueIconComponent } from 'src/ui/kit/league-icon/league-icon.component';
 import { CoinsComponent } from 'src/ui/kit/coins/coins.component';
 import { ButtonComponent } from 'src/ui/kit/button/button.component';
+import { LetDirective } from 'src/utils/directives/ngLet.directive';
 
 @Component({
 	selector: 'frozen-fantasy-my-tournaments',
 	standalone: true,
-	imports: [CommonModule, TournamentsFilterComponent, LeagueIconComponent, CoinsComponent, ButtonComponent],
+	imports: [CommonModule, TournamentsFilterComponent, LeagueIconComponent, CoinsComponent, LetDirective, ButtonComponent],
 	templateUrl: './my-tournaments.component.html',
 	styleUrl: './my-tournaments.component.less',
 })

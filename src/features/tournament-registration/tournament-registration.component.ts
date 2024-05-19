@@ -76,7 +76,6 @@ export class TournamentRegistrationComponent implements OnInit {
 		if (!this.pickedPlayers['Вратарь'].filter(player => !player).length &&
 			!this.pickedPlayers['Защитник'].filter(player => !player).length &&
 			!this.pickedPlayers['Нападающий'].filter(player => !player).length) {
-			console.log(1)
 
 			const pickedPlayers = this.pickedPlayers as ({ [key in PlayerPositionName]: IPlayer[] });
 			const finalPick = (Object.keys(pickedPlayers) as PlayerPositionName[]).map((position: PlayerPositionName) => pickedPlayers[position].map((player) => player.id)).reduce((playersIds, final) => final.concat(playersIds));

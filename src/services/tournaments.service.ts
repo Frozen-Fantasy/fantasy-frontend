@@ -16,7 +16,7 @@ export class TournamentsService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   getTournaments(league: "KHL" | "NHL" | "Both"): Observable<ITournament[]> {
-    return this.http.get<ITournament[]>(`${BASE_API_URL}/tournament/get_tournaments/${league}`);
+    return this.http.get<ITournament[]>(`${BASE_API_URL}/tournaments`);
   }
 
   getAllTournaments() {

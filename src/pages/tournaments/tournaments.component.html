@@ -43,7 +43,12 @@
 							[price]="tournament?.prizeFond"></frozen-fantasy-coins>
 					</td>
 					<td (click)="onPlay($event,tournament.tournamentId)">
+						@if(tournament.statusTournament==='finished'){
+						Завершен
+						}
+						@else{
 						<frozen-fantasy-button>Участвовать</frozen-fantasy-button>
+						}
 					</td>
 				</tr>
 			</ng-container>

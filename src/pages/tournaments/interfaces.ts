@@ -2,6 +2,8 @@ import { IPlayer } from "../gallery/interfaces";
 
 export enum HockeyLeague { '', 'NHL', 'KHL' };
 
+export type EventStatus = 'not_yet_started' | 'started' | 'finished';
+
 export type MatchStatus = 'not_yet_started' | 'started' | 'finished';
 
 export const StatusMap: { [key in MatchStatus]: string } = {
@@ -48,7 +50,7 @@ export interface ITournament {
     matchesIds: number[];
     playersAmount: number;
     prizeFond: number;
-    statusTournament: string;
+    statusTournament: EventStatus;
     timeEnd: number;
     timeEndTS: number;
     title: string;
