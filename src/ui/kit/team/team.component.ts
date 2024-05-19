@@ -11,6 +11,6 @@ import { ITeam } from 'src/pages/tournaments/interfaces';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamComponent {
-	@Input() team:ITeam|undefined;
-	@Input() home:boolean = true;
+	@Input() team: string = '';
+	@Input() home: boolean = true;
 }

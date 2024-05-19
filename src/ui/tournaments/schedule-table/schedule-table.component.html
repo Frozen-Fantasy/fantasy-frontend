@@ -4,21 +4,15 @@
 		@for(match of matches; track $index){
 		<tr>
 			<td class="home">
-				<frozen-fantasy-team
-					[team]="match.homeTeam"
-					[home]="true"
-				></frozen-fantasy-team>
+				<frozen-fantasy-team [team]="match.homeTemeAbrev"
+					[home]="true"></frozen-fantasy-team>
 			</td>
 			<td>
-				<frozen-fantasy-match-result
-					[match]="match"
-				></frozen-fantasy-match-result>
+				<frozen-fantasy-match-result [match]="match"></frozen-fantasy-match-result>
 			</td>
 			<td class="guest">
-				<frozen-fantasy-team
-					[team]="match.guestTeam"
-					[home]="false"
-				></frozen-fantasy-team>
+				<frozen-fantasy-team [team]="match.awayTeamAbbrev"
+					[home]="false"></frozen-fantasy-team>
 			</td>
 		</tr>
 		}

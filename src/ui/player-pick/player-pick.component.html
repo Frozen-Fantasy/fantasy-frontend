@@ -1,0 +1,42 @@
+<div class="card"
+    [ngClass]="{'silver':pickedPlayer?.rarityName==='Silver','gold':pickedPlayer?.rarityName==='Gold'}">
+    @if(pickedPlayer){
+    <div class="imgBox">
+        <img [src]="pickedPlayer.teamLogo" class="team-logo">
+        <img [src]="pickedPlayer.photo" class="product-img">
+    </div>
+    <div class="contentBox">
+        <span class="sweater-number">{{pickedPlayer.sweaterNumber}}</span>
+        <span class="title">{{pickedPlayer.name}}</span>
+        <span class="position">{{positionsMap[pickedPlayer.position]}}</span>
+    </div>
+    }
+    @else{
+    <div class="imgBox">
+        <img src="../../assets//icons/unknown-player.png" class="product-img">
+        <frozen-fantasy-button [appearance]="'secondary'" class="unpack-btn"
+            (click)="onFilterPosition()">{{position}}</frozen-fantasy-button>
+    </div>
+    }
+
+
+    <!-- <div class="contentBox">
+        @if(player.unpacked){
+        <span class="sweater-number">{{player.sweaterNumber}}</span>
+        <span class="title">{{player.name}}</span>
+        <span class="position">{{positionsMap[player.position]}}</span>
+        }
+        @else(){
+        <span class="sweater-number">?</span>
+        @if(player.rarity===1){
+        <span class="title">Cеребряный игрок</span>
+        }
+        @if(player.rarity===2){
+        <span class="title">Золотой игрок</span>
+        }
+        <span class="position">?</span>
+        }
+
+    </div> -->
+
+</div>

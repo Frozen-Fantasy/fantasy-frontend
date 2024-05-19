@@ -10,5 +10,7 @@ import { CommonModule } from '@angular/common';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-	@Input() appearance:"primary"|"secondary" = 'primary';
+	@Input() appearance: "primary" | "secondary" = 'primary';
+	@Input() icon: string | undefined;
+	@Input() width: number = 150;
 }

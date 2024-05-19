@@ -1,0 +1,49 @@
+@import "src/styles.less";
+
+.players-list {
+    margin-top: 1rem;
+
+    table {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+
+        tr {
+            border-top: 1px solid @base-blue;
+            border-bottom: 1px solid @base-blue;
+
+            td {
+                padding: 1rem;
+            }
+        }
+
+        .picked-player-row {
+            background-color: @blue-200;
+        }
+
+        .player-name-cell {
+            width: 215px;
+
+            .player-name-photo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+
+        }
+
+        .player-team {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coins-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+
+}

@@ -1,6 +1,9 @@
-<div class="card" [ngClass]="{'silver':player.rarity===1,'gold':player.rarity===2}">
+<div class="card"
+    [ngClass]="{'silver':player.rarityName==='Silver','gold':player.rarityName==='Gold'}">
 
     <div class="imgBox">
+        <img [@unpackCard]="player.unpacked? 'unpacked' : 'packed'" class="team-logo"
+            [src]="player.teamLogo">
         <img [src]="player.photo" class="product-img"
             [@unpackCard]="player.unpacked? 'unpacked' : 'packed'">
         @if(!player.unpacked){

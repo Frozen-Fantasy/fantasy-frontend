@@ -1,0 +1,30 @@
+<div class="pick">
+    @for (goalkeeper of pickedPlayers['Вратарь']; track $index) {
+    <frozen-fantasy-player-pick [position]="'Вратарь'" [pickedPlayer]="goalkeeper"
+        (filterByPosition)="selectPosition('Вратарь')"></frozen-fantasy-player-pick>
+    }
+    @for (defence of pickedPlayers['Защитник']; track $index) {
+    <frozen-fantasy-player-pick [position]="'Защитник'" [pickedPlayer]="defence"
+        (filterByPosition)="selectPosition('Защитник')"></frozen-fantasy-player-pick>
+    }
+    @for (offence of pickedPlayers['Нападающий']; track $index) {
+    <frozen-fantasy-player-pick [position]="'Нападающий'" [pickedPlayer]="offence"
+        (filterByPosition)="selectPosition('Нападающий')"></frozen-fantasy-player-pick>
+    }
+</div>
+
+<div class="players-list-wrapper">
+    <frozen-fantasy-players-pick-list class="list" [players]="players$|async"
+        [pickedPlayers]="pickedPlayers"
+        (playerPick)="onPlayerPick($event)"></frozen-fantasy-players-pick-list>
+
+    <div class="sticky-wrapper">
+        <frozen-fantasy-button (click)="submitPick()" class="button" [width]="200">Зарегистрировать
+            команду</frozen-fantasy-button>
+        <div class="budget">
+            <span class="balance">Бюджет: </span>
+            <frozen-fantasy-coins [price]="budget"></frozen-fantasy-coins>
+        </div>
+    </div>
+
+</div>

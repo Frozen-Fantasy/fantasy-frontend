@@ -1,7 +1,9 @@
 <ng-container>
-	@switch (appearance) { @case ('primary') {
-	<button class="primary">
+	<button [ngClass]="{primary:appearance==='primary',secondary:appearance==='secondary'}"
+		[style.width.px]="width">
 		<ng-content></ng-content>
+		@if (icon) {
+		<img [src]="icon">
+		}
 	</button>
-	} }
 </ng-container>
