@@ -19,8 +19,15 @@
         (playerPick)="onPlayerPick($event)"></frozen-fantasy-players-pick-list>
 
     <div class="sticky-wrapper">
-        <frozen-fantasy-button (click)="submitPick()" class="button" [width]="200">Зарегистрировать
-            команду</frozen-fantasy-button>
+        <frozen-fantasy-button (click)="submitPick()" class="button" [width]="200">
+            @if (edit) {
+            Сохранить состав
+            }
+            @else{
+            Зарегистрировать
+            команду
+            }
+        </frozen-fantasy-button>
         <div class="budget">
             <span class="balance">Бюджет: </span>
             <frozen-fantasy-coins [price]="budget"></frozen-fantasy-coins>

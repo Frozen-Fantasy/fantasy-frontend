@@ -45,10 +45,10 @@ export class MyTournamentsComponent {
 		this.filterChange$.next(value)
 	}
 
-	onPlay(event: MouseEvent, tournamentId: number) {
+	onEditTeam(event: MouseEvent, tournamentId: number) {
 		event.stopPropagation();
 		event.preventDefault();
-		this.router.navigate([`tournaments/attend/${tournamentId}`]);
+		this.router.navigate([`tournaments/attend/${tournamentId}/true`]);
 	}
 
 	onTournamentClick(tournamentId: number) {
