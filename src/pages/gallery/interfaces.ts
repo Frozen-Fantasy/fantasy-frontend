@@ -22,8 +22,10 @@ export interface IPlayer {
     photo: string,
     teamID: number,
     teamName: string,
+    teamLogo: string,
     position: PlayerPosition,
     positionName: PlayerPositionName,
     league: HockeyLeague,
-    leagueName: string
+    leagueName: string,
+    playerCost?: number
 }

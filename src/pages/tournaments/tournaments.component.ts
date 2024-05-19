@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TournamentCardComponent } from 'src/ui/tournaments/tournament-card/tournament-card.component';
 import { HockeyLeague, ITournament } from './interfaces';
 import { Router } from '@angular/router';
 import { TournamentsService } from 'src/services/tournaments.service';
@@ -14,7 +13,7 @@ import { ButtonComponent } from 'src/ui/kit/button/button.component';
 @Component({
 	selector: 'frozen-fantasy-tournamnets',
 	standalone: true,
-	imports: [CommonModule, TournamentCardComponent, TournamentsFilterComponent, LetDirective, LeagueIconComponent, CoinsComponent, ButtonComponent],
+	imports: [CommonModule, TournamentsFilterComponent, LetDirective, LeagueIconComponent, CoinsComponent, ButtonComponent],
 	templateUrl: './tournaments.component.html',
 	styleUrl: './tournaments.component.less',
 })
@@ -46,9 +45,10 @@ export class TournamentsComponent {
 		this.filterChange$.next(value)
 	}
 
-	onPlay(event: MouseEvent) {
+	onPlay(event: MouseEvent, tournamentId: number) {
 		event.stopPropagation();
 		event.preventDefault();
+		this.router.navigate([`tournaments/attend/${tournamentId}`]);
 	}
 
 	onTournamentClick(tournamentId: number) {

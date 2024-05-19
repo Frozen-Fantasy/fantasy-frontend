@@ -1,0 +1,95 @@
+@import 'src/styles.less';
+
+.card {
+    position: relative;
+    width: 178px;
+    height: 220px;
+    background: @base-500;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 1rem;
+
+    .imgBox {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px;
+        z-index: 1;
+        transition: all 0.3s;
+
+        .product-img {
+            height: 150px;
+            width: auto;
+        }
+
+        // &:hover {
+        //     transform: scale(1.1);
+        // }
+
+        .unpack-btn {
+            position: absolute;
+            top: 10rem;
+        }
+    }
+
+    .contentBox {
+        position: relative;
+        padding: 0 20px;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        z-index: 2;
+        height: 65px;
+
+        span {
+            text-align: center;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sweater-number,
+        .position {
+            font-size: 26px;
+        }
+    }
+
+    // &:hover {
+    //     &::before {
+    //         top: -70%;
+    //         transform: skewY(390deg);
+    //     }
+    // }
+}
+
+.silver {
+    &::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #d4d4d4, #a6a6a6);
+        transform: skewY(345deg);
+        transition: 0.5s;
+    }
+}
+
+.gold {
+    &::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #d4c11c, #bfa40a);
+        transform: skewY(345deg);
+        transition: 0.5s;
+    }
+}

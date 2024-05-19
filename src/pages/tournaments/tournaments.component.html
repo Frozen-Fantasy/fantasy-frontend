@@ -42,7 +42,7 @@
 						<frozen-fantasy-coins
 							[price]="tournament?.prizeFond"></frozen-fantasy-coins>
 					</td>
-					<td (click)="onPlay($event)">
+					<td (click)="onPlay($event,tournament.tournamentId)">
 						<frozen-fantasy-button>Участвовать</frozen-fantasy-button>
 					</td>
 				</tr>

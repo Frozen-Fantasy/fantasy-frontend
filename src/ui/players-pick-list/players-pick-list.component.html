@@ -1,0 +1,37 @@
+<div class="players-list">
+    <table>
+        <thead>
+            <th>Имя</th>
+            <th>Команда</th>
+            <th>Позиция</th>
+            <th>Стоимость</th>
+            <th></th>
+        </thead>
+        <tbody>
+            @for (player of players; track $index) {
+            <tr>
+                <td class="player-name-cell">
+                    <div class="player-name-photo">
+                        <p>{{player.name}}</p><img [width]="64" [src]="player.photo">
+                    </div>
+                </td>
+                <td class="player-team-cell">
+                    <div class="player-team">
+                        <p>{{player.teamName}}</p><img [width]="64" [src]="player.teamLogo">
+                    </div>
+                </td>
+                <td>{{player.positionName}}</td>
+                <td>
+                    <div class="coins-wrapper"><frozen-fantasy-coins
+                            [price]="player.playerCost"></frozen-fantasy-coins>
+                    </div>
+                </td>
+                <td>
+                    <frozen-fantasy-button [width]="40" [appearance]="'secondary'"
+                        (click)="onPlayerPick(player)">+</frozen-fantasy-button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

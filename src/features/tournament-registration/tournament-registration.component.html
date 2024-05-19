@@ -1,0 +1,17 @@
+<div class="pick">
+    @for (goalkeeper of pickedPlayers['Вратарь']; track $index) {
+    <frozen-fantasy-player-pick [position]="'Вратарь'"
+        [pickedPlayer]="goalkeeper"></frozen-fantasy-player-pick>
+    }
+    @for (defence of pickedPlayers['Защитник']; track $index) {
+    <frozen-fantasy-player-pick [position]="'Защитник'"
+        [pickedPlayer]="defence"></frozen-fantasy-player-pick>
+    }
+    @for (offence of pickedPlayers['Нападающий']; track $index) {
+    <frozen-fantasy-player-pick [position]="'Нападающий'"
+        [pickedPlayer]="offence"></frozen-fantasy-player-pick>
+    }
+</div>
+
+<frozen-fantasy-players-pick-list [players]="players$|async"
+    (playerPick)="onPlayerPick($event)"></frozen-fantasy-players-pick-list>

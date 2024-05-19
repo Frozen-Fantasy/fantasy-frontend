@@ -1,3 +1,5 @@
+import { IPlayer } from "../gallery/interfaces";
+
 export enum HockeyLeague { '', 'NHL', 'KHL' };
 
 export type MatchStatus = 'not_yet_started' | 'started' | 'finished';
@@ -8,7 +10,15 @@ export const StatusMap: { [key in MatchStatus]: string } = {
     finished: 'Завершен'
 };
 export interface ITeam {
-    name: string;
+    teamAbbrev: string;
+    teamID: number;
+    teamName: string;
+}
+
+export interface IRoster {
+    players: IPlayer[];
+    positions: { positionAbbrev: string, positionName: string }[],
+    teams: ITeam[]
 }
 
 export interface IMatch {

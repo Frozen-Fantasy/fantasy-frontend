@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { IMatch, ITournament } from 'src/pages/tournaments/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
-import { TournamentCardComponent } from 'src/ui/tournaments/tournament-card/tournament-card.component';
 import { LeagueIconComponent } from 'src/ui/kit/league-icon/league-icon.component';
 import { ScheduleTableComponent } from 'src/ui/tournaments/schedule-table/schedule-table.component';
 import { Observable, Subject, map, of, takeUntil, tap } from 'rxjs';
@@ -12,7 +11,7 @@ import { LetDirective } from 'src/utils/directives/ngLet.directive';
 @Component({
 	selector: 'frozen-fantasy-tournament-information',
 	standalone: true,
-	imports: [CommonModule, TournamentCardComponent, LeagueIconComponent, ScheduleTableComponent, LetDirective],
+	imports: [CommonModule, LeagueIconComponent, ScheduleTableComponent, LetDirective],
 	providers: [],
 	templateUrl: './tournament-information.component.html',
 	styleUrl: './tournament-information.component.less',
