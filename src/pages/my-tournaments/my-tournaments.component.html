@@ -1,1 +1,52 @@
-<p>my-tournaments works!</p>
+<div class="container">
+    <div class="filters">
+        <frozen-fantasy-tournaments-filter
+            (filterChange)="onFilterChange($event)"></frozen-fantasy-tournaments-filter>
+    </div>
+    <table class="tournaments-table" *ngLet="tournaments$|async as tournaments">
+        <thead>
+            <tr>
+                <th>Лига</th>
+                <th>Название</th>
+                <th>Дата начала</th>
+                <th>Участники</th>
+                <th>Взнос</th>
+                <th>Призовой фонд</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let tournament of tournaments">
+                <tr class="card" (click)="onTournamentClick(tournament.tournamentId)">
+                    <td class="logo">
+                        <frozen-fantasy-league-icon [league]="tournament?.league"
+                            [size]="'m'"></frozen-fantasy-league-icon>
+                    </td>
+                    <td>
+                        {{ tournament?.title }}
+                    </td>
+                    <td class="timestart">
+                        {{ tournament?.TimeStart| date }}
+                    </td>
+                    <td>
+                        <div class="participants">
+                            {{ tournament?.playersAmount
+                            }}<img width="24" src="/assets/icons/participants.svg" alt=""
+                                class="logo-img" />
+                        </div>
+                    </td>
+                    <td>
+                        <frozen-fantasy-coins [price]="tournament?.deposit"></frozen-fantasy-coins>
+                    </td>
+                    <td>
+                        <frozen-fantasy-coins
+                            [price]="tournament?.prizeFond"></frozen-fantasy-coins>
+                    </td>
+                    <td (click)="onPlay($event,tournament.tournamentId)">
+                        <frozen-fantasy-button>Участвовать</frozen-fantasy-button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
