@@ -28,4 +28,8 @@ export class TournamentsService {
   getTournamentRoster(id: number): Observable<IPlayer[]> {
     return this.http.get<IRoster>(`${BASE_API_URL}/tournament/roster?tournamentID=${id}`).pipe(map(value => value.players));
   }
+
+  registerTeamForTournament(tournamentId: number, playersIds: number[]): void {
+    this.http.post<any>(`${BASE_API_URL}/tournament/team/create?tournamentID=${tournamentId}`, { team: playersIds }).subscribe();
+  }
 }

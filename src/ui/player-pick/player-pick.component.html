@@ -1,6 +1,8 @@
-<div class="card">
+<div class="card"
+    [ngClass]="{'silver':pickedPlayer?.rarityName==='Silver','gold':pickedPlayer?.rarityName==='Gold'}">
     @if(pickedPlayer){
     <div class="imgBox">
+        <img [src]="pickedPlayer.teamLogo" class="team-logo">
         <img [src]="pickedPlayer.photo" class="product-img">
     </div>
     <div class="contentBox">

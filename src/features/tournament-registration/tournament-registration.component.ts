@@ -6,11 +6,12 @@ import { TournamentsService } from 'src/services/tournaments.service';
 import { PlayersPickListComponent } from 'src/ui/players-pick-list/players-pick-list.component';
 import { Observable, combineLatest, map, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { ButtonComponent } from 'src/ui/kit/button/button.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-registration',
 	standalone: true,
-	imports: [CommonModule, PlayerPickComponent, PlayersPickListComponent],
+	imports: [CommonModule, PlayerPickComponent, PlayersPickListComponent, ButtonComponent],
 	templateUrl: './tournament-registration.component.html',
 	styleUrl: './tournament-registration.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -65,6 +66,19 @@ export class TournamentRegistrationComponent implements OnInit {
 			return players.filter(player => player.positionName === this.selectedPosition.value);
 		}
 		return players;
+	}
+
+	submitPick() {
+		if (!this.pickedPlayers['Вратарь'].filter(player => !player).length &&
+			!this.pickedPlayers['Защитник'].filter(player => !player).length &&
+			!this.pickedPlayers['Нападающий'].filter(player => !player).length) {
+			console.log(1)
+
+			const pickedPlayers = this.pickedPlayers as ({ [key in PlayerPositionName]: IPlayer[] });
+			const finalPick = (Object.keys(pickedPlayers) as PlayerPositionName[]).map((position: PlayerPositionName) => pickedPlayers[position].map((player) => player.id)).reduce((playersIds, final) => final.concat(playersIds));
+			this.tournamentService.registerTeamForTournament(this.id, finalPick);
+		}
+
 	}
 
 }
