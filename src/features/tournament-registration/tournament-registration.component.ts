@@ -7,17 +7,19 @@ import { PlayersPickListComponent } from 'src/ui/players-pick-list/players-pick-
 import { Observable, combineLatest, map, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { ButtonComponent } from 'src/ui/kit/button/button.component';
+import { CoinsComponent } from 'src/ui/kit/coins/coins.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-registration',
 	standalone: true,
-	imports: [CommonModule, PlayerPickComponent, PlayersPickListComponent, ButtonComponent],
+	imports: [CommonModule, PlayerPickComponent, PlayersPickListComponent, ButtonComponent, CoinsComponent],
 	templateUrl: './tournament-registration.component.html',
 	styleUrl: './tournament-registration.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentRegistrationComponent implements OnInit {
 	@Input('id') id: number = 0;
+	budget: number = 100;
 	selectedPosition = new FormControl<PlayerPositionName | null>(null);
 	maxIndex: { [key in PlayerPositionName]: number } = {
 		'Вратарь': 0,
@@ -52,13 +54,15 @@ export class TournamentRegistrationComponent implements OnInit {
 	}
 
 	onPlayerPick(player: IPlayer): void {
-		const playerIndex = this.nextIndex[player.positionName];
-		this.pickedPlayers[player.positionName][playerIndex] = player;
-		this.nextIndex[player.positionName] += 1;
-		if (this.nextIndex[player.positionName] > this.maxIndex[player.positionName]) {
-			this.nextIndex[player.positionName] = 0;
+		if (this.budget > player.playerCost!) {
+			const playerIndex = this.nextIndex[player.positionName];
+			this.pickedPlayers[player.positionName][playerIndex] = player;
+			this.nextIndex[player.positionName] += 1;
+			if (this.nextIndex[player.positionName] > this.maxIndex[player.positionName]) {
+				this.nextIndex[player.positionName] = 0;
+			}
+			this.budget -= player.playerCost!;
 		}
-
 	}
 
 	filterByPosition(players: IPlayer[]): IPlayer[] {
