@@ -61,4 +61,8 @@ export class CoreComponent implements OnDestroy {
 			this.router.navigate(['/login']);
 		}, () => this.router.navigate(['/login']));
 	}
+
+	goToProfile() {
+		this.router.navigate(['/profile']);
+	}
 }

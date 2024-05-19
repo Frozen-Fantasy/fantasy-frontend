@@ -1,0 +1,32 @@
+<div class="profile-wrapper">
+    <div class="photo">
+        <img [src]="userInfo.photoLink">
+    </div>
+    <div class="profile-info">
+        <div class="nickname">Ник: {{userInfo.nickname}}</div>
+        <div class="email">Эл. почта: {{userInfo.email}}</div>
+        <div class="balance">Баланс: <frozen-fantasy-coins
+                [price]="userInfo.coins"></frozen-fantasy-coins></div>
+        <div class="transactions">
+            <h2>Транзакции</h2>
+            <table>
+                <thead>
+                    <td>Количество</td>
+                    <td>Статус</td>
+                    <td>Дата</td>
+                    <td>Детали</td>
+                </thead>
+                <tbody>
+                    @for(transaction of transactions;track $index){
+                    <tr>
+                        <td>{{transaction.amount}}</td>
+                        <td>{{transaction.status}}</td>
+                        <td>{{transaction.transactionDate | date}}</td>
+                        <td>{{transaction.transactionDetails}}</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -10,11 +10,12 @@
 
 		}
 	</nav>
-	<img class="bell-icon" src="../assets/icons/alert.svg" />
+	<img (click)="goToProfile()" class="account-icon" [width]="36"
+		src="../assets/icons/account.png" />
 	<div class="balance">
 		<frozen-fantasy-coins [price]="balance" [mode]="'onDark'"></frozen-fantasy-coins>
 	</div>
-	<button class="login-logout" (click)="onLogout()">Logout</button>
+	<button class="login-logout" (click)="onLogout()">Выйти</button>
 </header>
 <main>
 	<div class="container">
