@@ -15,7 +15,7 @@
 
 <div class="players-list-wrapper">
     <div class="list-filters">
-        <frozen-fantasy-filter-players [initialPlayers]="initialPlayers"
+        <frozen-fantasy-filter-players class="filters" [initialPlayers]="initialPlayers"
             (filteredPlayers)="onFilterPlayers($event)"></frozen-fantasy-filter-players>
         <frozen-fantasy-players-pick-list class="list" [players]="players$|async"
             [pickedPlayers]="pickedPlayers"

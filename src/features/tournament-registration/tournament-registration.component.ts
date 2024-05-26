@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlayerPickComponent } from 'src/ui/player-pick/player-pick.component';
 import { IPlayer, PlayerPositionName } from 'src/pages/gallery/interfaces';
@@ -41,7 +41,7 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 	};
 	players$ = new BehaviorSubject<IPlayer[]>([]);
 	destroy$ = new Subject<any>();
-	constructor(private tournamentService: TournamentsService) {
+	constructor(private tournamentService: TournamentsService, private readonly cdr: ChangeDetectorRef) {
 	}
 	ngOnInit() {
 		this.edit = this.edit === 'true';
@@ -59,7 +59,10 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 				})).subscribe();
 		if (this.edit) {
 			this.tournamentService.getMyTeam(this.id).pipe(take(1)).subscribe(
-				value => value.players.forEach(player => this.onPlayerPick(player))
+				value => {
+					value.players.forEach(player => this.onPlayerPick(player));
+					this.cdr.detectChanges();
+				}
 			);
 		}
 	};
