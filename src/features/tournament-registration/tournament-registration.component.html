@@ -14,10 +14,13 @@
 </div>
 
 <div class="players-list-wrapper">
-    <frozen-fantasy-players-pick-list class="list" [players]="players$|async"
-        [pickedPlayers]="pickedPlayers"
-        (playerPick)="onPlayerPick($event)"></frozen-fantasy-players-pick-list>
-
+    <div class="list-filters">
+        <frozen-fantasy-filter-players [initialPlayers]="initialPlayers"
+            (filteredPlayers)="onFilterPlayers($event)"></frozen-fantasy-filter-players>
+        <frozen-fantasy-players-pick-list class="list" [players]="players$|async"
+            [pickedPlayers]="pickedPlayers"
+            (playerPick)="onPlayerPick($event)"></frozen-fantasy-players-pick-list>
+    </div>
     <div class="sticky-wrapper">
         <frozen-fantasy-button (click)="submitPick()" class="button" [width]="200">
             @if (edit) {

@@ -1,7 +1,7 @@
 <div class="tabs">
     <frozen-fantasy-tabs>
         <frozen-fantasy-tab [tabTitle]="'Распакованные'" [active]="true">
-            <frozen-fantasy-filter-players [form]="form" [initialPlayers]="initialUnpackedPlayers"
+            <frozen-fantasy-filter-players [initialPlayers]="initialUnpackedPlayers"
                 (filteredPlayers)="onFilterPlayers($event)"></frozen-fantasy-filter-players>
             <div class="products-gallery" *ngLet="unpackedPlayers$ | async as players">
                 @for ( player of players; track $index) {

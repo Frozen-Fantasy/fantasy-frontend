@@ -26,12 +26,7 @@ export class GalleryComponent {
 	unpackedPlayers$ = this.galleryService.unpackedPlayers$;
 	packedPlayers$ = this.galleryService.packedPlayers$;
 	initialUnpackedPlayers: IPlayer[] = [];
-	form = new FormGroup({
-		position: new FormControl(''),
-		name: new FormControl(''),
-		khlLeague: new FormControl<boolean>(true, { nonNullable: true }),
-		nhlLeague: new FormControl<boolean>(true, { nonNullable: true })
-	})
+
 	constructor(private galleryService: GalleryService) {
 		this.galleryService.getUnpackedPlayers();
 		this.galleryService.getPackedPlayers();

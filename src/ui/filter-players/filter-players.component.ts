@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { IPlayer, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { CheckboxComponent } from '../kit/checkbox/checkbox.component';
 import { MatSelectModule } from '@angular/material/select';
 import { InputComponent } from '../kit/input/input.component';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
 	selector: 'frozen-fantasy-filter-players',
@@ -16,16 +17,26 @@ import { InputComponent } from '../kit/input/input.component';
 	styleUrl: './filter-players.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterPlayersComponent {
-	@Input() form!: FormGroup;
+export class FilterPlayersComponent implements OnInit, OnDestroy {
+	form = new FormGroup({
+		position: new FormControl(''),
+		name: new FormControl(''),
+		khlLeague: new FormControl<boolean>(true, { nonNullable: true }),
+		nhlLeague: new FormControl<boolean>(true, { nonNullable: true })
+	})
+	destroy$ = new Subject();
 	@Input() initialPlayers: IPlayer[] = [];
 
 	@Output() filteredPlayers = new EventEmitter<IPlayer[]>();
 
 	ngOnInit() {
-		this.form.valueChanges.subscribe(formValue => {
+		this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(formValue => {
 			this.filterPlayers();
 		})
+	}
+
+	ngOnDestroy() {
+		this.destroy$.next(true);
 	}
 
 	positions: PlayerPositionName[] = ['Вратарь', 'Защитник', 'Нападающий'];

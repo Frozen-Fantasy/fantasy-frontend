@@ -1,27 +1,29 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlayerPickComponent } from 'src/ui/player-pick/player-pick.component';
 import { IPlayer, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
 import { PlayersPickListComponent } from 'src/ui/players-pick-list/players-pick-list.component';
-import { Observable, combineLatest, map, startWith } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest, map, startWith, take, takeUntil, tap } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { ButtonComponent } from 'src/ui/kit/button/button.component';
 import { CoinsComponent } from 'src/ui/kit/coins/coins.component';
+import { FilterPlayersComponent } from 'src/ui/filter-players/filter-players.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-registration',
 	standalone: true,
-	imports: [CommonModule, PlayerPickComponent, PlayersPickListComponent, ButtonComponent, CoinsComponent],
+	imports: [CommonModule, PlayerPickComponent, PlayersPickListComponent, ButtonComponent, CoinsComponent, FilterPlayersComponent],
 	templateUrl: './tournament-registration.component.html',
 	styleUrl: './tournament-registration.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentRegistrationComponent implements OnInit {
+export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 	@Input('id') id: number = 0;
 	@Input('edit') edit: string | boolean | undefined;
 	budget: number = 100;
 	selectedPosition = new FormControl<PlayerPositionName | null>(null);
+	initialPlayers: IPlayer[] = [];
 	maxIndex: { [key in PlayerPositionName]: number } = {
 		'Вратарь': 0,
 		'Защитник': 1,
@@ -37,24 +39,34 @@ export class TournamentRegistrationComponent implements OnInit {
 		'Защитник': [null, null],
 		'Нападающий': [null, null, null],
 	};
-	players$: Observable<IPlayer[]> | undefined;
+	players$ = new BehaviorSubject<IPlayer[]>([]);
+	destroy$ = new Subject<any>();
 	constructor(private tournamentService: TournamentsService) {
 	}
 	ngOnInit() {
 		this.edit = this.edit === 'true';
-		this.players$ = combineLatest([
-			this.tournamentService.getTournamentRoster(this.id),
-			this.selectedPosition.valueChanges.pipe(startWith(null))
-		]).pipe(
-			map(([players,]) => {
-				return this.filterByPosition(players);
-			}));
+		this.tournamentService.getTournamentRoster(this.id).pipe(take(1)).subscribe(
+			(players) => {
+				this.players$.next(players);
+				this.initialPlayers = players;
+			}
+		)
+		this.selectedPosition.valueChanges.pipe(startWith(null))
+			.pipe(
+				takeUntil(this.destroy$),
+				map(() => {
+					return this.filterByPosition(this.players$.value);
+				})).subscribe();
 		if (this.edit) {
-			this.tournamentService.getMyTeam(this.id).subscribe(value =>
-				value.players.forEach(player => this.onPlayerPick(player))
+			this.tournamentService.getMyTeam(this.id).pipe(take(1)).subscribe(
+				value => value.players.forEach(player => this.onPlayerPick(player))
 			);
 		}
 	};
+
+	ngOnDestroy(): void {
+		this.destroy$.next(true);
+	}
 
 	selectPosition(position: PlayerPositionName) {
 		this.selectedPosition.setValue(position);
@@ -98,5 +110,9 @@ export class TournamentRegistrationComponent implements OnInit {
 
 	playerNotPicked(player: IPlayer): boolean {
 		return !this.pickedPlayers[player.positionName].map(player => player?.id).includes(player.id);
+	}
+
+	onFilterPlayers(players: IPlayer[]) {
+		this.players$.next(players);
 	}
 }
