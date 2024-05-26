@@ -19,16 +19,16 @@ export class TournamentsService {
   mytournaments$: BehaviorSubject<ITournament[]> = new BehaviorSubject<ITournament[]>([]);
   constructor(private http: HttpClient, private userService: UserService) { }
 
-  getTournaments(league: "KHL" | "NHL" | "Both"): Observable<ITournament[]> {
-    return this.http.get<ITournament[]>(`${BASE_API_URL}/tournaments`);
+  getTournaments(): Observable<ITournament[]> {
+    return this.http.get<ITournament[]>(`${BASE_API_URL}/tournaments?type=all`);
   }
 
   getAllTournaments() {
-    this.getTournaments("Both").pipe(take(1)).subscribe((tournaments) => this.tournaments$.next(tournaments));
+    this.getTournaments().pipe(take(1)).subscribe((tournaments) => this.tournaments$.next(tournaments));
   }
 
   getMyTournaments() {
-    this.http.get<ITournament[]>(`${BASE_API_URL}/tournaments?profileID=${this.userService.userInfo.profileID}`).subscribe((tournaments) => this.mytournaments$.next(tournaments));
+    this.http.get<ITournament[]>(`${BASE_API_URL}/tournaments?type=personal`).subscribe((tournaments) => this.mytournaments$.next(tournaments));
   }
 
   getMatches(id: number): Observable<IMatch[]> {

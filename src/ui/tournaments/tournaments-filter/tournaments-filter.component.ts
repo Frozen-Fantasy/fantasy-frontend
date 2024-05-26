@@ -20,9 +20,9 @@ export interface FilterTournament {
 export class TournamentsFilterComponent implements OnInit {
 	form = new FormGroup(
 		{
-			khlLeague: new FormControl<boolean>(true, { nonNullable: true }),
-			nhlLeague: new FormControl<boolean>(true, { nonNullable: true }),
-			active: new FormControl<boolean>(true, { nonNullable: true }),
+			khlLeague: new FormControl<boolean>(false, { nonNullable: true }),
+			nhlLeague: new FormControl<boolean>(false, { nonNullable: true }),
+			active: new FormControl<boolean>(false, { nonNullable: true }),
 			finished: new FormControl<boolean>(false, { nonNullable: true }),
 			sheduled: new FormControl<boolean>(false, { nonNullable: true }),
 		}

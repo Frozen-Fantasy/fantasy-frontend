@@ -31,11 +31,13 @@ export interface IMatch {
     eventId: number,
     homeScore: number,
     homeTeamId: number,
-    homeTemeAbrev: string,
+    homeTeamAbbrev: string,
     league: HockeyLeague,
     matchId: number,
     startAt: Date,
-    statusEvent: MatchStatus
+    statusEvent: MatchStatus,
+    awayTeamLogo: string,
+    homeTeamLogo: string
 }
 
 export interface ITournamentParticipant {

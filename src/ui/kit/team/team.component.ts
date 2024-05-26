@@ -13,4 +13,5 @@ import { ITeam } from 'src/pages/tournaments/interfaces';
 export class TeamComponent {
 	@Input() team: string = '';
 	@Input() home: boolean = true;
+	@Input() logo: string = '';
 }

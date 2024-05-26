@@ -13,34 +13,26 @@ import { InputComponent } from 'src/ui/kit/input/input.component';
 import { IPlayer, PlayerPositionName } from './interfaces';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FilterPlayersComponent } from 'src/ui/filter-players/filter-players.component';
 
 @Component({
 	selector: 'frozen-fantasy-gallery',
 	standalone: true,
-	imports: [CommonModule, PlayerCardComponent, LetDirective, TabsComponent, TabComponent, ButtonComponent, CheckboxComponent, ReactiveFormsModule, InputComponent, MatSelectModule, MatFormFieldModule],
+	imports: [CommonModule, PlayerCardComponent, LetDirective, TabsComponent, TabComponent, ButtonComponent, ReactiveFormsModule, FilterPlayersComponent],
 	templateUrl: './gallery.component.html',
 	styleUrl: './gallery.component.less',
 })
 export class GalleryComponent {
 	unpackedPlayers$ = this.galleryService.unpackedPlayers$;
 	packedPlayers$ = this.galleryService.packedPlayers$;
-	positions: PlayerPositionName[] = ['Вратарь', 'Защитник', 'Нападающий'];
 	initialUnpackedPlayers: IPlayer[] = [];
-	form = new FormGroup({
-		position: new FormControl(''),
-		name: new FormControl(''),
-		khlLeague: new FormControl<boolean>(true, { nonNullable: true }),
-		nhlLeague: new FormControl<boolean>(true, { nonNullable: true })
-	})
+
 	constructor(private galleryService: GalleryService) {
 		this.galleryService.getUnpackedPlayers();
 		this.galleryService.getPackedPlayers();
 		this.galleryService.unpackedPlayers$.pipe(filter(players => !!players.length), take(1)).subscribe((players) => {
 			this.initialUnpackedPlayers = players
 		});
-		this.form.valueChanges.subscribe(formValue => {
-			this.filterPlayers();
-		})
 	}
 
 	unpackPlayer(id: number) {
@@ -60,24 +52,7 @@ export class GalleryComponent {
 		});
 	}
 
-	filterPlayers() {
-		const filteredByLeague = this.initialUnpackedPlayers.filter(player => {
-			if (player.leagueName === 'NHL') {
-				return this.form.get('nhlLeague')?.value;
-			}
-			if (player.leagueName === 'KHL') {
-				return this.form.get('khlLeague')?.value;
-			}
-			return false;
-		});
-
-		const filteredByName = filteredByLeague.filter(player => {
-			return player.name.toLowerCase().trim().includes(this.form.get('name')?.value?.trim() ?? '');
-		});
-
-		const filteredByPosition = filteredByName.filter(player => {
-			return this.form.get('position')?.value ? player.positionName === this.form.get('position')?.value : true;
-		})
-		this.galleryService.unpackedPlayers$.next(filteredByPosition);
+	onFilterPlayers(players: IPlayer[]) {
+		this.galleryService.unpackedPlayers$.next(players);
 	}
 }

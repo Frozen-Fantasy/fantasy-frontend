@@ -14,10 +14,13 @@
 </div>
 
 <div class="players-list-wrapper">
-    <frozen-fantasy-players-pick-list class="list" [players]="players$|async"
-        [pickedPlayers]="pickedPlayers"
-        (playerPick)="onPlayerPick($event)"></frozen-fantasy-players-pick-list>
-
+    <div class="list-filters">
+        <frozen-fantasy-filter-players class="filters" [initialPlayers]="initialPlayers"
+            (filteredPlayers)="onFilterPlayers($event)"></frozen-fantasy-filter-players>
+        <frozen-fantasy-players-pick-list class="list" [players]="players$|async"
+            [pickedPlayers]="pickedPlayers"
+            (playerPick)="onPlayerPick($event)"></frozen-fantasy-players-pick-list>
+    </div>
     <div class="sticky-wrapper">
         <frozen-fantasy-button (click)="submitPick()" class="button" [width]="200">
             @if (edit) {
@@ -30,7 +33,7 @@
         </frozen-fantasy-button>
         <div class="budget">
             <span class="balance">Бюджет: </span>
-            <frozen-fantasy-coins [price]="budget"></frozen-fantasy-coins>
+            {{budget | currency}}
         </div>
     </div>
 
