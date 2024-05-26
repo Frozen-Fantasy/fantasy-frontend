@@ -54,7 +54,7 @@ export class AuthService {
 		return localStorage.getItem(REFRESH_TOKEN_KEY) ?? '';
 	}
 
-	refreshAccessToken(): Observable<any> {
+	refreshAccessToken(): Observable<IAuthResponse> {
 		const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
 
 		return this.http.post<any>(`${BASE_API_URL}/auth/refresh-tokens`, { refreshToken: refreshToken });
