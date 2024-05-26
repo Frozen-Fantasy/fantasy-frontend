@@ -18,7 +18,7 @@ import { ButtonComponent } from 'src/ui/kit/button/button.component';
 	styleUrl: './tournaments.component.less',
 })
 export class TournamentsComponent {
-	filterChange$ = new BehaviorSubject<FilterTournament>({ khlLeague: true, nhlLeague: true, active: true, finished: false, sheduled: false });
+	filterChange$ = new BehaviorSubject<FilterTournament>({ khlLeague: true, nhlLeague: true, active: false, finished: false, sheduled: false });
 
 	tournaments$: Observable<ITournament[]> = combineLatest([this.tournamentsService.tournaments$, this.filterChange$]).pipe(
 		map(([tournaments, filter]) => {
@@ -50,6 +50,9 @@ export class TournamentsComponent {
 	}
 
 	filterLeague(tournaments: ITournament[], filter: FilterTournament): ITournament[] {
+		if (!filter.khlLeague && !filter.nhlLeague) {
+			return tournaments;
+		}
 		return tournaments.filter((tournament) => {
 			const tournamentLeague = tournament.league;
 			if (tournamentLeague === HockeyLeague.KHL) {
@@ -63,6 +66,9 @@ export class TournamentsComponent {
 	}
 
 	filterStatuses(tournaments: ITournament[], filter: FilterTournament): ITournament[] {
+		if (!filter.active && !filter.finished && !filter.sheduled) {
+			return tournaments;
+		}
 		return tournaments.filter((tournament) => {
 			const tournamentStatus = tournament.statusTournament;
 			if (tournamentStatus === 'finished') {
@@ -72,6 +78,9 @@ export class TournamentsComponent {
 				return filter.sheduled;
 			}
 			if (tournamentStatus === 'started') {
+				return filter.active;
+			}
+			if (tournamentStatus === 'active') {
 				return filter.active;
 			}
 			return false;
