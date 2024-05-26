@@ -61,7 +61,7 @@ export class TournamentRegistrationComponent implements OnInit {
 	}
 
 	onPlayerPick(player: IPlayer): void {
-		if (this.budget > player.playerCost!) {
+		if (this.budget > player.playerCost! && this.playerNotPicked(player)) {
 			const playerIndex = this.nextIndex[player.positionName];
 			this.pickedPlayers[player.positionName][playerIndex] = player;
 			this.nextIndex[player.positionName] += 1;
@@ -94,5 +94,9 @@ export class TournamentRegistrationComponent implements OnInit {
 			}
 		}
 
+	}
+
+	playerNotPicked(player: IPlayer): boolean {
+		return !this.pickedPlayers[player.positionName].map(player => player?.id).includes(player.id);
 	}
 }
