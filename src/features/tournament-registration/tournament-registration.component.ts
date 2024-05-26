@@ -95,5 +95,4 @@ export class TournamentRegistrationComponent implements OnInit {
 		}
 
 	}
-
 }
