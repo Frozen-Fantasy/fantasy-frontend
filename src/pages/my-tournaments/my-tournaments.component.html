@@ -42,8 +42,18 @@
                         <frozen-fantasy-coins
                             [price]="tournament?.prizeFond"></frozen-fantasy-coins>
                     </td>
-                    <td (click)="onEditTeam($event,tournament.tournamentId)">
-                        <frozen-fantasy-button>Редактировать команду</frozen-fantasy-button>
+                    <td>
+                        @if(tournament.statusTournament==='finished' ||
+                        tournament.statusTournament==='started'){
+                        <frozen-fantasy-button
+                            (click)="onCheckResults($event,tournament.tournamentId)">Смотреть
+                            результаты</frozen-fantasy-button>
+                        }
+                        @else{
+                        <frozen-fantasy-button
+                            (click)="onEditTeam($event,tournament.tournamentId)">Редактировать
+                            команду</frozen-fantasy-button>
+                        }
                     </td>
                 </tr>
             </ng-container>

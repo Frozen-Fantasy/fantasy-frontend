@@ -58,3 +58,36 @@ export interface ITournament {
     title: string;
     tournamentId: number;
 }
+
+export interface IUserTeamResult {
+    assists: number,
+    fantasyPoint: number,
+    gameDate: string,
+    goals: number,
+    hits: number,
+    missedGoals: number,
+    name: string,
+    opponent: string,
+    photo: string,
+    pims: number,
+    playerID: number,
+    position: number,
+    positionName: string,
+    rarity: number,
+    rarityName: string,
+    saves: number,
+    shots: number,
+    shutout: true,
+    teamLogo: string,
+    teamName: string
+}
+
+export interface ITournamentResult {
+    coins: number,
+    fantasyPoints: number,
+    nickname: string,
+    place: number,
+    profileID: string,
+    userPhoto: string,
+    userTeam: IUserTeamResult
+}
