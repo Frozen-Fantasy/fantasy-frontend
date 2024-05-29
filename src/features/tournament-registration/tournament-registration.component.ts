@@ -55,7 +55,7 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 			.pipe(
 				takeUntil(this.destroy$),
 				map(() => {
-					return this.filterByPosition(this.players$.value);
+					this.players$.next(this.filterByPosition(this.initialPlayers));
 				})).subscribe();
 		if (this.edit) {
 			this.tournamentService.getMyTeam(this.id).pipe(take(1)).subscribe(
