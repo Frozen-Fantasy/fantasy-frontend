@@ -1,5 +1,8 @@
+@import "src/styles.less";
+
 .results-wrapper {
     display: flex;
+    gap: 2rem;
     margin-top: 2rem;
 
     .standings-wrapper {
@@ -8,6 +11,25 @@
         table {
             width: 100%;
             text-align: center;
+            border-collapse: collapse;
+
+            tr {
+                transition: all 0.3s;
+
+                td {
+                    border-top: 1px solid @base-blue;
+                    border-bottom: 1px solid @base-blue;
+                    padding: 1rem;
+                }
+
+                &:hover {
+                    background-color: @blue-200;
+                }
+            }
+
+            .picked-result {
+                background-color: @blue-200;
+            }
         }
     }
 }

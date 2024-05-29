@@ -1,1 +1,5 @@
-<p>user-tournament-result works!</p>
+<div class="team">
+    @for(player of teamResult;track $index){
+    <frozen-fantasy-player-result-card [playerResult]="player"></frozen-fantasy-player-result-card>
+    }
+</div>
