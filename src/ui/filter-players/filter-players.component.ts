@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/core';
-import { IPlayer, PlayerPositionName } from 'src/pages/gallery/interfaces';
+import { IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { CheckboxComponent } from '../kit/checkbox/checkbox.component';
 import { MatSelectModule } from '@angular/material/select';
 import { InputComponent } from '../kit/input/input.component';
@@ -25,9 +25,9 @@ export class FilterPlayersComponent implements OnInit, OnDestroy {
 		nhlLeague: new FormControl<boolean>(true, { nonNullable: true })
 	})
 	destroy$ = new Subject();
-	@Input() initialPlayers: IPlayer[] = [];
+	@Input() initialPlayers: IPlayerCard[] = [];
 
-	@Output() filteredPlayers = new EventEmitter<IPlayer[]>();
+	@Output() filteredPlayers = new EventEmitter<IPlayerCard[]>();
 
 	ngOnInit() {
 		this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(formValue => {

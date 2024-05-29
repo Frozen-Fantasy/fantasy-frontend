@@ -1,4 +1,4 @@
-import { IPlayer } from "../gallery/interfaces";
+import { IPlayerCard, PlayerPosition, PlayerPositionName } from "../gallery/interfaces";
 
 export enum HockeyLeague { '', 'NHL', 'KHL' };
 
@@ -18,7 +18,7 @@ export interface ITeam {
 }
 
 export interface IRoster {
-    players: IPlayer[];
+    players: IPlayerCard[];
     positions: { positionAbbrev: string, positionName: string }[],
     teams: ITeam[]
 }
@@ -57,4 +57,37 @@ export interface ITournament {
     timeEndTS: number;
     title: string;
     tournamentId: number;
+}
+
+export interface IPlayerResult {
+    assists: number,
+    fantasyPoint: number,
+    gameDate: string,
+    goals: number,
+    hits: number,
+    missedGoals: number,
+    name: string,
+    opponent: string,
+    photo: string,
+    pims: number,
+    playerID: number,
+    position: PlayerPosition,
+    positionName: PlayerPositionName,
+    rarity: number,
+    rarityName: string,
+    saves: number,
+    shots: number,
+    shutout: true,
+    teamLogo: string,
+    teamName: string
+}
+
+export interface ITournamentResult {
+    coins: number,
+    fantasyPoints: number,
+    nickname: string,
+    place: number,
+    profileID: string,
+    userPhoto: string,
+    userTeam: IPlayerResult[]
 }

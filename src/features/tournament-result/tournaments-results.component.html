@@ -1,0 +1,31 @@
+<div class="results-wrapper">
+    <div class="standings-wrapper">
+        <table class="standings">
+            <thead>
+                <th>Место</th>
+                <th>Ник</th>
+                <th>Fantasy points</th>
+                <th [style.textAlign]="'right'">Приз</th>
+            </thead>
+            <tbody>
+                @for(result of results;track $index){
+                <tr [ngClass]="{'picked-result':this.pickedResultId===$index}">
+                    <td>{{result.place}}</td>
+                    <td>{{result.nickname}} <img [src]="result.userPhoto" [width]="32"></td>
+                    <td>
+                        <div class="fantasy-points">
+                            <p>{{result.fantasyPoints}}</p>
+                            <img [width]="24" src="../../assets/icons/fantasy-points.svg" alt="">
+                        </div>
+                    </td>
+                    <td><frozen-fantasy-coins [price]="result.coins"></frozen-fantasy-coins></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="results">
+        <frozen-fantasy-user-tournament-result
+            [teamResult]="results[pickedResultId].userTeam"></frozen-fantasy-user-tournament-result>
+    </div>
+</div>

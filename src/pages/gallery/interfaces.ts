@@ -6,8 +6,7 @@ export enum PlayerPosition { 'Вратарь' = 1, 'Защитник' = 2, 'На
 export type PlayerPositionName = 'Вратарь' | 'Защитник' | 'Нападающий';
 
 
-export interface IPlayer {
-
+export interface IPlayerCard {
     id: number,
     profileID: string,
     playerID: number,

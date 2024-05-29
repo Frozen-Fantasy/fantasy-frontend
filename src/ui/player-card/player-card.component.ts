@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IPlayer, PlayerPosition } from 'src/pages/gallery/interfaces';
+import { IPlayerCard, PlayerPosition } from 'src/pages/gallery/interfaces';
 import { ButtonComponent } from '../kit/button/button.component';
-import { GalleryService } from 'src/pages/gallery/gallery.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -32,7 +31,7 @@ export class PlayerCardComponent {
 		2: 'З',
 		3: 'Н'
 	};
-	@Input() player!: IPlayer;
+	@Input() player!: IPlayerCard;
 	@Output() unpackPlayer = new EventEmitter<number>();
 
 	constructor() {

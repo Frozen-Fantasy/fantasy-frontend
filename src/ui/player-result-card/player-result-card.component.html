@@ -1,0 +1,64 @@
+<div class="card"
+    [ngClass]="{'gold-player':playerResult.rarityName==='Gold','silver-player':playerResult.rarityName==='Silver'}">
+    <div class="photo-name">
+        <img [src]="playerResult.photo" [width]="94" alt="">
+        <div class="name">
+            {{playerResult.name}}
+        </div>
+    </div>
+    <div class="team">
+        <img [src]="playerResult.teamLogo" [width]="86" alt="">
+    </div>
+    <div class="stats">
+        @if(playerResult.positionName==='Вратарь'){
+        <div class="saves">
+            <p>SV</p>
+            <p>{{playerResult.saves}}</p>
+        </div>
+        <div class="missed-goals">
+            <p>GA</p>
+            <p>{{playerResult.missedGoals}}</p>
+        </div>
+        <div class="shutout">
+            <p>SO</p>
+            <p>{{playerResult.shutout}}</p>
+        </div>
+        <div class="pims">
+            <p>Pim</p>
+            <p>{{playerResult.pims}}</p>
+        </div>
+        <div class="fantasy-points">
+            <p>FP</p>
+            <p>{{playerResult.fantasyPoint}} <img [width]="24"
+                    src="../../assets/icons/fantasy-points.svg" alt=""></p>
+        </div>
+        }
+        @else{
+        <div class="goals">
+            <p>G</p>
+            <p>{{playerResult.goals}}</p>
+        </div>
+        <div class="assists">
+            <p>A</p>
+            <p>{{playerResult.assists}}</p>
+        </div>
+        <div class="shots">
+            <p>S</p>
+            <p>{{playerResult.shots}}</p>
+        </div>
+        <div class="hits">
+            <p>HIT</p>
+            <p>{{playerResult.hits}}</p>
+        </div>
+        <div class="pims">
+            <p>Pim</p>
+            <p>{{playerResult.pims}}</p>
+        </div>
+        <div class="fantasy-points">
+            <p>FP</p>
+            <p>{{playerResult.fantasyPoint}} <img [width]="24"
+                    src="../../assets/icons/fantasy-points.svg" alt=""></p>
+        </div>
+        }
+    </div>
+</div>
