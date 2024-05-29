@@ -6,6 +6,9 @@
             {{playerResult.name}}
         </div>
     </div>
+    <div class="team">
+        <img [src]="playerResult.teamLogo" [width]="86" alt="">
+    </div>
     <div class="stats">
         @if(playerResult.positionName==='Вратарь'){
         <div class="saves">
