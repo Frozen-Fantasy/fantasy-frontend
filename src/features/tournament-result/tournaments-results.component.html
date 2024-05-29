@@ -12,7 +12,12 @@
                 <tr [ngClass]="{'picked-result':this.pickedResultId===$index}">
                     <td>{{result.place}}</td>
                     <td>{{result.nickname}} <img [src]="result.userPhoto" [width]="32"></td>
-                    <td>{{result.fantasyPoints}}</td>
+                    <td>
+                        <div class="fantasy-points">
+                            <p>{{result.fantasyPoints}}</p>
+                            <img [width]="24" src="../../assets/icons/fantasy-points.svg" alt="">
+                        </div>
+                    </td>
                     <td><frozen-fantasy-coins [price]="result.coins"></frozen-fantasy-coins></td>
                 </tr>
                 }
