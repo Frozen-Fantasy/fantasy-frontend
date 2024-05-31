@@ -10,7 +10,7 @@ import { TabComponent } from 'src/ui/kit/tab/tab.component';
 import { CheckboxComponent } from 'src/ui/kit/checkbox/checkbox.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from 'src/ui/kit/input/input.component';
-import { IPlayerCard, PlayerPositionName } from './interfaces';
+import { IPlayer, IPlayerCard, PlayerPositionName } from './interfaces';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FilterPlayersComponent } from 'src/ui/filter-players/filter-players.component';

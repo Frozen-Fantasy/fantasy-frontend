@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlayerPickComponent } from 'src/ui/player-pick/player-pick.component';
-import { IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
+import { IPlayer, IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
 import { PlayersPickListComponent } from 'src/ui/players-pick-list/players-pick-list.component';
 import { BehaviorSubject, Observable, Subject, combineLatest, map, startWith, take, takeUntil, tap } from 'rxjs';

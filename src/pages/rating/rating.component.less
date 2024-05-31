@@ -1,0 +1,42 @@
+@import "src/styles.less";
+
+.filter {
+    margin-top: 1rem;
+}
+
+table {
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    border-collapse: collapse;
+    margin-top: 1rem;
+
+    th {
+        width: 20%;
+        padding-bottom: 0.5rem;
+    }
+
+    td {
+        padding: 0.5rem 0 0 0;
+        border-top: 2px solid @base-blue;
+
+        .name-photo-team {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .name-photo {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .fantasy-points {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        justify-content: center;
+    }
+
+}

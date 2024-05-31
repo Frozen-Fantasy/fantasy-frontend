@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/core';
-import { IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
+import { IPlayer, IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { CheckboxComponent } from '../kit/checkbox/checkbox.component';
 import { MatSelectModule } from '@angular/material/select';
 import { InputComponent } from '../kit/input/input.component';

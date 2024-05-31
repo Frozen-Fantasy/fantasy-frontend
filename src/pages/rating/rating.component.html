@@ -1,1 +1,37 @@
-<p>rating works!</p>
+<frozen-fantasy-filter-players class="filter"
+    (filteredPlayers)="onFilter($event)"></frozen-fantasy-filter-players>
+<table *ngLet="players$ | async as players">
+    <thead>
+        <th></th>
+        <th><frozen-fantasy-button [appearance]="'secondary'"
+                (click)="sortByPrice()">Цена</frozen-fantasy-button></th>
+        <th>
+            Позиция
+        </th>
+        <th>
+            <frozen-fantasy-button [appearance]="'secondary'" (click)="sortByFP()">Ср. фэнтези
+                очки</frozen-fantasy-button>
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor=" let player of players">
+            <td>
+                <div class="name-photo-team">
+                    <div class="name-photo">
+                        <img [src]="player.photo" [width]="86" alt="">
+                        <p>{{player.name}}</p>
+                    </div>
+                    <img [src]="player.teamLogo" [width]="86" alt="">
+                </div>
+            </td>
+            <td>{{player.playerCost | currency}}</td>
+            <td>{{player.positionName}}</td>
+            <td>
+                <div class="fantasy-points">
+                    <p>{{player.avgFantasyPoints}}</p>
+                    <img [width]="24" src="../../assets/icons/fantasy-points.svg" alt="">
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

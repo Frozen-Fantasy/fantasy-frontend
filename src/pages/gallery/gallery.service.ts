@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { BASE_API_URL } from "src/utils/dto";
-import { IPlayerCard } from "./interfaces";
+import { IPlayer, IPlayerCard } from "./interfaces";
 import { AuthService } from "src/services/auth/auth.service";
 import { UserService } from "src/services/auth/user.service";
 
@@ -25,5 +25,9 @@ export class GalleryService {
 
     unpackPlayer(id: number): Observable<any> {
         return this.http.post<any>(`${BASE_API_URL}/players/cards/unpack?id=${id}`, {});
+    }
+
+    getAllPlayers(): Observable<IPlayer[]> {
+        return this.http.get<IPlayer[]>(`/api/v1/players`);
     }
 }
