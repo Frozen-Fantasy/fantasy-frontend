@@ -85,8 +85,11 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 	}
 
 	onPlayerPick(player: IPlayerCard): void {
+		const playerIndex = this.nextIndex[player.positionName];
+		if (this.pickedPlayers[player.positionName][playerIndex]) {
+			this.budget += this.pickedPlayers[player.positionName][playerIndex]?.playerCost ?? 0;
+		}
 		if (this.budget > player.playerCost! && this.playerNotPicked(player)) {
-			const playerIndex = this.nextIndex[player.positionName];
 			this.pickedPlayers[player.positionName][playerIndex] = player;
 			this.nextIndex[player.positionName] += 1;
 			if (this.nextIndex[player.positionName] > this.maxIndex[player.positionName]) {
@@ -94,6 +97,13 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 			}
 			this.budget -= player.playerCost!;
 		}
+	}
+
+	unPickPlayer(player: IPlayerCard): void {
+		const playerIndex = this.pickedPlayers[player.positionName].findIndex(curPlayer => curPlayer?.id === player?.id)
+		this.pickedPlayers[player.positionName][playerIndex] = null;
+		this.nextIndex[player.positionName] = playerIndex;
+		this.budget += player?.playerCost ?? 0;
 	}
 
 	filterByPosition(players: IPlayerCard[]): IPlayerCard[] {

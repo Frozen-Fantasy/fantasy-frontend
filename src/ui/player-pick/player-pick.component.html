@@ -4,6 +4,8 @@
     <div class="imgBox">
         <img [src]="pickedPlayer.teamLogo" class="team-logo">
         <img [src]="pickedPlayer.photo" class="product-img">
+        <img src="../../assets/icons/cross-icon.svg" class="cross-icon" [width]="24" alt=""
+            (click)="onUnpick()">
     </div>
     <div class="contentBox">
         <span class="sweater-number">{{pickedPlayer.sweaterNumber}}</span>
