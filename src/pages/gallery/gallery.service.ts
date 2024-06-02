@@ -1,10 +1,26 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, EMPTY, Observable, catchError, take } from "rxjs";
 import { BASE_API_URL } from "src/utils/dto";
 import { IPlayer, IPlayerCard } from "./interfaces";
 import { AuthService } from "src/services/auth/auth.service";
 import { UserService } from "src/services/auth/user.service";
+import { IPlayerResult } from "../tournaments/interfaces";
+
+export interface IPlayerStat {
+    matchIdLocal: number,
+    gameDate: Date,
+    opponent: string,
+    fantasyPoint: number,
+    goals: number,
+    assists: number,
+    shots: number,
+    pims: number,
+    hits: number,
+    saves: number,
+    missedGoals: number,
+    shutout: false
+}
 
 @Injectable({ providedIn: 'root' })
 
@@ -29,5 +45,9 @@ export class GalleryService {
 
     getAllPlayers(): Observable<IPlayer[]> {
         return this.http.get<IPlayer[]>(`/api/v1/players`);
+    }
+
+    getPlayerInfo(playerId: number): Observable<IPlayerStat[]> {
+        return this.http.get<IPlayerStat[]>(`/api/v1/players/statistic_player/${playerId}`).pipe(take(1), catchError(() => EMPTY));
     }
 }

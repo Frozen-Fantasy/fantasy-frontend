@@ -9,8 +9,8 @@
         </thead>
         <tbody>
             @for (player of players; track $index) {
-            <tr
-                [ngClass]="{'gold-player':player.rarityName==='Gold','silver-player':player.rarityName==='Silver','picked-player-row':this.isPlayerPicked(player)}">
+            <tr [ngClass]="{'gold-player':player.rarityName==='Gold','silver-player':player.rarityName==='Silver','picked-player-row':this.isPlayerPicked(player)}"
+                [tuiHint]="tooltip">
                 <td class="player-name-cell">
                     <div class="player-name-photo">
                         <p>{{player.name}}</p><img [width]="64" [src]="player.photo">
@@ -35,3 +35,14 @@
         </tbody>
     </table>
 </div>
+
+<ng-template #tooltip>
+    <div>
+        What is
+        <strong>love</strong>
+        ?
+    </div>
+    <div>Baby don't hurt me</div>
+    <div>Don't hurt me</div>
+    <div>No more...</div>
+</ng-template>

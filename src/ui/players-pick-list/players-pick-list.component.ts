@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { IPlayer, IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { CoinsComponent } from '../kit/coins/coins.component';
 import { ButtonComponent } from '../kit/button/button.component';
+import { TuiHintModule } from '@taiga-ui/core';
 
 @Component({
 	selector: 'frozen-fantasy-players-pick-list',
 	standalone: true,
-	imports: [CommonModule, CoinsComponent, ButtonComponent],
+	imports: [CommonModule, CoinsComponent, ButtonComponent, TuiHintModule],
 	templateUrl: './players-pick-list.component.html',
 	styleUrl: './players-pick-list.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
