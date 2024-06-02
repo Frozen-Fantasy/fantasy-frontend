@@ -1,5 +1,5 @@
-<frozen-fantasy-filter-players class="filter"
-    (filteredPlayers)="onFilter($event)"></frozen-fantasy-filter-players>
+<frozen-fantasy-filter-players class="filter" (filteredPlayers)="onFilter($event)"
+    [initialPlayers]="initialFilterPlayers"></frozen-fantasy-filter-players>
 <table *ngLet="players$ | async as players">
     <thead>
         <th></th>

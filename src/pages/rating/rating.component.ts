@@ -5,7 +5,7 @@ import { LetDirective } from 'src/utils/directives/ngLet.directive';
 import { IPlayer } from '../gallery/interfaces';
 import { ButtonComponent } from 'src/ui/kit/button/button.component';
 import { BehaviorSubject, combineLatest, map, take, tap } from 'rxjs';
-import { FilterPlayersComponent } from 'src/ui/filter-players/filter-players.component';
+import { FilterPlayersComponent, IFilterPlayer } from 'src/ui/filter-players/filter-players.component';
 
 @Component({
 	selector: 'frozen-fantasy-rating',
@@ -15,35 +15,56 @@ import { FilterPlayersComponent } from 'src/ui/filter-players/filter-players.com
 	styleUrl: './rating.component.less',
 })
 export class RatingComponent {
-	players$;
+	players$ = new BehaviorSubject<IPlayer[]>([]);
 	fpSort = new BehaviorSubject(false);
 	initialPlayers: IPlayer[] = [];
 	priceSort = new BehaviorSubject(false);
+
+	get initialFilterPlayers(): IFilterPlayer[] {
+		return this.initialPlayers.map(player => ({
+			id: player.id,
+			leagueName: player.leagueName,
+			positionName: player.positionName,
+			name: player.name
+		} as IFilterPlayer))
+	}
 	constructor(private galleryService: GalleryService) {
-		this.players$ = combineLatest([this.galleryService.getAllPlayers().pipe(take(1), tap(players => this.initialPlayers = players)), this.fpSort, this.priceSort]).pipe(
+		combineLatest([this.galleryService.getAllPlayers().pipe(take(1), tap(players => {
+			this.initialPlayers = players;
+			this.players$.next(players);
+		})), this.fpSort, this.priceSort]).pipe(
 			map(([players, fpSort, priceSort]) => {
 				if (fpSort) {
-					return players.sort((player1, player2) => player2.avgFantasyPoints - player1.avgFantasyPoints);
+					return this.players$.value.sort((player1, player2) => player2.avgFantasyPoints - player1.avgFantasyPoints);
 				}
 				return players;
 			}),
 			map((players) => {
 				if (this.priceSort.value) {
-					return players.sort((player1, player2) => player2.playerCost - player1.playerCost)
+					return this.players$.value.sort((player1, player2) => player2.playerCost - player1.playerCost)
 				}
 				return players;
 			})
-		);
+		).subscribe();
 	}
 
 	sortByFP() {
 		this.fpSort.next(true);
+		this.priceSort.next(false);
 	}
 	sortByPrice() {
 		this.priceSort.next(true);
+		this.fpSort.next(false);
 	}
 
-	onFilter(players: any) {
-
+	onFilter(playerIds: number[]) {
+		const filteredPlayers: IPlayer[] = [];
+		playerIds.forEach(id => {
+			const findPlayer = this.initialPlayers.find(player => player.id === id);
+			if (findPlayer) {
+				filteredPlayers.push(findPlayer);
+			}
+		});
+		this.players$.next(filteredPlayers);
 	}
 }

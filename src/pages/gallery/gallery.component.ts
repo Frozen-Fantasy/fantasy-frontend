@@ -13,7 +13,7 @@ import { InputComponent } from 'src/ui/kit/input/input.component';
 import { IPlayer, IPlayerCard, PlayerPositionName } from './interfaces';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FilterPlayersComponent } from 'src/ui/filter-players/filter-players.component';
+import { FilterPlayersComponent, IFilterPlayer } from 'src/ui/filter-players/filter-players.component';
 
 @Component({
 	selector: 'frozen-fantasy-gallery',
@@ -27,6 +27,14 @@ export class GalleryComponent {
 	packedPlayers$ = this.galleryService.packedPlayers$;
 	initialUnpackedPlayers: IPlayerCard[] = [];
 
+	get initialFilterPlayers(): IFilterPlayer[] {
+		return this.initialUnpackedPlayers.map(player => ({
+			id: player.id,
+			leagueName: player.leagueName,
+			positionName: player.positionName,
+			name: player.name
+		} as IFilterPlayer))
+	}
 	constructor(private galleryService: GalleryService) {
 		this.galleryService.getUnpackedPlayers();
 		this.galleryService.getPackedPlayers();
@@ -52,7 +60,14 @@ export class GalleryComponent {
 		});
 	}
 
-	onFilterPlayers(players: IPlayerCard[]) {
-		this.galleryService.unpackedPlayers$.next(players);
+	onFilterPlayers(playerIds: number[]) {
+		const filteredPlayers: IPlayerCard[] = [];
+		playerIds.forEach(id => {
+			const findPlayer = this.initialUnpackedPlayers.find(player => player.id === id);
+			if (findPlayer) {
+				filteredPlayers.push(findPlayer);
+			}
+		});
+		this.unpackedPlayers$.next(filteredPlayers);
 	}
 }

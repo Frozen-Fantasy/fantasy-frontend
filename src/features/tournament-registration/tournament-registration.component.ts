@@ -4,11 +4,11 @@ import { PlayerPickComponent } from 'src/ui/player-pick/player-pick.component';
 import { IPlayer, IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
 import { PlayersPickListComponent } from 'src/ui/players-pick-list/players-pick-list.component';
-import { BehaviorSubject, Observable, Subject, combineLatest, map, startWith, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest, filter, map, startWith, take, takeUntil, tap } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { ButtonComponent } from 'src/ui/kit/button/button.component';
 import { CoinsComponent } from 'src/ui/kit/coins/coins.component';
-import { FilterPlayersComponent } from 'src/ui/filter-players/filter-players.component';
+import { FilterPlayersComponent, IFilterPlayer } from 'src/ui/filter-players/filter-players.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-registration',
@@ -41,6 +41,15 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 	};
 	players$ = new BehaviorSubject<IPlayerCard[]>([]);
 	destroy$ = new Subject<any>();
+
+	get initialFilterPlayers(): IFilterPlayer[] {
+		return this.initialPlayers.map(player => ({
+			id: player.id,
+			leagueName: player.leagueName,
+			positionName: player.positionName,
+			name: player.name
+		} as IFilterPlayer))
+	}
 	constructor(private tournamentService: TournamentsService, private readonly cdr: ChangeDetectorRef) {
 	}
 	ngOnInit() {
@@ -115,7 +124,16 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 		return !this.pickedPlayers[player.positionName].map(player => player?.id).includes(player.id);
 	}
 
-	onFilterPlayers(players: IPlayerCard[]) {
-		this.players$.next(players);
+	onFilterPlayers(playerIds: number[]) {
+		const filteredPlayers: IPlayerCard[] = [];
+		playerIds.forEach(id => {
+			const findPlayer = this.initialPlayers.find(player => {
+				return player.id === id;
+			});
+			if (findPlayer) {
+				filteredPlayers.push(findPlayer);
+			}
+		});
+		this.players$.next(filteredPlayers);
 	}
 }

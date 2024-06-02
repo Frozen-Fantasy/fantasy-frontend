@@ -9,6 +9,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { InputComponent } from '../kit/input/input.component';
 import { Subject, takeUntil } from 'rxjs';
 
+export interface IFilterPlayer {
+	leagueName: 'KHL' | 'NHL';
+	name: string;
+	positionName: PlayerPositionName;
+	id: number;
+}
+
 @Component({
 	selector: 'frozen-fantasy-filter-players',
 	standalone: true,
@@ -25,9 +32,9 @@ export class FilterPlayersComponent implements OnInit, OnDestroy {
 		nhlLeague: new FormControl<boolean>(true, { nonNullable: true })
 	})
 	destroy$ = new Subject();
-	@Input() initialPlayers: IPlayerCard[] = [];
+	@Input() initialPlayers: IFilterPlayer[] = [];
 
-	@Output() filteredPlayers = new EventEmitter<IPlayerCard[]>();
+	@Output() filteredPlayers = new EventEmitter<number[]>();
 
 	ngOnInit() {
 		this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(formValue => {
@@ -60,6 +67,6 @@ export class FilterPlayersComponent implements OnInit, OnDestroy {
 			return this.form.get('position')?.value ? player.positionName === this.form.get('position')?.value : true;
 		})
 
-		this.filteredPlayers.emit(filteredByPosition);
+		this.filteredPlayers.emit(filteredByPosition.map(player => player.id));
 	}
 }
