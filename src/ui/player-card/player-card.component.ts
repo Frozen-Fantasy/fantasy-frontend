@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IPlayer, IPlayerCard, PlayerPosition } from 'src/pages/gallery/interfaces';
+import { IPlayer, IPlayerCard, PlayerPosition, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { ButtonComponent } from '../kit/button/button.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
@@ -21,7 +21,8 @@ export interface IPlayerSumStat {
 	hits: number,
 	saves: number,
 	missedGoals: number,
-	shutout: number
+	shutout: number,
+	id: number
 }
 @Component({
 	selector: 'frozen-fantasy-player-card',
@@ -61,9 +62,10 @@ export class PlayerCardComponent {
 			takeUntil(this.destroy$),
 			distinctUntilChanged(),
 			debounceTime(1000)
-		).subscribe((id) => {
+		).subscribe((id: number) => {
 			this.galleryService.getPlayerInfo(id).pipe(map(stats => {
 				return {
+					id: id,
 					fantasyPoint: stats.reduce((acc, next) => acc + next.fantasyPoint, 0),
 					goals: stats.reduce((acc, next) => acc + next.goals, 0),
 					assists: stats.reduce((acc, next) => acc + next.assists, 0),
@@ -88,5 +90,9 @@ export class PlayerCardComponent {
 
 	onHovered(id: number) {
 		this.hovered$.next(id)
+	}
+
+	getPosition(id: number): PlayerPositionName {
+		return this.player.positionName;
 	}
 }

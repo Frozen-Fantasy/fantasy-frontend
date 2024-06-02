@@ -1,4 +1,4 @@
-<div class="players-list">
+<div class="players-list" *ngLet="playerInfo$ | async as playerInfo">
     <table>
         <thead>
             <th>Имя</th>
@@ -10,7 +10,7 @@
         <tbody>
             @for (player of players; track $index) {
             <tr [ngClass]="{'gold-player':player.rarityName==='Gold','silver-player':player.rarityName==='Silver','picked-player-row':this.isPlayerPicked(player)}"
-                [tuiHint]="tooltip">
+                [tuiHint]="tooltip" (tuiHoveredChange)="onHovered(player.id)">
                 <td class="player-name-cell">
                     <div class="player-name-photo">
                         <p>{{player.name}}</p><img [width]="64" [src]="player.photo">
@@ -34,15 +34,49 @@
             }
         </tbody>
     </table>
+    <ng-template #tooltip>
+        <div class="stats">
+            Последние {{playerInfo?.matchesCount}} матчей
+            @if(getPosition(playerInfo?.id)==='Вратарь'){
+            <div class="stat">
+                <p>Сейвы</p>
+                <p>{{playerInfo?.saves}}</p>
+            </div>
+            <div class="stat">
+                <p>Пропущено шайб</p>
+                <p>{{playerInfo?.missedGoals}}</p>
+            </div>
+            <div class="stat">
+                <p>Сухие матчи</p>
+                <p>{{playerInfo?.shutout}}/{{playerInfo?.matchesCount}}</p>
+            </div>
+            }
+            @else{
+            <div class="stat">
+                <p>Fantasy points</p>
+                <p>{{playerInfo?.fantasyPoint | number : '1.0-2'}}</p>
+            </div>
+            <div class="stat">
+                <p>Голы</p>
+                <p>{{playerInfo?.goals}}</p>
+            </div>
+            <div class="stat">
+                <p>Ассисты</p>
+                <p>{{playerInfo?.assists}}</p>
+            </div>
+            <div class="stat">
+                <p>Броски</p>
+                <p>{{playerInfo?.shots}}</p>
+            </div>
+            <div class="stat">
+                <p>Мин. штрафа</p>
+                <p>{{playerInfo?.pims}}</p>
+            </div>
+            <div class="stat">
+                <p>Силовые приемы</p>
+                <p>{{playerInfo?.hits}}</p>
+            </div>
+            }
+        </div>
+    </ng-template>
 </div>
-
-<ng-template #tooltip>
-    <div>
-        What is
-        <strong>love</strong>
-        ?
-    </div>
-    <div>Baby don't hurt me</div>
-    <div>Don't hurt me</div>
-    <div>No more...</div>
-</ng-template>

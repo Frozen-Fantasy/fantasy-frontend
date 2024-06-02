@@ -36,6 +36,21 @@
     <ng-template #tooltip>
         <div class="stats">
             Последние {{playerInfo?.matchesCount}} матчей
+            @if(getPosition(playerInfo?.id)==='Вратарь'){
+            <div class="stat">
+                <p>Сейвы</p>
+                <p>{{playerInfo?.saves}}</p>
+            </div>
+            <div class="stat">
+                <p>Пропущено шайб</p>
+                <p>{{playerInfo?.missedGoals}}</p>
+            </div>
+            <div class="stat">
+                <p>Сухие матчи</p>
+                <p>{{playerInfo?.shutout}}/{{playerInfo?.matchesCount}}</p>
+            </div>
+            }
+            @else{
             <div class="stat">
                 <p>Fantasy points</p>
                 <p>{{playerInfo?.fantasyPoint | number : '1.0-2'}}</p>
@@ -60,19 +75,7 @@
                 <p>Силовые приемы</p>
                 <p>{{playerInfo?.hits}}</p>
             </div>
-
-            <div class="stat">
-                <p>Сейвы</p>
-                <p>{{playerInfo?.saves}}</p>
-            </div>
-            <div class="stat">
-                <p>Пропущено шайб</p>
-                <p>{{playerInfo?.missedGoals}}</p>
-            </div>
-            <div class="stat">
-                <p>Сухие матчи</p>
-                <p>{{playerInfo?.shutout}}/{{playerInfo?.matchesCount}}</p>
-            </div>
+            }
         </div>
     </ng-template>
 </div>
