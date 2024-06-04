@@ -44,10 +44,10 @@ export class GalleryService {
     }
 
     getAllPlayers(): Observable<IPlayer[]> {
-        return this.http.get<IPlayer[]>(`/api/v1/players`);
+        return this.http.get<IPlayer[]>(`${BASE_API_URL}/players`);
     }
 
     getPlayerInfo(playerId: number): Observable<IPlayerStat[]> {
-        return this.http.get<IPlayerStat[]>(`/api/v1/players/statistic_player/${playerId}`).pipe(take(1), catchError(() => EMPTY));
+        return this.http.get<IPlayerStat[]>(`${BASE_API_URL}/players/statistic_player/${playerId}`).pipe(take(1), catchError(() => EMPTY));
     }
 }
