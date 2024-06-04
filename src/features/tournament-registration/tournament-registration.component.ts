@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlayerPickComponent } from 'src/ui/player-pick/player-pick.component';
-import { IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
+import { IPlayer, IPlayerCard, PlayerPositionName } from 'src/pages/gallery/interfaces';
 import { TournamentsService } from 'src/services/tournaments.service';
 import { PlayersPickListComponent } from 'src/ui/players-pick-list/players-pick-list.component';
-import { BehaviorSubject, Observable, Subject, combineLatest, map, startWith, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest, filter, map, startWith, take, takeUntil, tap } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { ButtonComponent } from 'src/ui/kit/button/button.component';
 import { CoinsComponent } from 'src/ui/kit/coins/coins.component';
-import { FilterPlayersComponent } from 'src/ui/filter-players/filter-players.component';
+import { FilterPlayersComponent, IFilterPlayer } from 'src/ui/filter-players/filter-players.component';
 
 @Component({
 	selector: 'frozen-fantasy-tournament-registration',
@@ -41,6 +41,15 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 	};
 	players$ = new BehaviorSubject<IPlayerCard[]>([]);
 	destroy$ = new Subject<any>();
+
+	get initialFilterPlayers(): IFilterPlayer[] {
+		return this.initialPlayers.map(player => ({
+			id: player.id,
+			leagueName: player.leagueName,
+			positionName: player.positionName,
+			name: player.name
+		} as IFilterPlayer))
+	}
 	constructor(private tournamentService: TournamentsService, private readonly cdr: ChangeDetectorRef) {
 	}
 	ngOnInit() {
@@ -76,8 +85,11 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 	}
 
 	onPlayerPick(player: IPlayerCard): void {
+		const playerIndex = this.nextIndex[player.positionName];
+		if (this.pickedPlayers[player.positionName][playerIndex]) {
+			this.budget += this.pickedPlayers[player.positionName][playerIndex]?.playerCost ?? 0;
+		}
 		if (this.budget > player.playerCost! && this.playerNotPicked(player)) {
-			const playerIndex = this.nextIndex[player.positionName];
 			this.pickedPlayers[player.positionName][playerIndex] = player;
 			this.nextIndex[player.positionName] += 1;
 			if (this.nextIndex[player.positionName] > this.maxIndex[player.positionName]) {
@@ -85,6 +97,13 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 			}
 			this.budget -= player.playerCost!;
 		}
+	}
+
+	unPickPlayer(player: IPlayerCard): void {
+		const playerIndex = this.pickedPlayers[player.positionName].findIndex(curPlayer => curPlayer?.id === player?.id)
+		this.pickedPlayers[player.positionName][playerIndex] = null;
+		this.nextIndex[player.positionName] = playerIndex;
+		this.budget += player?.playerCost ?? 0;
 	}
 
 	filterByPosition(players: IPlayerCard[]): IPlayerCard[] {
@@ -115,7 +134,16 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
 		return !this.pickedPlayers[player.positionName].map(player => player?.id).includes(player.id);
 	}
 
-	onFilterPlayers(players: IPlayerCard[]) {
-		this.players$.next(players);
+	onFilterPlayers(playerIds: number[]) {
+		const filteredPlayers: IPlayerCard[] = [];
+		playerIds.forEach(id => {
+			const findPlayer = this.initialPlayers.find(player => {
+				return player.id === id;
+			});
+			if (findPlayer) {
+				filteredPlayers.push(findPlayer);
+			}
+		});
+		this.players$.next(filteredPlayers);
 	}
 }

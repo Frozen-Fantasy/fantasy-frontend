@@ -1,21 +1,24 @@
 <div class="pick">
     @for (goalkeeper of pickedPlayers['Вратарь']; track $index) {
     <frozen-fantasy-player-pick [position]="'Вратарь'" [pickedPlayer]="goalkeeper"
-        (filterByPosition)="selectPosition('Вратарь')"></frozen-fantasy-player-pick>
+        (filterByPosition)="selectPosition('Вратарь')"
+        (unPickPlayer)="unPickPlayer($event)"></frozen-fantasy-player-pick>
     }
     @for (defence of pickedPlayers['Защитник']; track $index) {
     <frozen-fantasy-player-pick [position]="'Защитник'" [pickedPlayer]="defence"
-        (filterByPosition)="selectPosition('Защитник')"></frozen-fantasy-player-pick>
+        (filterByPosition)="selectPosition('Защитник')"
+        (unPickPlayer)="unPickPlayer($event)"></frozen-fantasy-player-pick>
     }
     @for (offence of pickedPlayers['Нападающий']; track $index) {
     <frozen-fantasy-player-pick [position]="'Нападающий'" [pickedPlayer]="offence"
-        (filterByPosition)="selectPosition('Нападающий')"></frozen-fantasy-player-pick>
+        (filterByPosition)="selectPosition('Нападающий')"
+        (unPickPlayer)="unPickPlayer($event)"></frozen-fantasy-player-pick>
     }
 </div>
 
 <div class="players-list-wrapper">
     <div class="list-filters">
-        <frozen-fantasy-filter-players class="filters" [initialPlayers]="initialPlayers"
+        <frozen-fantasy-filter-players class="filters" [initialPlayers]="initialFilterPlayers"
             (filteredPlayers)="onFilterPlayers($event)"></frozen-fantasy-filter-players>
         <frozen-fantasy-players-pick-list class="list" [players]="players$|async"
             [pickedPlayers]="pickedPlayers"
