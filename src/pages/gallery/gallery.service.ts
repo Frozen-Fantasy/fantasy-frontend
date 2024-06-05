@@ -44,7 +44,7 @@ export class GalleryService {
     }
 
     getAllPlayers(): Observable<IPlayer[]> {
-        return this.http.get<IPlayer[]>(`${BASE_API_URL}/players`);
+        return this.http.get<IPlayer[]>(`${BASE_API_URL}/players/info`);
     }
 
     getPlayerInfo(playerId: number): Observable<IPlayerStat[]> {
