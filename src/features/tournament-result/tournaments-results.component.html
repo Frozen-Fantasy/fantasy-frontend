@@ -9,7 +9,8 @@
             </thead>
             <tbody>
                 @for(result of results;track $index){
-                <tr [ngClass]="{'picked-result':this.pickedResultId===$index}">
+                <tr [ngClass]="{'picked-result':this.pickedResultId===$index}"
+                    (click)="pickResult($index)">
                     <td>{{result.place}}</td>
                     <td>{{result.nickname}} <img [src]="result.userPhoto" [width]="32"></td>
                     <td>
