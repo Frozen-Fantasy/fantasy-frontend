@@ -30,4 +30,9 @@ export class TournamentsResultsComponent {
 		}
 		)
 	}
+	pickResult(id: number) {
+		this.pickedResultId = id;
+
+		this.cdr.detectChanges();
+	}
 }
